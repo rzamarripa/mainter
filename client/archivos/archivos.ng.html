@@ -1,45 +1,128 @@
+<h2>Artículos</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<a class="btn btn-{{art.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoarticulos" ng-click="art.nuevoArticulos()">
+		 {{art.nuevo == true ? 'Nuevo' : 'Cancelar'}}
+		</a>
+		
+		<div class="collapse" id="collapseExample">
+			<form class="form-horizontal" role="form">
+		  	<div class="well">	    
+			    <div class="row">
+			    	<div class="col-sm-12">		 			  
+					    <div class="col-sm-4">
+						    <label>Nombre</label>
+					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="art.articulo.nombre">
+					    </div>					   
+					    <div class="col-sm-6">
+					    	<label>Descripción</label>
+								<textarea class="form-control" placeholder="Descripción" ng-model="art.articulo.descripcion"></textarea>
+			    		</div>					    					     
+			    	</div>
+			    </div>  
+			    <div class="row" ng-show="archi.estatus = true">
+			    	<div class="col-sm-12">
+			    		<h3>Agrega Fotos</h3>
+		          <div ngf-drop ngf-select
+		               ngf-change="archi.addImages($files)"
+		               ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+		               ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
+		               ngf-drop-available="true">
+		            <div>Click here to select image</div>
+		            <div>
+		              <strong>OR</strong>
+		            </div>
+		            You can also drop image to here
+		          </div>
+			    	</div>
+			    </div>
+			  </div> 
+				<div class="row">
+					<div class="col-sm-12">
+						<input type="submit" ng-click="art.guardar(art.articulo)" value="Guardar" class="btn btn-primary" ng-show="art.action">
+						<input type="submit" ng-click="art.actualizar(art.articulo)" value="Actualizar" class="btn btn-primary" ng-show="!art.action">	
+					</div>
+				</div>				  
+		  </form>
+		</div>
+	</div>
+</div>
+<br/>
+
+
+
+<!-- List -->
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-bordered">
+      <thead>
+      	<tr>
+	      	<th width="5%"><div class="text-center">Nombre</div></th>
+					<th width="20%"><div class="text-center">Nombre</div></th>
+					<th width="15%"><div class="text-center">Fecha </div></th>
+					<th width="40%"><div class="text-center">Descripción</div></th>
+					<th width="10%">
+						<div class="text-center">
+							Estatus
+						</div>
+					</th>
+					<th width="10%">
+						<div class="text-center">
+							Acciones
+						</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+		    <tr ng-repeat="articulo in art.articulos">
+			    <td>{{$index+1}}</td>
+			    <td>{{articulo.nombre}}</td>
+			    <td>{{articulo.fecha | date:"dd-MM-yyyy"}}</td>
+			    <td>{{articulo.descripcion}}</td>
+
+			    <td>
+				    <div class="text-center">
+				    	<span ng-if="articulo.estatus" class="label label-success">
+							  Activo
+							</span>
+							<span ng-if="!articulo.estatus" class="label label-danger">
+							  Inactivo
+							</span>
+				    </div>
+			    </td>
+			    <td>
+				    <div class="text-center">
+					    <div class="btn-group">
+							  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    <span class="caret"></span>
+							    <span class="sr-only">Toggle Dropdown</span>
+							  </button>
+							  <ul class="dropdown-menu text-left">
+							    <li><a href="#" ng-click="art.editar(articulo._id)"><i class="fa fa-pencil"></i> Editar</a></li>
+							  <li><a href="#" ng-click="art.cambiarEstatus(articulo._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
+							  </ul>
+							</div>
+				    </div>				    
+			    </td>
+		    </tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+Status API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Contact Help
+
+---
+
 <h2>Archivos</h2>
 <div class="row">
 	<div class="col-sm-12">
-		<div>
-			<form class="form-horizontal" role="form" data-parsley-validate>
-		  	<div class="well">	    
-			    <div class="row">
-			    	<div class="col-sm-12">			 			  
-					    <div class="col-sm-4">
-						    <label>Seleccione Archivo</label>
-                            <div class="cv"> Would you like to attach you CV? <a href="" id="resume_link">Click here</a></div>
-    <input type="file" id="resume" style="visibility: hidden">
-
-                           
-
-					    </div>
-					  
-					     
-			    	</div>
-			    </div>  
-			    </div> 
-
-
-
-
-
-
-
-
-
-
-
-				<div class="row">
-					<div class="col-sm-12 file_button_container" >
-						<input type="submit" ng-click="archi.guardar(archivo)" value="Guardar" class="btn btn-primary" ng-show="archi.action">
-						<!--<input type="submit" ng-click="ven.actualizar(articulo)" value="Actualizar" class="btn btn-primary" ng-show="!ven.action">	-->
-
-					</div>
-				</div>
-				  
-		  </form>
-		</div>
+		<div layout="row" class="images-container-title">
+      <div flex>
+        
+      </div>
+    </div>
 	</div>
 </div>
 <br/>
