@@ -22,9 +22,9 @@ angular.module("interCeramic")
   this.guardar = function(articulo)
 	{
 		this.articulo.estatus = true;
-		console.log(this.articulo);
+		this.articulo.fecha = new Date();
 		Articulos.insert(this.articulo);
-		toastr.success('articulo guardado.');
+		toastr.success('Artículo guardado.');
 		this.articulo = {}; 
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
@@ -35,7 +35,7 @@ angular.module("interCeramic")
 	{
     this.articulo = Articulos.findOne({_id:id});
     this.action = false;
-    $('.collapse').coll
+    $('.collapse').collapse('show');
     this.nuevo = false;
 	};
 	
