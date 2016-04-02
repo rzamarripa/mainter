@@ -1,4 +1,4 @@
-<h2>Articulos</h2>
+<h2>Artículos</h2>
 <div class="row">
 	<div class="col-sm-12">
 		<a class="btn btn-{{art.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
@@ -7,34 +7,27 @@
 		</a>
 		
 		<div class="collapse" id="collapseExample">
-			<form class="form-horizontal" role="form" data-parsley-validate>
+			<form class="form-horizontal" role="form">
 		  	<div class="well">	    
 			    <div class="row">
 			    	<div class="col-sm-12">		 			  
 					    <div class="col-sm-4">
 						    <label>Nombre</label>
-					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="art.articulo.nombre" required>
-					    </div>
-					      <div class="col-sm-4">
-				    	<label>Fecha </label>
-					    <input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="art.articulo.fecha" />
-			    	</div>
-					     <div class="col-sm-6">
-					    <label>Descripción</label>
-					    <textarea class="form-control" placeholder="Descripción" ng-model="art.articulo.descripcion"></textarea>
-			    	</div>
-					     
+					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="art.articulo.nombre">
+					    </div>					   
+					    <div class="col-sm-6">
+					    	<label>Descripción</label>
+								<textarea class="form-control" placeholder="Descripción" ng-model="art.articulo.descripcion"></textarea>
+			    		</div>					     
 			    	</div>
 			    </div>  
-			    </div> 
+			  </div> 
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="art.guardar(articulo)" value="Guardar" class="btn btn-primary" ng-show="art.action">
-						<input type="submit" ng-click="art.actualizar(articulo)" value="Actualizar" class="btn btn-primary" ng-show="!art.action">	
-
+						<input type="submit" ng-click="art.guardar(art.articulo)" value="Guardar" class="btn btn-primary" ng-show="art.action">
+						<input type="submit" ng-click="art.actualizar(art.articulo)" value="Actualizar" class="btn btn-primary" ng-show="!art.action">	
 					</div>
-				</div>
-				  
+				</div>				  
 		  </form>
 		</div>
 	</div>
@@ -47,13 +40,12 @@
 <div class="row">
 	<div class="col-sm-12">
 		<table class="table table-bordered">
-                <thead>
-                	<tr>
+      <thead>
+      	<tr>
+	      	<th width="5%"><div class="text-center">Nombre</div></th>
 					<th width="20%"><div class="text-center">Nombre</div></th>
-					<th width="20%"><div class="text-center">Fecha </div></th>
-					<th width="40%"><div class="text-center">Descripcion</div></th>
-										
-					
+					<th width="15%"><div class="text-center">Fecha </div></th>
+					<th width="40%"><div class="text-center">Descripción</div></th>
 					<th width="10%">
 						<div class="text-center">
 							Estatus
@@ -68,6 +60,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="articulo in art.articulos">
+			    <td>{{$index+1}}</td>
 			    <td>{{articulo.nombre}}</td>
 			    <td>{{articulo.fecha | date:"dd-MM-yyyy"}}</td>
 			    <td>{{articulo.descripcion}}</td>
