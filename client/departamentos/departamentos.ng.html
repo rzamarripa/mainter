@@ -1,0 +1,109 @@
+<h2>Departamentos</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<a class="btn btn-{{depa.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevodepartamento" ng-click="depa.nuevoDepartamento()">
+		 {{depa.nuevo == true ? 'Nuevo' : 'Cancelar'}}
+		</a>
+		
+		<div class="collapse" id="collapseExample">
+			<form class="form-horizontal" role="form" data-parsley-validate>
+		  	<div class="well">	    
+			    <div class="row">
+			    	<div class="col-sm-12">		 			  
+					    <div class="col-sm-4">
+						    <label>Nombre </label>
+					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="depa.departamento.nombre" required>
+					    </div>
+					    <div class="col-sm-4">
+						    <label>Responsable</label>
+					    	<input type="text" class="form-control" placeholder="Responsable" ng-model="depa.departamento.responsable" required>
+					    </div>
+					    <div class="col-sm-4">
+						    <label>Responsable Email</label>
+					    	<input type="text" class="form-control" placeholder="Email" ng-model="depa.departamento.responsableEmail" required>
+					    </div>
+					    <div class="row">
+					     <div class="col-sm-8">
+					    <label>Descripción</label>
+					    <textarea class="form-control" placeholder="Descripción" ng-model="depa.departamento.descripcion">Descripción</textarea>
+			    	</div>
+			    	</div>
+					     
+			    	</div>
+			    </div>  
+			    </div> 
+				<div class="row">
+					<div class="col-sm-12">
+						<input type="submit" ng-click="depa.guardar(departamento)" value="Guardar" class="btn btn-primary" ng-show="depa.action">
+						<input type="submit" ng-click="depa.actualizar(departamento)" value="Actualizar" class="btn btn-primary" ng-show="!depa.action">	
+
+					</div>
+				</div>
+				  
+		  </form>
+		</div>
+	</div>
+</div>
+<br/>
+<!-- List -->
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-bordered">
+                <thead>
+                	<tr>
+					<th width="20%"><div class="text-center">Nombre</div></th>
+					<th width="20%"><div class="text-center">Responsable </div></th>
+					<th width="20%"><div class="text-center">Responsable Email </div></th>
+					<th width="40%"><div class="text-center">Descripción</div></th>
+			
+										
+					
+					<th width="10%">
+						<div class="text-center">
+							Estatus
+						</div>
+					</th>
+					<th width="10%">
+						<div class="text-center">
+							Acciones
+						</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+		    <tr ng-repeat="departamento in depa.departamentos">
+			    <td>{{departamento.nombre}}</td>
+			    <td>{{departamento.responsable}}</td>
+			    <td>{{departamento.responsableEmail}}</td>
+			    <td>{{departamento.descripcion}}</td>
+
+			    <td>
+				    <div class="text-center">
+				    	<span ng-if="departamento.estatus" class="label label-success">
+							  Activo
+							</span>
+							<span ng-if="!departamento.estatus" class="label label-danger">
+							  Inactivo
+							</span>
+				    </div>
+			    </td>
+			    <td>
+				    <div class="text-center">
+					    <div class="btn-group">
+							  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    <span class="caret"></span>
+							    <span class="sr-only">Toggle Dropdown</span>
+							  </button>
+							  <ul class="dropdown-menu text-left">
+							    <li><a href="#" ng-click="depa.editar(departamento._id)"><i class="fa fa-pencil"></i> Editar</a></li>
+							  <li><a href="#" ng-click="depa.cambiarEstatus(departamento._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
+							  </ul>
+							</div>
+				    </div>				    
+			    </td>
+		    </tr>
+			</tbody>
+		</table>
+	</div>
+</div>

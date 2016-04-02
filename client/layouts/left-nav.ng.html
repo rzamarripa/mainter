@@ -1,0 +1,139 @@
+<!--
+EJEMPLO DE COMO AGREGAR ELEMENTOS
+A LA BARRA LATERAL
+
+<ul data-smart-menu>
+  <li data-ui-sref-active="active">
+    <a data-ui-sref="app.dashboard" title="Dashboard">
+      <i class="fa fa-lg fa-fw fa-home"></i>
+      <span class="menu-item-parent">Dashboard</span>
+    </a>
+  </li>
+  <li data-menu-collapse>
+    <a href="#">
+      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+      <span class="menu-item-parent">Graphs</span>
+    </a>
+    <ul>
+      <li data-ui-sref-active="active">
+         <a data-ui-sref="app.graphs.flot">Flot Chart</a>
+      </li>
+      <li data-ui-sref-active="active">
+          <a data-ui-sref="app.graphs.morris">Morris Charts</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+-->
+
+<nav>
+	<ul data-smart-menu>
+	 <li data-ui-sref-active="active">
+		      <a ui-sref="root.home" tilte="Home">
+		        <i class="fa fa-lg fa-fw fa-home"></i>
+		        <span class="menu-item-parent">Inicio</span>
+		      </a>
+		    </li>
+	<li data-ui-sref-active="active">
+		      <a ui-sref="root.articulos">
+		        <i class="fa fa-lg fa-fw fa-users"></i>
+		        <span class="menu-item-parent">Articulos</span>
+		      </a>
+		    </li>
+		    <li data-ui-sref-active="active">
+		      <a ui-sref="root.noticias">
+		        <i class="fa fa-lg fa-fw fa-users"></i>
+		        <span class="menu-item-parent">Noticias</span>
+		      </a>
+		    </li>       
+	  <li data-menu-collapse>
+	    <a href="#">
+	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+	      <span class="menu-item-parent">Catálogos</span>
+	    </a>
+	    <ul>
+		 <li data-menu-collapse>
+	    <a href="#">
+	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+	      <span class="menu-item-parent">Categorias</span>
+	    </a>
+		    <ul>	    
+		    <li>
+		      <a ui-sref="root.ventas">
+		        <i class=""></i>
+		        <span class="menu-item-parent">Ventas</span>
+		      </a>
+		    </li>
+		     <li>
+		      <a ui-sref="root.mshopper">
+		        <i class=""></i>
+		        <span class="menu-item-parent">Mistery Shopper</span>
+		      </a>
+		    </li>
+		     <li>
+		      <a ui-sref="root.lideres">
+		        <i class=""></i>
+		        <span class="menu-item-parent">Lideres Interceramic</span>
+		      </a>
+		    </li>
+		    </ul>
+		    </li>	
+		
+	    </ul>
+
+	  </li>
+	   <li data-menu-collapse>
+	    <a href="#">
+	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+	      <span class="menu-item-parent">Librero</span>
+	    </a>
+	     <ul>
+	      <li data-menu-collapse>
+	    <a href="#">
+	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+	      <span class="menu-item-parent">Categorias</span>
+	    </a>
+	    <ul>
+	    	<li>
+		      <a ui-sref="root.archivos">
+		        <i class=""></i>
+		        <span class="menu-item-parent">Archivos</span>
+		      </a>
+		    </li>
+	    </ul>
+		    </li>
+		    </ul>
+	     </li>
+	     <li>
+		      <a ui-sref="root.calendario">
+		        <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+		        <span class="menu-item-parent">Calendario</span>
+		      </a>
+		    </li>
+		    <li>
+		      <a ui-sref="root.tickets">
+		        <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+		        <span class="menu-item-parent">Tickets</span>
+		      </a>
+		    </li>
+		    <li>
+		      <a ui-sref="root.departamentos">
+		        <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+		        <span class="menu-item-parent">Departamentos</span>
+		      </a>
+		    </li>
+		    <li>
+		      <a ui-sref="root.empleados">
+		        <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+		        <span class="menu-item-parent">Empleados</span>
+		      </a>
+		    </li>
+		    <li>
+		      <a ui-sref="root.usuario">
+		        <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+		        <span class="menu-item-parent">Usuarios</span>
+		      </a>
+		    </li>
+
+  </ul>
+</nav>
