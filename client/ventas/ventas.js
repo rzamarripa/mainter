@@ -49,7 +49,7 @@ $('#resume').on( 'change', function() {
 	{
     this.venta = Ventas.findOne({_id:id});
     this.action = false;
-    $('.collapse').coll
+    $('.collapse').collapse('show');
     this.nuevo = false;
 	};
 	

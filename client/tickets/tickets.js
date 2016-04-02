@@ -51,7 +51,7 @@ angular.module("interCeramic")
 	{
     this.ticket = Tickets.findOne({_id:id});
     this.action = false;
-    $('.collapse').coll
+    $('.collapse').collapse('show');
     this.nuevo = false;
 	};
 	
@@ -74,5 +74,11 @@ angular.module("interCeramic")
 		
 		Tickets.update({_id: id},{$set :  {estatus : ticket.estatus}});
     };
+
+    this.getDepartamento= function(departamento_id)
+	{
+		var departamento = $meteor.object(Departamentos, departamento_id, false);
+		return departamento.nombre;
+	};	
 		
 };

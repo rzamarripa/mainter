@@ -4,7 +4,7 @@ angular.module("interCeramic")
  	$reactive(this).attach($scope);
   this.action = true;
 	this.subscribe('empleados');
-	this.subscribe('departametos');
+	this.subscribe('departamentos');
 
 	this.helpers({
 	  empleados : () => {
@@ -55,7 +55,7 @@ angular.module("interCeramic")
 	{
     this.empleado = Empleados.findOne({_id:id});
     this.action = false;
-    $('.collapse').coll
+    $('.collapse').collapse('show');
     this.nuevo = false;
 	};
 	
@@ -86,6 +86,12 @@ angular.module("interCeramic")
 			this.empleado.fotografia = data;
 		})
 	};
+
+	this.getDepartamento= function(departamento_id)
+	{
+		var departamento = $meteor.object(Departamentos, departamento_id, false);
+		return departamento.nombre;
+	};	
 	
 		
 };

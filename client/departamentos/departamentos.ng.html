@@ -35,8 +35,8 @@
 			    </div> 
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="depa.guardar(departamento)" value="Guardar" class="btn btn-primary" ng-show="depa.action">
-						<input type="submit" ng-click="depa.actualizar(departamento)" value="Actualizar" class="btn btn-primary" ng-show="!depa.action">	
+						<input type="submit" ng-click="depa.guardar(depa.departamento)" value="Guardar" class="btn btn-primary" ng-show="depa.action">
+						<input type="submit" ng-click="depa.actualizar(depa.departamento)" value="Actualizar" class="btn btn-primary" ng-show="!depa.action">	
 
 					</div>
 				</div>
@@ -52,6 +52,7 @@
 		<table class="table table-bordered">
                 <thead>
                 	<tr>
+                	<th width="5%"><div class="text-center">No.</div></th>
 					<th width="20%"><div class="text-center">Nombre</div></th>
 					<th width="20%"><div class="text-center">Responsable </div></th>
 					<th width="20%"><div class="text-center">Responsable Email </div></th>
@@ -73,6 +74,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="departamento in depa.departamentos">
+		    <td>{{$index+1}}</td>
 			    <td>{{departamento.nombre}}</td>
 			    <td>{{departamento.responsable}}</td>
 			    <td>{{departamento.responsableEmail}}</td>

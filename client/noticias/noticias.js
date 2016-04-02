@@ -26,7 +26,7 @@ angular.module("interCeramic")
 		Noticias.insert(this.noticia);
 		toastr.success('noticia guardado.');
 		this.noticia = {}; 
-		$('.collapse').collapse('hide');
+		$('.collapse').collapse('show');
 		this.nuevo = true;
 		$state.go('root.noticias')
 	};
@@ -35,7 +35,7 @@ angular.module("interCeramic")
 	{
     this.noticia = Noticias.findOne({_id:id});
     this.action = false;
-    $('.collapse').coll
+      $('.collapse').collapse('show');
     this.nuevo = false;
 	};
 	
@@ -47,17 +47,18 @@ angular.module("interCeramic")
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
 	};
+
 	
 
 	this.cambiarEstatus = function(id)
 	{
-		var noticia = noticias.findOne({_id:id});
+		var noticia = Noticias.findOne({_id:id});
 		if(noticia.estatus == true)
 			noticia.estatus = false;
 		else
 			noticia.estatus = true;
 		
-		noticias.update({_id: id},{$set :  {estatus : noticia.estatus}});
+		Noticias.update({_id: id},{$set :  {estatus : noticia.estatus}});
     };
 		
 };
