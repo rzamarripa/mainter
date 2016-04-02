@@ -2,8 +2,8 @@ angular.module("interCeramic")
 .controller("ArchivosCtrl", ArchivosCtrl);  
  function ArchivosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
-    this.action = true;
-    this.archivo = {};
+  this.action = true;
+  this.archivo = {};
 	this.subscribe('archivos');
 
 	this.helpers({
@@ -14,7 +14,12 @@ angular.module("interCeramic")
   });
   
 
- 
+	this.addImages = (files) => {
+    if (files.length > 0) {
+	    console.log(files[0]);
+      Archivos.insert(files[0]);
+    }
+  };
 
 
   this.guardar = function(archivo)

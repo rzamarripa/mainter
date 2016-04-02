@@ -11,6 +11,7 @@ angular.module('interCeramic',
     'smartadmin',
     'datePicker',
     'ui.calendar',
-    'ui.bootstrap'
+    'ui.bootstrap',
+		'ngFileUpload'
   ]
 );

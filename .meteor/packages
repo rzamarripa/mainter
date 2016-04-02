@@ -38,3 +38,6 @@ angularui:ui-select
 tomi:upload-server
 tomi:upload-jquery
 email
+cfs:standard-packages
+cfs:gridfs
+danialfarid:ng-file-upload
