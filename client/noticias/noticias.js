@@ -26,7 +26,7 @@ angular.module("interCeramic")
 		Noticias.insert(this.noticia);
 		toastr.success('noticia guardado.');
 		this.noticia = {}; 
-		$('.collapse').collapse('show');
+		$('.collapse').collapse('hide');
 		this.nuevo = true;
 		$state.go('root.noticias')
 	};
