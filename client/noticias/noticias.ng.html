@@ -16,9 +16,11 @@
 					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="not.noticia.nombre" required>
 					    </div>
 					    <div class="row">
+					    <div class="col-sm-12">		
 					     <div class="col-sm-8">
 					    <label>Escribe tu nota</label>
 					    <textarea class="form-control" placeholder="" ng-model="not.noticia.nota"></textarea>
+			    	</div>
 			    	</div>
 			    	</div>
 					     
@@ -27,9 +29,8 @@
 			    </div> 
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="not.guardar(noticia)" value="Guardar" class="btn btn-primary" ng-show="not.action">
-						<input type="submit" ng-click="not.actualizar(noticia)" value="Actualizar" class="btn btn-primary" ng-show="!not.action">	
-
+						<input type="submit" ng-click="not.guardar(not.noticia)" value="Guardar" class="btn btn-primary" ng-show="not.action">
+						<input type="submit" ng-click="not.actualizar(not.noticia)" value="Actualizar" class="btn btn-primary" ng-show="!not.action">	
 					</div>
 				</div>
 				  
@@ -47,6 +48,7 @@
 		<table class="table table-bordered">
                 <thead>
                 	<tr>
+                	<th width="5%"><div class="text-center">No.</div></th>
 					<th width="20%"><div class="text-center">Nombre completo</div></th>
 					<th width="40%"><div class="text-center">Nota </div></th>
 			
@@ -66,6 +68,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="noticia in not.noticias">
+		        <td>{{$index+1}}</td>
 			    <td>{{noticia.nombre}}</td>
 			    <td>{{noticia.nota}}</td>
 

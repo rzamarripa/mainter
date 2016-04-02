@@ -13,12 +13,12 @@
 			    	<div class="col-sm-12">		 			  
 					    <div class="col-sm-4">
 						    <label>Nombre</label>
-					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="art.articulo.nombre">
-					    </div>					   
-					    <div class="col-sm-6">
-					    	<label>Descripción</label>
-								<textarea class="form-control" placeholder="Descripción" ng-model="art.articulo.descripcion"></textarea>
-			    		</div>					     
+					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="art.articulo.nombre" required>
+					    </div>
+					     <div class="col-sm-6">
+					    <label>Descripción</label>
+					    <textarea class="form-control" placeholder="Descripción" ng-model="art.articulo.descripcion"></textarea>
+			    	</div>				     
 			    	</div>
 			    </div>  
 			  </div> 
@@ -42,7 +42,7 @@
 		<table class="table table-bordered">
       <thead>
       	<tr>
-	      	<th width="5%"><div class="text-center">Nombre</div></th>
+	      	<th width="5%"><div class="text-center">No.</div></th>
 					<th width="20%"><div class="text-center">Nombre</div></th>
 					<th width="15%"><div class="text-center">Fecha </div></th>
 					<th width="40%"><div class="text-center">Descripción</div></th>
