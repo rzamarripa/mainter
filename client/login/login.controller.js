@@ -1,7 +1,7 @@
-angular.module('interCeramic').controller('LoginCtrl', ['$injector', function ($injector) {
-  var $meteor = $injector.get('$meteor');
-  var $state 	= $injector.get('$state');
-  var toastr 	= $injector.get('toastr');
+angular.module("interCeramic")
+.controller("LoginCtrl", LoginCtrl);  
+ function LoginCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ 	$reactive(this).attach($scope);
 
   this.credentials = {
     username: '',
@@ -9,6 +9,7 @@ angular.module('interCeramic').controller('LoginCtrl', ['$injector', function ($
   };
 
   this.login = function () {
+	  console.log(this.credentials);
     $meteor.loginWithPassword(this.credentials.username, this.credentials.password).then(
       function () {
 	      toastr.success("Bienvenido al Sistema");
@@ -19,4 +20,4 @@ angular.module('interCeramic').controller('LoginCtrl', ['$injector', function ($
       }
     )
   }
-}]);
+};

@@ -4,6 +4,7 @@ angular.module("interCeramic")
  	$reactive(this).attach($scope);
   this.action = true;
   this.archivo = {};
+  this.nuevo = true;
 	this.subscribe('archivos');
 
 	this.helpers({
@@ -17,7 +18,7 @@ angular.module("interCeramic")
 	this.addImages = (files) => {
     if (files.length > 0) {
 	    console.log(files[0]);
-      Archivos.insert(files[0]);
+      Archivos.insert({archivo: files[0]});
     }
   };
 
