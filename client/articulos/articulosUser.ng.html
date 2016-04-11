@@ -1,9 +1,9 @@
 <h2>Artículos</h2>
 <div class="row">
 	<div class="col-sm-12">
-		<a class="btn btn-{{art.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
-			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoarticulos" ng-click="art.nuevoArticulos()">
-		 {{art.nuevo == true ? 'Nuevo' : 'Cancelar'}}
+		<a class="btn btn-{{artU.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoarticulos" ng-click="artU.nuevoArticulos()">
+		 {{artU.nuevo == true ? 'Nuevo' : 'Cancelar'}}
 		</a>
 		
 		<div class="collapse" id="collapseExample">
@@ -18,15 +18,15 @@
 					    </div>-->
 					    <div class="col-sm-3">
 						<label>Categoria</label>
-						<select class="form-control select2" placeholder="Seleccionar Categoria" ng-model="art.articulo.categoria_id">
-						  <option ng-repeat="categoria in art.categorias" value="{{categoria._id}}">
+						<select class="form-control select2" placeholder="Seleccionar Categoria" ng-model="artU.articulo.categoria_id">
+						  <option ng-repeat="categoria in artU.categorias" value="{{categoria._id}}">
 						  	{{categoria.nombre}}
 						  </option>
 						</select>
 							</div>
 							<div class="col-sm-6">
 						    <label>Imagen</label>
-					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="art.articulo.imagen" required>
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="artU.articulo.imagen" required>
 					    </div>
 					    
 					    </div>	
@@ -35,14 +35,14 @@
 					    <div class="row">
 					    <div class="col-sm-6">
 						    <label>Titulo</label>
-					    	<input type="text" class="form-control" placeholder="Titulo" ng-model="art.articulo.titulo" required>
+					    	<input type="text" class="form-control" placeholder="Titulo" ng-model="artU.articulo.titulo" required>
 					    </div> 			  
 					    
 					    </div>
 					    <div class="row">
 					     <div class="col-sm-6">
 					    <label>Nota</label>
-					    <textarea class="form-control" placeholder="Nota" ng-model="art.articulo.nota"></textarea>
+					    <textarea class="form-control" placeholder="Nota" ng-model="artU.articulo.nota"></textarea>
 			    	</div>
 			    	</div>					     
 			    	</div>
@@ -51,8 +51,8 @@
 			  </div> 
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="art.guardar(art.articulo)" value="Guardar" class="btn btn-primary" ng-show="art.action">
-						<input type="submit" ng-click="art.actualizar(art.articulo)" value="Actualizar" class="btn btn-primary" ng-show="!art.action">	
+						<input type="submit" ng-click="artU.guardar(artU.articulo)" value="Guardar" class="btn btn-primary" ng-show="artU.action">
+						<input type="submit" ng-click="artU.actualizar(artU.articulo)" value="Actualizar" class="btn btn-primary" ng-show="!artU.action">	
 					</div>
 				</div>				  
 		  </form>
@@ -63,7 +63,7 @@
 
 
 
-<div class="well padding-10" ng-repeat="articulo in art.articulos">
+<div class="well padding-10" ng-repeat="articulo in artU.articulos">
 
 							<div class="row">
 								<div class="col-md-4">
@@ -74,11 +74,10 @@
 
 								<div class="col-md-8 padding-left-0">
 									<h3 class="margin-top-0"><p>{{articulo.titulo}}</p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">{{articulo.nombre}}</a></i></small></h3>
-								
+									<p>
 										{{articulo.nota}}
+									</p>
 									
-									<a class="btn btn-primary" ng-click="art.editar(articulo._id)">Editar</a>
-									<a class="btn btn-danger" ng-click="art.cambiarEstatus(articulo._id)">Desactivar</a>
 								</div>
 							</div>
 							</div>

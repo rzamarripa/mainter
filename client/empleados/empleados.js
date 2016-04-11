@@ -1,9 +1,10 @@
 angular.module("interCeramic")
 .controller("EmpleadosCtrl", EmpleadosCtrl);  
  function EmpleadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
- 	$reactive(this).attach($scope);
-  this.action = true;
-	this.subscribe('empleados');
+ 	let rc =$reactive(this).attach($scope);
+    this.action = true;
+    this.subscribe('empleados');
+
 	this.subscribe('departamentos');
 
 	this.helpers({
@@ -20,36 +21,48 @@ angular.module("interCeramic")
   {
     this.action = true;
     this.nuevo = !this.nuevo;
-    this.empleado = {};		
+    rc.empleado = {};		
   };
   
   
 	this.guardar = function(empleado)
 	{
-		Accounts.createUser({
-			username: this.empleado.nombreUsuario,
-			password: this.empleado.contrasena,
-			profile: {
-				 nombre: this.empleado.nombre,
-				 apellidos: this.empleado.apPaterno + " " + this.empleado.apMaterno,
-				 tipoUsuario: "empleado"
-			},function(err) {
-				if (err)
-				   console.log(err);
-				  else
-				    console.log('success!');
-				}
-		});
-		this.empleado.estatus = true;
-		console.log(this.empleado);
-		Empleados.insert(this.empleado);
-		toastr.success('empleado guardado.');
+		
+		rc.empleado.estatus = true;
+		console.log(rc.empleado);
+		
+		rc.empleado.nombreCompleto = rc.empleado.nombre + " " + rc.empleado.apPaterno + " " + rc.empleado.apMaterno;
+		Empleados.insert(rc.empleado, function(err, doc){
+		    Meteor.call('createUsuario', rc.empleado, 'empleado');
+		    toastr.success('empleado guardado.');
 		this.empleado = {};
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
 		$state.go('root.empleados');
 		
-	};
+	    });
+    };
+   
+
+	/*rc.guardar = function (alumno) {
+	  console.log(alumno);
+		rc.alumno.estatus = true;
+		rc.alumno.nombreCompleto = alumno.nombre + " " + alumno.apPaterno + " " + alumno.apMaterno;
+		Alumnos.insert(rc.alumno, function(err, doc){
+			Meteor.call('createUsuario', rc.alumno, 'alumno');
+			toastr.success('Alumno guardado.');
+			$state.go('root.alumnoDetalle',{'id':doc});			
+			rc.nuevo = true;
+		});
+	};*/
+
+
+
+
+
+
+
+
 	
 	this.editar = function(id)
 	{
@@ -81,17 +94,23 @@ angular.module("interCeramic")
 		Empleados.update({_id: id},{$set :  {estatus : empleado.estatus}});
     };
 
-    this.tomarFoto = function(){
-		$meteor.getPicture().then(function(data){
-			this.empleado.fotografia = data;
-		})
-	};
+   
+	this.tomarFoto = function(){
+    $meteor.getPicture().then(function(data){
+      rc.empleado.fotografia = data;
+    });
+   };
 
 	this.getDepartamento= function(departamento_id)
 	{
-		var departamento = $meteor.object(Departamentos, departamento_id, false);
+		var departamento = Departamentos.findOne(departamento_id);
 		return departamento.nombre;
-	};	
+	};
+
+	/*rc.getOcupacion = function(id){
+		var ocupacion = Ocupaciones.findOne(rc.alumno.ocupacion_id);
+		return ocupacion.descripcion;
+	};*/
 	
 		
 };

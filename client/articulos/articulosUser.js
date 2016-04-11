@@ -1,6 +1,6 @@
 angular.module("interCeramic")
-.controller("ArticulosCtrl", ArticulosCtrl);  
- function ArticulosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+.controller("ArticulosUserCtrl", ArticulosUserCtrl);  
+ function ArticulosUserCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
   this.action = true;
 	this.subscribe('articulos');
@@ -34,7 +34,7 @@ angular.module("interCeramic")
 		this.articulo = {}; 
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
-		$state.go('root.articulos')
+		$state.go('root.articulosUser')
 	};
 	
 	this.editar = function(id)

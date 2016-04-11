@@ -41,3 +41,5 @@ email
 cfs:standard-packages
 cfs:gridfs
 danialfarid:ng-file-upload
+froala:editor
+summernote:standalone

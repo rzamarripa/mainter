@@ -4,6 +4,7 @@ angular.module("interCeramic")
  	$reactive(this).attach($scope);
   this.action = true;
 	this.subscribe('noticias');
+	
 
 	this.helpers({
 	  noticias : () => {
@@ -21,7 +22,9 @@ angular.module("interCeramic")
   
   this.guardar = function(noticia)
 	{
+		this.noticia.nombre = Meteor.user().profile.nombre;
 		this.noticia.estatus = true;
+		this.noticia.fecha = new Date();
 		console.log(this.noticia);
 		Noticias.insert(this.noticia);
 		toastr.success('noticia guardado.');

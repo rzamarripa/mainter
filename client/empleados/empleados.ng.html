@@ -69,18 +69,18 @@
 					  </ui-select>
 					</div>-->
 
-			    	<!--<div class="col-sm-4">
+			    	  <div class="col-sm-4">
 						<label for="talla">Fotografía</label>
 						<button class="btn btn-primary" ng-click="emp.tomarFoto()"><i class="fa fa-camera"></i></button>
 						<img width="100px" ng-src="{{emp.empleado.fotografia}}" ng-class="{'img-thumbnail': !!empleado.fotografia}" />
-						</div>-->
+						</div>
 
 					</div>				
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="emp.guardar(emp.empleado)" value="Guardar" class="btn btn-primary" ng-show="emp.action">
-						<input type="submit" ng-click="emp.actualizar(emp.empleado)" value="Actualizar" class="btn btn-primary" ng-show="!emp.action">				
+						<input type="submit" ng-click="emp.guardar(empleado)" value="Guardar" class="btn btn-primary" ng-show="emp.action">
+						<input type="submit" ng-click="emp.actualizar(empleado)" value="Actualizar" class="btn btn-primary" ng-show="!emp.action">				
 					</div>
 				</div>	  
 		  </form>
@@ -94,7 +94,7 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<!--<th width="10%"><div class="text-center">Foto</div></th>-->
+					<th width="10%"><div class="text-center">Foto</div></th>
 					<th width="10%"><div class="text-center">Nombre</div></th>
 					<th width="15%"><div class="text-center">Departamento</div></th>
 					<th width="15%"><div class="text-center">Dirección </div></th>
@@ -114,7 +114,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="empleado in emp.empleados">
-		    	<!--<td><img width="100px" ng-src="{{empleado.fotografia}}" ng-class="{'img-thumbnail': !!empleado.fotografia}"/> </td>-->
+		    	<td><img width="100px" ng-src="{{empleado.fotografia}}" ng-class="{'img-thumbnail': !!empleado.fotografia}"/> </td>
 			    <td>{{empleado.nombre}} {{empleado.apPaterno}} {{empleado.apMaterno}}</td>
 			    <td> {{emp.getDepartamento(empleado.departamento_id)}}</td>
 			    <td>{{empleado.direccion}} </td>
@@ -139,10 +139,11 @@
 							  </button>
 							  <ul class="dropdown-menu text-left">
 							    <li><a href="#" ng-click="emp.editar(empleado._id)"><i class="fa fa-pencil"></i> Editar</a></li>
-							   <li><a href="#" ng-click="emp.cambiarEstatus(empleado._id)"><i class="fa fa-trash"></i>Desactivar</a></li>
+							  <li><a href="#" ng-click="emp.cambiarEstatus(empleado._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
 							  </ul>
 							</div>
-				    </div>				    
+				    </div>	
+				 			    
 			    </td>
 		    </tr>
 			</tbody>

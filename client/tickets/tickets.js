@@ -3,13 +3,16 @@ angular.module("interCeramic")
  function TicketsCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
     this.action = true;
-    this.ticket = {};
-	this.subscribe('tickets');
+   // this.ticket = {};
+	this.subscribe('tickets', () => {
+		//select * from tickets where departamento_id = user.departamento_id and estatus = true
+		return [{departamento_id : Meteor.user().profile.departamento_id, estatus : true}]
+	});
 	this.subscribe('departamentos');
 
 	this.helpers({
 	  tickets : () => {
-		  return Tickets.find();
+		  return Tickets.find().fetch();
 	  },
 	   departamentos : () => {
 		  return Departamentos.find();
@@ -20,15 +23,20 @@ angular.module("interCeramic")
 	this.nuevo = true;	  
   this.nuevoTicket = function()
   {
+
     this.action = true;
     this.nuevo = !this.nuevo;
-    this.ticket = {};		
+    this.ticket = {};	
+    this.ticket.nota = "http://localhost:3000/tickets"	
   };
 
 
 
   this.guardar = function(ticket)
-	{ 
+	{   
+		this.ticket.departamentoEmisor_id = Meteor.user().profile.departamento_id;
+		this.ticket.nota = $('#summernote').summernote('code');
+		this.ticket.fecha = new Date();
 		var departamento = Departamentos.findOne(this.ticket.departamento_id);
 		console.log(departamento);
 		Meteor.call('sendEmail',
@@ -54,6 +62,10 @@ angular.module("interCeramic")
     $('.collapse').collapse('show');
     this.nuevo = false;
 	};
+
+  
+
+
 	
 	this.actualizar = function(ticket)
 	{
@@ -75,10 +87,16 @@ angular.module("interCeramic")
 		Tickets.update({_id: id},{$set :  {estatus : ticket.estatus}});
     };
 
-    this.getDepartamento= function(departamento_id)
+     this.getDepartamento= function(departamento_id)
 	{
-		var departamento = $meteor.object(Departamentos, departamento_id, false);
+		var departamento = Departamentos.findOne(departamento_id);
 		return departamento.nombre;
-	};	
+	};
+
+
+
+	    $(document).ready(function() {
+  $('#summernote').summernote();
+});  
 		
 };

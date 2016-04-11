@@ -1,0 +1,155 @@
+<li ng-repeat="lista in lis.listas">
+<div class="display-users" >
+
+									<!--<input class="form-control chat-user-filter" placeholder="Filter" type="text">-->
+
+									<a class="btn btn-{{tick.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+										href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevodepartamento" ng-click="tick.nuevoDepartamento()">
+									 {{tick.nuevo == true ? 'Nuevo' : 'Cancelar'}}
+									</a>
+									
+								  	<a href="#" class="usr" data-chat-id="cha1" data-chat-fname="Sadi" data-chat-lname="Orlaf" data-chat-status="busy" data-chat-alertmsg="Sadi Orlaf is in a meeting. Please do not disturb!" data-chat-alertshow="true" data-rel="popover-hover" data-placement="right" data-html="true" data-content="
+											<div class='usr-card'>
+												<img src='img/avatars/5.png' alt='Sadi Orlaf'>
+												<div class='usr-card-content'>
+													<h3>Sadi Orlaf</h3>
+													<p>Marketing Executive</p>
+												</div>
+											</div>
+										" data-original-title="" title=""> 
+									  	<i></i>{{empleado.nombre}}
+								  	</a>
+								  
+									
+</div>
+</li>
+
+
+<div class="jarviswidget jarviswidget-color-greenDark jarviswidget-sortable" id="wid-id-18" data-widget-colorbutton="false" data-widget-editbutton="false" role="widget" style="">
+								<!-- widget options:
+									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+									data-widget-colorbutton="false"	
+									data-widget-editbutton="false"
+									data-widget-togglebutton="false"
+									data-widget-deletebutton="false"
+									data-widget-fullscreenbutton="false"
+									data-widget-custombutton="false"
+									data-widget-collapsed="true" 
+									data-widget-sortable="false"
+									
+								-->
+								<header role="heading"><div class="jarviswidget-ctrls" role="menu">   <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a> <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a> <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div>
+									<h2><strong>Fixed</strong> <i>Height</i></h2>				
+									
+								<span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
+
+								<!-- widget div-->
+								<div role="content">
+									
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+										<input class="form-control" type="text">
+										<span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
+										
+									</div>
+									<!-- end widget edit box -->
+									
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+										<div class="widget-body-toolbar">
+											
+											<div class="row">
+												
+												<div class="col-xs-9 col-sm-5 col-md-5 col-lg-5">
+												
+														
+														
+
+														<input class="form-control" id="input" placeholder="Fecha Compromiso" type="date" ng-model="list.ticket.fechaCompromiso" style="visibility: hidden;">
+														<br/>
+													
+													<input type="submit"  id="boton" ng-click="list.actualizar(list.ticket)" value="Guardar" class="btn btn-primary" style="visibility: hidden;">
+											
+												</div>
+												</div>
+												<div class="col-xs-3 col-sm-7 col-md-7 col-lg-7 text-right">
+													
+													
+												</div>
+											
+										
+										</div>
+										
+										<div class="custom-scroll table-responsive" style="height:290px; overflow-y: scroll;">
+											
+
+											<table class="table table-bordered">
+												<thead>
+													<tr >
+														<th>Envió</th>
+														<th>Fecha de Creación</th>
+														<th>Nota</th>
+														<th>Fecha de Compromiso</th>
+														<th>Estatus</th>
+														<th>Acciones</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="ticket in list.listaTickets">
+														<td>{{list.getDepartamento(ticket.departamento_id)}}</td>
+														<td>{{ticket.fecha}}</td>
+														<td>{{ticket.nota}}</td>
+														<td>{{ticket.fechaCompromiso}}</td>
+														 <td>
+														    <div class="text-center">
+														    	<span ng-if="ticket.estatus" class="label label-success">
+																	  Activo
+																	</span>
+																	<span ng-if="!ticket.estatus" class="label label-danger">
+																	  Inactivo
+																	</span>
+																	<span ng-if="!ticket.estatus" class="label label-danger">
+																	  Inactivo
+																	</span>
+																	<span ng-if="!ticket.estatus" class="label label-danger">
+																	  Inactivo
+																	</span>
+														    </div>
+													    </td>
+														<td>
+														<div class="row">	
+														<div class="text-center">
+													    <div class="btn-group">
+															  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+															    <span class="caret"></span>
+															    <span class="sr-only">Toggle Dropdown</span>
+															  </button>
+															  <ul class="dropdown-menu text-left">
+															    <!--<li><a href="#" ng-click="tick.editar(ticket._id)"><i class="fa fa-pencil"></i> Editar</a></li>-->
+															    <li><a ng-click="list.agregar(ticket)" value="Guardar" class="btn btn-primary" >Agregar Fecha Compromiso</a></li>
+															  <li><a href="#" ng-click="tick.cambiarEstatus(ticket._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
+															  </ul>
+															</div>
+															
+												    </div>
+
+												   
+												   </div>
+												    </td>
+													</tr>
+												</tbody>
+											</table>
+										
+										</div>
+										
+										
+									
+									</div>
+									<!-- end widget content -->
+									
+								</div>
+								<!-- end widget div -->
+								
+							</div>

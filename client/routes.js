@@ -72,26 +72,36 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       url: '',
       abstract: true,
       templateUrl: 'client/layouts/root.ng.html',
-      controller: 'RootCtrl',
+      controller: 'RootCtrl as root',
     })
     .state('root.home', {
       url: '/',
-      templateUrl: 'client/home/home.ng.html',      
+      templateUrl: 'client/home/home.ng.html',  
+       controller: 'HomeCtrl as hom', 
       resolve: {
 	      "currentUser": ["$meteor", function($meteor){
 	        return $meteor.requireUser();
 	      }]
 	    }
     })
+
+    ///////////////////////ARTICULOS///////////////////////////////////////////////
     .state('root.articulos', {
       url: '/articulos',
       templateUrl: 'client/articulos/articulos.ng.html',
       controller: 'ArticulosCtrl as art',
     })
-    .state('root.ventas', {
-      url: '/ventas',
-      templateUrl: 'client/ventas/ventas.ng.html',
-      controller: 'VentasCtrl as ven',
+    .state('root.articulosUser', {
+      url: '/articulosUser',
+      templateUrl: 'client/articulos/articulosUser.ng.html',
+      controller: 'ArticulosUserCtrl as artU',
+    })
+    ////////////////////////////////////////////////////////////////////////
+
+    .state('root.categorias', {
+      url: '/categorias',
+      templateUrl: 'client/categorias/categorias.ng.html',
+      controller: 'CategoriasCtrl as cate',
     })
     .state('root.archivos', {
       url: '/archivos',
@@ -127,6 +137,21 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       url: '/usuarios',
       templateUrl: 'client/usuarios/usuarios.ng.html',
       controller: 'UsuariosCtrl as user',
+    })
+    .state('root.mercas', {
+      url: '/mercas',
+      templateUrl: 'client/mercas/mercas.ng.html',
+      controller: 'MercasCtrl as merc',
+    })
+    .state('root.listas', {
+      url: '/listas',
+      templateUrl: 'client/listas/listas.ng.html',
+      controller: 'ListasCtrl as lis',
+    })
+    .state('root.listaTickets', {
+      url: '/listaTickets',
+      templateUrl: 'client/tickets/listaTickets.ng.html',
+      controller: 'ListaTicketsCtrl as list',
     })
     .state('root.asistenciaGrupo', {
       url: '/asistenciaGrupo/:id',

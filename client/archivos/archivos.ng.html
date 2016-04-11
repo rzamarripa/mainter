@@ -1,9 +1,9 @@
-<h2>Artículos</h2>
+<h2>Archivos</h2>
 <div class="row">
 	<div class="col-sm-12">
-		<a class="btn btn-{{art.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
-			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoarticulos" ng-click="art.nuevoArticulos()">
-		 {{art.nuevo == true ? 'Nuevo' : 'Cancelar'}}
+		<a class="btn btn-{{archi.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoarchivos" ng-click="archi.nuevoArchivos()">
+		 {{archi.nuevo == true ? 'Nuevo' : 'Cancelar'}}
 		</a>
 		
 		<div class="collapse" id="collapseExample">
@@ -13,35 +13,28 @@
 			    	<div class="col-sm-12">		 			  
 					    <div class="col-sm-4">
 						    <label>Nombre</label>
-					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="art.articulo.nombre">
-					    </div>					   
+					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="archi.archivo.nombre">
+					    </div>	
+
 					    <div class="col-sm-6">
 					    	<label>Descripción</label>
-								<textarea class="form-control" placeholder="Descripción" ng-model="art.articulo.descripcion"></textarea>
+								<textarea class="form-control" placeholder="Descripción" ng-model="archi.archivo.descripcion"></textarea>
 			    		</div>					    					     
 			    	</div>
 			    </div>  
-			    <div class="row" ng-show="archi.estatus = true">
+			    <div class="row">
 			    	<div class="col-sm-12">
-			    		<h3>Agrega Fotos</h3>
-		          <div ngf-drop ngf-select
-		               ngf-change="archi.addImages($files)"
-		               ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
-		               ngf-multiple="false" ngf-allow-dir="false" ngf-accept="'image/*'"
-		               ngf-drop-available="true">
-		            <div>Click here to select image</div>
-		            <div>
-		              <strong>OR</strong>
-		            </div>
-		            You can also drop image to here
-		          </div>
+			    <div class="col-sm-4">
+						    <label>Seleccionar archivo</label>
+					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="archi.archivo.select">
+					    </div>	
 			    	</div>
 			    </div>
 			  </div> 
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="art.guardar(art.articulo)" value="Guardar" class="btn btn-primary" ng-show="art.action">
-						<input type="submit" ng-click="art.actualizar(art.articulo)" value="Actualizar" class="btn btn-primary" ng-show="!art.action">	
+						<input type="submit" ng-click="archi.guardar(archi.archivo)" value="Guardar" class="btn btn-primary" ng-show="archi.action">
+						<input type="submit" ng-click="archi.actualizar(archi.archivo)" value="Actualizar" class="btn btn-primary" ng-show="!archi.action">	
 					</div>
 				</div>				  
 		  </form>
@@ -58,10 +51,11 @@
 		<table class="table table-bordered">
       <thead>
       	<tr>
-	      	<th width="5%"><div class="text-center">Nombre</div></th>
+	      	
 					<th width="20%"><div class="text-center">Nombre</div></th>
-					<th width="15%"><div class="text-center">Fecha </div></th>
-					<th width="40%"><div class="text-center">Descripción</div></th>
+					
+					<th width="25%"><div class="text-center">Descripción</div></th>
+					<th width="25%"><div class="text-center">Archivo </div></th>
 					<th width="10%">
 						<div class="text-center">
 							Estatus
@@ -75,18 +69,18 @@
 				</tr>
 			</thead>
 			<tbody>
-		    <tr ng-repeat="articulo in art.articulos">
+		    <tr ng-repeat="archivo in archi.archivos">
 			    <td>{{$index+1}}</td>
-			    <td>{{articulo.nombre}}</td>
-			    <td>{{articulo.fecha | date:"dd-MM-yyyy"}}</td>
-			    <td>{{articulo.descripcion}}</td>
+			    <td>{{archivo.nombre}}</td>		 
+			    <td>{{archivo.descripcion}}</td>
+			    <td>{{archivo.select}}</td>
 
 			    <td>
 				    <div class="text-center">
-				    	<span ng-if="articulo.estatus" class="label label-success">
+				    	<span ng-if="archivo.estatus" class="label label-success">
 							  Activo
 							</span>
-							<span ng-if="!articulo.estatus" class="label label-danger">
+							<span ng-if="!archivo.estatus" class="label label-danger">
 							  Inactivo
 							</span>
 				    </div>
@@ -99,8 +93,8 @@
 							    <span class="sr-only">Toggle Dropdown</span>
 							  </button>
 							  <ul class="dropdown-menu text-left">
-							    <li><a href="#" ng-click="art.editar(articulo._id)"><i class="fa fa-pencil"></i> Editar</a></li>
-							  <li><a href="#" ng-click="art.cambiarEstatus(articulo._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
+							    <li><a href="#" ng-click="archi.editar(archivo._id)"><i class="fa fa-pencil"></i> Editar</a></li>
+							  <li><a href="#" ng-click="archi.cambiarEstatus(archivo._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
 							  </ul>
 							</div>
 				    </div>				    

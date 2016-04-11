@@ -3,22 +3,24 @@ angular.module("interCeramic")
  function ArchivosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
   this.action = true;
-  this.archivo = {};
 	this.subscribe('archivos');
+
+
 
 	this.helpers({
 	  archivos : () => {
 		  return Archivos.find();
 	  }
-	 
   });
   
+  this.nuevo = true;	  
+  this.nuevoArchivo = function()
+  {
 
-	this.addImages = (files) => {
-    if (files.length > 0) {
-	    console.log(files[0]);
-      Archivos.insert(files[0]);
-    }
+    this.action = true;
+    this.nuevo = !this.nuevo;
+    this.archivo = {};	
+   // this.ticket.nota = "http"	
   };
 
 
@@ -51,15 +53,15 @@ angular.module("interCeramic")
 		this.nuevo = true;
 	};
 
-	/*this.cambiarEstatus = function(id)
+	this.cambiarEstatus = function(id)
 	{
-		var archivo = archivos.findOne({_id:id});
+		var archivo = Archivos.findOne({_id:id});
 		if(archivo.estatus == true)
 			archivo.estatus = false;
 		else
 			archivo.estatus = true;
 		
-		archivos.update({_id: id},{$set :  {estatus : archivo.estatus}});
-    };*/
+		Archivos.update({_id: id},{$set :  {estatus : archivo.estatus}});
+    };
 		
 };
