@@ -50,34 +50,15 @@ A LA BARRA LATERAL
 	  <li data-menu-collapse>
 	    <a href="#">
 	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
-	      <span class="menu-item-parent">Catálogos</span>
+	      <span class="menu-item-parent">Resultados</span>
 	    </a>
 	    <ul>
-		 <li data-menu-collapse>
-	    <a href="#">
+		 <li>
+	    <a ui-sref="root.categorias">
 	      <i class="fa fa-lg fa-fw fa-bars"></i>
 	      <span class="menu-item-parent">Categorias</span>
 	    </a>
-		    <ul>	    
-		    <li>
-		      <a ui-sref="root.ventas">
-		        <i class=""></i>
-		        <span class="menu-item-parent">Ventas</span>
-		      </a>
-		    </li>
-		     <li>
-		      <a ui-sref="root.mshopper">
-		        <i class=""></i>
-		        <span class="menu-item-parent">Mistery Shopper</span>
-		      </a>
-		    </li>
-		     <li>
-		      <a ui-sref="root.lideres">
-		        <i class=""></i>
-		        <span class="menu-item-parent">Lideres Interceramic</span>
-		      </a>
-		    </li>
-		    </ul>
+	
 		    </li>	
 		
 	    </ul>
@@ -89,7 +70,7 @@ A LA BARRA LATERAL
 	      <span class="menu-item-parent">Librero</span>
 	    </a>
 	     <ul>
-	      <li data-menu-collapse>
+	      <li>
 	    <a href="#">
 	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
 	      <span class="menu-item-parent">Categorias</span>
@@ -111,11 +92,19 @@ A LA BARRA LATERAL
 		        <span class="menu-item-parent">Calendario</span>
 		      </a>
 		    </li>
-		    <li>
+		    <li data-menu-collapse>
 		      <a ui-sref="root.tickets">
 		        <i class="fa fa-lg fa-fw  fa-tag"></i>
 		        <span class="menu-item-parent">Tickets</span>
 		      </a>
+		          <ul>
+		      	 <li>
+		      <a ui-sref="root.listaTickets">
+		        <i class="fa fa-lg fa-fw fa-users"></i>
+		        <span class="menu-item-parent">Lista de Tickets</span>
+		      </a>
+		    </li>
+		      </ul>
 		    </li>
 		    <li>
 		      <a ui-sref="root.departamentos">
@@ -129,5 +118,18 @@ A LA BARRA LATERAL
 		        <span class="menu-item-parent">Empleados</span>
 		      </a>
 		    </li>
+		    <li>
+		      <a ui-sref="root.mercas">
+		        <i class="fa fa-lg fa-fw fa-users"></i>
+		        <span class="menu-item-parent">Mercadotecnia</span>
+		      </a>
+		    </li>
+		      <li data-menu-collapse>
+	    <a href="#">
+	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+	      <span class="menu-item-parent">Quienes somos</span>
+	    </a>
+	    
+	    </li>
   </ul>
 </nav>

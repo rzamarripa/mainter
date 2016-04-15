@@ -40,7 +40,9 @@
 			
 		</span>
 	</div>
-  <div ng-include=" 'client/layouts/left-nav.ng.html' "></div>
+  <div ng-show="currentUser.username == 'admin'" ng-include=" 'client/layouts/left-nav.ng.html' "></div>
+  <div ng-show="currentUser.username != 'admin'" ng-include=" 'client/layouts/depto-nav.ng.html' "></div>
+  <!--<div ng-include=" 'client/layouts/left-nav.ng.html' "></div>-->
 </aside>
 
 <div id="main" role="main">

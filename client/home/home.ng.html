@@ -1,30 +1,26 @@
 <h1></h1>
 <section id="widget-grid" data-widget-grid="data-widget-grid">
+
+    
+
   <div class="row">
     <div class="col-sm-12">
-      <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-jarvis-widget="data-jarvis-widget">
+
+      <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" ng-repeat="noticia in hom.noticias">
         <header>
-          <h2>Un Post</h2>
+          <h2>{{noticia.nombre}}</h2>
         </header>
         <div>
-          <div class="widget-body">
-            Contenido
+          <div class="widget-body"  >
+            
+           <div class="col-sm-12" >
+            <h3 class="card-header">{{noticia.titulo}}</h3>
+            <div class="card card-block">
+              <h8 class="card-title">{{noticia.nota}}</h8>
+             
+              
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-12">
-
-      <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget">
-        <header>
-          <h2>Otro Post</h2>
-        </header>
-        <div>
-          <div class="widget-body">
-            Contenido 2
           </div>
         </div>
       </div>

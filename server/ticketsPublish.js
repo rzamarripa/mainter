@@ -1,3 +1,3 @@
-Meteor.publish("tickets", function(){
-	return Tickets.find({estatus:true});
+Meteor.publish("tickets", function(options){
+	return Tickets.find(options);
 });

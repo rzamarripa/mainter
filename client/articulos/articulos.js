@@ -4,10 +4,14 @@ angular.module("interCeramic")
  	$reactive(this).attach($scope);
   this.action = true;
 	this.subscribe('articulos');
+	this.subscribe('categorias');
 
 	this.helpers({
 	  articulos : () => {
 		  return Articulos.find();
+	  },
+	   categorias : () => {
+		  return Categorias.find();
 	  }
   });
   	  
@@ -21,7 +25,9 @@ angular.module("interCeramic")
   
   this.guardar = function(articulo)
 	{
+		this.articulo.nombre = Meteor.user().profile.nombre;
 		this.articulo.estatus = true;
+		console.log(this.articulo);
 		this.articulo.fecha = new Date();
 		Articulos.insert(this.articulo);
 		toastr.success('Artículo guardado.');
@@ -59,5 +65,12 @@ angular.module("interCeramic")
 		
 		Articulos.update({_id: id},{$set :  {estatus : articulo.estatus}});
     };
+
+    this.getCategoria= function(id)
+	{
+		var categoria = Categorias.findOne(id);
+		return categoria.nombre;
+	};	
+
 		
 };

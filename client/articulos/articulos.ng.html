@@ -10,16 +10,43 @@
 			<form class="form-horizontal" role="form">
 		  	<div class="well">	    
 			    <div class="row">
-			    	<div class="col-sm-12">		 			  
-					    <div class="col-sm-4">
+			    	<div class="col-sm-12">	
+			    	<div class="row">	 			  
+					    <!--<div class="col-sm-3">
 						    <label>Nombre</label>
 					    	<input type="text" class="form-control" placeholder="Nombre" ng-model="art.articulo.nombre" required>
+					    </div>-->
+					    <div class="col-sm-3">
+						<label>Categoria</label>
+						<select class="form-control select2" placeholder="Seleccionar Categoria" ng-model="art.articulo.categoria_id">
+						  <option ng-repeat="categoria in art.categorias" value="{{categoria._id}}">
+						  	{{categoria.nombre}}
+						  </option>
+						</select>
+							</div>
+							<div class="col-sm-6">
+						    <label>Imagen</label>
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="art.articulo.imagen" required>
 					    </div>
+					    
+					    </div>	
+					    </div>
+					    <div class="col-sm-12">
+					    <div class="row">
+					    <div class="col-sm-6">
+						    <label>Titulo</label>
+					    	<input type="text" class="form-control" placeholder="Titulo" ng-model="art.articulo.titulo" required>
+					    </div> 			  
+					    
+					    </div>
+					    <div class="row">
 					     <div class="col-sm-6">
-					    <label>Descripción</label>
-					    <textarea class="form-control" placeholder="Descripción" ng-model="art.articulo.descripcion"></textarea>
-			    	</div>				     
+					    <label>Nota</label>
+					    <textarea class="form-control" placeholder="Nota" ng-model="art.articulo.nota"></textarea>
 			    	</div>
+			    	</div>					     
+			    	</div>
+			    	
 			    </div>  
 			  </div> 
 				<div class="row">
@@ -36,61 +63,25 @@
 
 
 
-<!-- List -->
-<div class="row">
-	<div class="col-sm-12">
-		<table class="table table-bordered">
-      <thead>
-      	<tr>
-	      	<th width="5%"><div class="text-center">No.</div></th>
-					<th width="20%"><div class="text-center">Nombre</div></th>
-					<th width="15%"><div class="text-center">Fecha </div></th>
-					<th width="40%"><div class="text-center">Descripción</div></th>
-					<th width="10%">
-						<div class="text-center">
-							Estatus
-						</div>
-					</th>
-					<th width="10%">
-						<div class="text-center">
-							Acciones
-						</div>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-		    <tr ng-repeat="articulo in art.articulos">
-			    <td>{{$index+1}}</td>
-			    <td>{{articulo.nombre}}</td>
-			    <td>{{articulo.fecha | date:"dd-MM-yyyy"}}</td>
-			    <td>{{articulo.descripcion}}</td>
+<div class="well padding-10" ng-repeat="articulo in art.articulos">
 
-			    <td>
-				    <div class="text-center">
-				    	<span ng-if="articulo.estatus" class="label label-success">
-							  Activo
-							</span>
-							<span ng-if="!articulo.estatus" class="label label-danger">
-							  Inactivo
-							</span>
-				    </div>
-			    </td>
-			    <td>
-				    <div class="text-center">
-					    <div class="btn-group">
-							  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    <span class="caret"></span>
-							    <span class="sr-only">Toggle Dropdown</span>
-							  </button>
-							  <ul class="dropdown-menu text-left">
-							    <li><a href="#" ng-click="art.editar(articulo._id)"><i class="fa fa-pencil"></i> Editar</a></li>
-							  <li><a href="#" ng-click="art.cambiarEstatus(articulo._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
-							  </ul>
+							<div class="row">
+								<div class="col-md-4">
+									<img ng-src="{{articulo.imagen}}" class="img-responsive" alt="img">
+								
+								</div>
+
+
+								<div class="col-md-8 padding-left-0">
+									<h3 class="margin-top-0"><p>{{articulo.titulo}}</p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">{{articulo.nombre}}</a></i></small></h3>
+								
+										{{articulo.nota}}
+									
+									<a class="btn btn-primary" ng-click="art.editar(articulo._id)">Editar</a>
+									<a class="btn btn-danger" ng-click="art.cambiarEstatus(articulo._id)">Desactivar</a>
+								</div>
 							</div>
-				    </div>				    
-			    </td>
-		    </tr>
-			</tbody>
-		</table>
-	</div>
-</div>
+							</div>
+		
+
+
