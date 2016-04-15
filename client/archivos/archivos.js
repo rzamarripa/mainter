@@ -5,11 +5,16 @@ angular.module("interCeramic")
   this.action = true;
 	this.subscribe('archivos');
 
+  this.subscribe('categoriasLibreros');
+
 
 
 	this.helpers({
 	  archivos : () => {
 		  return Archivos.find();
+	  },
+	   categoriasLibreros : () => {
+		  return CategoriasLibreros.find();
 	  }
   });
   
@@ -26,6 +31,7 @@ angular.module("interCeramic")
 
   this.guardar = function(archivo)
 	{
+		this.archivo.nombre = Meteor.user().profile.nombre;
 		this.archivo.estatus = true;
 		console.log(this.archivo);
 		Archivos.insert(this.archivo);
@@ -63,5 +69,11 @@ angular.module("interCeramic")
 		
 		Archivos.update({_id: id},{$set :  {estatus : archivo.estatus}});
     };
+
+    this.getCategoria= function(id)
+	{
+		var categoriaLibrero = CategoriasLibreros.findOne(id);
+		return categoriaLibrero.nombre;
+	};	
 		
 };

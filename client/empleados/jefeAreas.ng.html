@@ -1,0 +1,154 @@
+<h2>Jefes de Area</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<a class="btn btn-{{jefe.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevojefeArea" ng-click="jefe.nuevoJefeArea()">
+	 {{jefe.nuevo == true ? 'Nuevo' : 'Cancelar'}}
+		</a>
+		<div class="collapse" id="collapseExample">
+			<form class="form-horizontal" role="form" data-parsley-validate>
+		  	<div class="well">	    
+			    <div class="row">
+			    	<div class="col-sm-4">					    
+				    	<label>Usuario</label>
+				    	<input type="text" class="form-control" placeholder="Usuario" ng-model="jefe.jefeArea.usuario" required>
+			    	</div>
+			    	<div class="col-sm-4">					    
+				    	<label>Contraseña</label>
+				    	<input type="password" class="form-control" placeholder="Contraseña" ng-model="jefe.jefeArea.contrasena" required>
+			    	</div>		    				    	    
+			    	<div class="col-sm-4">					    
+				    	<label>Confirmar Contraseña</label>
+				    	<input type="password" class="form-control" placeholder="Confirmar Contraseña" ng-model="jefe.jefeArea.confirmarContrasena" required>
+					</div>
+			    	<div class="col-sm-4">
+			    		<label>Nombre </label>
+				    	<input type="text" class="form-control" placeholder="Nombre" ng-model="jefe.jefeArea.nombre" required>
+			    	</div>
+
+			    	<div class="col-sm-4">
+			    		<label>Apellido Paterno </label>
+				    	<input type="text" class="form-control" placeholder="Apellido Paterno" ng-model="jefe.jefeArea.apPaterno" required>
+			    	</div>
+			    	<div class="col-sm-4">
+			    		<label>Apellido Materno</label>
+				    	<input type="text" class="form-control" placeholder="Apellido Materno" ng-model="jefe.jefeArea.apMaterno" required>
+			    	</div>
+			    	<div class="col-sm-4">
+			    		<label>Dirección</label>
+				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="jefe.jefeArea.direccion" required>
+			    	</div>
+			    	<div class="col-sm-4">
+			    		<label>Teléfono</label>
+				    	<input type="text" class="form-control" placeholder="Teléfono" ng-model="jefe.jefeArea.telefono" required>
+			    	</div>
+			    	<div class="col-sm-4">
+			    		<label>Correo</label>
+				    	<input type="text" class="form-control" placeholder="Correo" ng-model="jefe.jefeArea.correo" required>
+			    	</div>
+			    	<div class="col-sm-4">
+						<label>Departamento</label>
+						<select class="form-control select2" placeholder="Seleccione" ng-model="jefe.jefeArea.departamento_id">
+						  <option ng-repeat="departamento in jefe.departamentos" value="{{departamento._id}}">
+						  	{{departamento.nombre}}
+						  </option>
+						</select>
+							</div>
+
+			    	<!--
+			    	<div class="col-sm-4">
+						<label >Departamento academico</label>
+						<ui-select ng-model="emp.empleado.deptoAcademico_id"
+					             theme="bootstrap"
+					             ng-disabled="disabled"
+					             reset-search-input="false">
+					    <ui-select-match placeholder="Seleccione">{{$select.selected.descripcionCorta}}</ui-select-match>
+					    <ui-select-choices repeat="emp.deptoAcademico._id as deptoAcademico in deptosAcademicos | filter: $select.search">
+					      <div ng-bind-html="deptoAcademico.descripcionCorta | highlight: $select.search"></div>
+					    </ui-select-choices>
+					  </ui-select>
+					</div>-->
+
+			    	  <div class="col-sm-4">
+						<label for="talla">Fotografía</label>
+						<button class="btn btn-primary" ng-click="jefe.tomarFoto()"><i class="fa fa-camera"></i></button>
+						<img width="100px" ng-src="{{jefe.jefeArea.fotografia}}" ng-class="{'img-thumbnail': !!jefeArea.fotografia}" />
+						</div>
+
+					</div>				
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<input type="submit" ng-click="jefe.guardar(jefeArea)" value="Guardar" class="btn btn-primary" ng-show="jefe.action">
+						<input type="submit" ng-click="jefe.actualizar(jefeArea)" value="Actualizar" class="btn btn-primary" ng-show="!jefe.action">				
+					</div>
+				</div>	  
+		  </form>
+		</div>
+	</div>
+</div>
+
+<!-- List -->
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th width="10%"><div class="text-center">Foto</div></th>
+					<th width="10%"><div class="text-center">Nombre</div></th>
+					<th width="15%"><div class="text-center">Departamento</div></th>
+					<th width="15%"><div class="text-center">Dirección </div></th>
+					<th width="10%"><div class="text-center">Teléfono</div></th>
+					<th width="10%"><div class="text-center">correo</div></th>
+					<th width="10%">
+						<div class="text-center">
+							Estatus
+						</div>
+					</th>
+					<th width="7%">
+						<div class="text-center">
+							Acciones
+						</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+		    <tr ng-repeat="jefeArea in jefe.jefeAreas">
+		    	<td><img width="100px" ng-src="{{jefeArea.fotografia}}" ng-class="{'img-thumbnail': !!jefeArea.fotografia}"/> </td>
+			    <td>{{jefeArea.nombre}} {{jefeArea.apPaterno}} {{jefeArea.apMaterno}}</td>
+			    <td> {{jefe.getDepartamento(jefeArea.departamento_id)}}</td>
+			    <td>{{jefeArea.direccion}} </td>
+			    <td>{{jefeArea.telefono}} </td>
+			    <td>{{jefeArea.correo}} </td>
+			    <td>
+				    <div class="text-center">
+				    	<span ng-if="jefeArea.estatus" class="label label-success">
+							  Activo
+							</span>
+							<span ng-if="!jefeArea.estatus" class="label label-danger">
+							  Inactivo
+							</span>
+				    </div>
+			    </td>
+			    <td>
+				    <div class="text-center">
+					    <div class="btn-group">
+							  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    <span class="caret"></span>
+							    <span class="sr-only">Toggle Dropdown</span>
+							  </button>
+							  <ul class="dropdown-menu text-left">
+							    <li><a href="#" ng-click="jefe.editar(jefeArea._id)"><i class="fa fa-pencil"></i> Editar</a></li>
+							  <li><a href="#" ng-click="jefe.cambiarEstatus(jefeArea._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
+							  </ul>
+							</div>
+				    </div>	
+				 			    
+			    </td>
+		    </tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+

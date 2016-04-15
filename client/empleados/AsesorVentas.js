@@ -1,15 +1,15 @@
 angular.module("interCeramic")
-.controller("EmpleadosCtrl", EmpleadosCtrl);  
- function EmpleadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+.controller("AsesorVentasCtrl", AsesorVentasCtrl);  
+ function AsesorVentasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	let rc =$reactive(this).attach($scope);
     this.action = true;
-    this.subscribe('empleados');
+    this.subscribe('asesorVentas');
 
 	this.subscribe('departamentos');
 
 	this.helpers({
-	  empleados : () => {
-		  return Empleados.find();
+	  asesorVentas : () => {
+		  return AsesorVentas.find();
 	  },
 	  departamentos : () => {
 		  return Departamentos.find();
@@ -17,28 +17,27 @@ angular.module("interCeramic")
   });
   	  
   this.nuevo = true;	  
-  this.nuevoEmpleado = function()
+  this.nuevoAsesorVenta = function()
   {
     this.action = true;
     this.nuevo = !this.nuevo;
-    rc.empleado = {};		
+    rc.asesorVenta = {};		
   };
   
   
-	this.guardar = function(empleado)
+	this.guardar = function(asesorVenta)
 	{
-		
-		rc.empleado.estatus = true;
-		console.log(rc.empleado);
-		
-		rc.empleado.nombreCompleto = rc.empleado.nombre + " " + rc.empleado.apPaterno + " " + rc.empleado.apMaterno;
-		Empleados.insert(rc.empleado, function(err, doc){
-		    Meteor.call('createUsuario', rc.empleado, 'empleado');
-		    toastr.success('empleado guardado.');
-		this.empleado = {};
+	
+		console.log(rc.asesorVenta);			
+		rc.asesorVenta.estatus = true;
+		rc.asesorVenta.nombreCompleto = rc.asesorVenta.nombre + " " + rc.asesorVenta.apPaterno + " " + rc.asesorVenta.apMaterno;
+		AsesorVentas.insert(rc.asesorVenta, function(err, doc){
+		    Meteor.call('createUsuario', rc.asesorVenta, 'asesorVenta');
+		    toastr.success('Usuario guardado.');
+	//	this.asesorVenta = {};
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
-		$state.go('root.empleados');
+		$state.go('root.asesorVentas');
 		
 	    });
     };
@@ -58,28 +57,21 @@ angular.module("interCeramic")
 		});
 	};*/
 
-
-
-
-
-
-
-
 	
 	this.editar = function(id)
 	{
-    this.empleado = Empleados.findOne({_id:id});
+    this.asesorVenta = AsesorVentas.findOne({_id:id});
     this.action = false;
     $('.collapse').collapse('show');
     this.nuevo = false;
 	};
 	
 	
-	this.actualizar = function(empleado)
+	this.actualizar = function(asesorVenta)
 	{
-		var idTemp = empleado._id;
-		delete empleado._id;		
-		Empleados.update({_id:idTemp},{$set:empleado});
+		var idTemp = asesorVenta._id;
+		delete asesorVenta._id;		
+		AsesorVentas.update({_id:idTemp},{$set:asesorVenta});
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
 	};
@@ -87,19 +79,19 @@ angular.module("interCeramic")
 
 	this.cambiarEstatus = function(id)
 	{
-		var empleado = Empleados.findOne({_id:id});
-		if(empleado.estatus == true)
-			empleado.estatus = false;
+		var asesorVenta = AsesorVentas.findOne({_id:id});
+		if(asesorVenta.estatus == true)
+			asesorVenta.estatus = false;
 		else
-			empleado.estatus = true;
+			asesorVenta.estatus = true;
 		
-		Empleados.update({_id: id},{$set :  {estatus : empleado.estatus}});
+		AsesorVentas.update({_id: id},{$set :  {estatus : asesorVenta.estatus}});
     };
 
    
 	this.tomarFoto = function(){
     $meteor.getPicture().then(function(data){
-      rc.empleado.fotografia = data;
+      rc.asesorVenta.fotografia = data;
     });
    };
 

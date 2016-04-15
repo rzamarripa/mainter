@@ -1,8 +1,9 @@
 Meteor.startup(function () {
   if (Meteor.users.find().count() === 0) {
-    Accounts.createUser({
+    var usuario_id= Accounts.createUser({
       username: 'admin',
-      password: '123',
+      password: 'inter123',
     });
+		Roles.addUsersToRoles(usuario_id, "admin");
   }
 });

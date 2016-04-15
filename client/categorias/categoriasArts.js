@@ -1,6 +1,6 @@
 angular.module("interCeramic")
-.controller("CategoriasCtrl", CategoriasCtrl);  
- function CategoriasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+.controller("CategoriasArtCtrl", CategoriasArtCtrl);  
+ function CategoriasArtCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
   this.action = true;
 	this.subscribe('categoriasArts');
@@ -10,10 +10,7 @@ angular.module("interCeramic")
 		  return CategoriasArts.find();
 	  }
   });
-
-
-
-
+  	  
   this.nuevo = true;	  
   this.nuevoCategoriaArt = function()
   {
@@ -23,7 +20,7 @@ angular.module("interCeramic")
   };
   
   this.guardar = function(categoriasArt)
-	{   
+	{
 		console.log(categoriasArt);
 		this.categoriasArt.estatus = true;
 		this.categoriasArt.fecha = new Date();
@@ -63,11 +60,5 @@ angular.module("interCeramic")
 		
 		CategoriasArts.update({_id: id},{$set :  {estatus : categoriasArt.estatus}});
     };
-
-      this.mandar = function(categoriasArt)
-  {
-	$state.go('root.categoriasArts');
-  };
-  	  
 		
 };

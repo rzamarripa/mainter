@@ -1,7 +1,7 @@
-<li ng-repeat="lista in lis.listas">
+<!--<li ng-repeat="lista in lis.listas">
 <div class="display-users" >
 
-									<!--<input class="form-control chat-user-filter" placeholder="Filter" type="text">-->
+									//<input class="form-control chat-user-filter" placeholder="Filter" type="text">
 
 									<a class="btn btn-{{tick.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
 										href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevodepartamento" ng-click="tick.nuevoDepartamento()">
@@ -26,37 +26,23 @@
 
 
 <div class="jarviswidget jarviswidget-color-greenDark jarviswidget-sortable" id="wid-id-18" data-widget-colorbutton="false" data-widget-editbutton="false" role="widget" style="">
-								<!-- widget options:
-									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-									data-widget-colorbutton="false"	
-									data-widget-editbutton="false"
-									data-widget-togglebutton="false"
-									data-widget-deletebutton="false"
-									data-widget-fullscreenbutton="false"
-									data-widget-custombutton="false"
-									data-widget-collapsed="true" 
-									data-widget-sortable="false"
-									
-								-->
+								
 								<header role="heading"><div class="jarviswidget-ctrls" role="menu">   <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a> <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a> <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div>
 									<h2><strong>Fixed</strong> <i>Height</i></h2>				
 									
 								<span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
 
-								<!-- widget div-->
+								
 								<div role="content">
 									
-									<!-- widget edit box -->
+									
 									<div class="jarviswidget-editbox">
-										<!-- This area used as dropdown edit box -->
+								
 										<input class="form-control" type="text">
 										<span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
 										
 									</div>
-									<!-- end widget edit box -->
-									
-									<!-- widget content -->
+					
 									<div class="widget-body no-padding">
 										<div class="widget-body-toolbar">
 											
@@ -88,6 +74,7 @@
 											<table class="table table-bordered">
 												<thead>
 													<tr >
+													    <th>Usuario Emisor</th>
 														<th>Envió</th>
 														<th>Fecha de Creación</th>
 														<th>Nota</th>
@@ -98,10 +85,11 @@
 												</thead>
 												<tbody>
 													<tr ng-repeat="ticket in list.listaTickets">
+    													<td>{{currentUser.profile.nombre}}</td>
 														<td>{{list.getDepartamento(ticket.departamento_id)}}</td>
-														<td>{{ticket.fecha}}</td>
+														<td>{{ticket.fecha | date:"dd-MM-yyyy"}}</td>
 														<td>{{ticket.nota}}</td>
-														<td>{{ticket.fechaCompromiso}}</td>
+														<td>{{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</td>
 														 <td>
 														    <div class="text-center">
 														    	<span ng-if="ticket.estatus" class="label label-success">
@@ -127,7 +115,7 @@
 															    <span class="sr-only">Toggle Dropdown</span>
 															  </button>
 															  <ul class="dropdown-menu text-left">
-															    <!--<li><a href="#" ng-click="tick.editar(ticket._id)"><i class="fa fa-pencil"></i> Editar</a></li>-->
+															 
 															    <li><a ng-click="list.agregar(ticket)" value="Guardar" class="btn btn-primary" >Agregar Fecha Compromiso</a></li>
 															  <li><a href="#" ng-click="tick.cambiarEstatus(ticket._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
 															  </ul>
@@ -147,9 +135,128 @@
 										
 									
 									</div>
-									<!-- end widget content -->
+								
 									
 								</div>
-								<!-- end widget div -->
+				
 								
+							</div>-->
+
+
+
+							<div class="jarviswidget jarviswidget-color-blue jarviswidget-sortable" id="wid-id-4" data-widget-editbutton="false" data-widget-colorbutton="false" role="widget">
+
+						
+
+								<header role="heading"><div class="jarviswidget-ctrls" role="menu">   <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a> <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a> <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div>
+									<span class="widget-icon"> <i class="fa fa-check txt-color-white"></i> </span>
+									<h2>Lista de tickets</h2>
+									<!-- <div class="widget-toolbar">
+									add: non-hidden - to disable auto hide
+
+									</div>-->
+								<span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
+
+								<!-- widget div-->
+								<div role="content">
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<div>
+											<label>Title:</label>
+											<input type="text">
+										</div>
+									</div>
+									<!-- end widget edit box -->
+
+									<div class="widget-body no-padding smart-form">
+										<!-- content goes here -->
+										<h5 class="todo-group-title"><i class="fa fa-warning"></i> Pendientes</h5>
+										<ul id="sortable1" class="todo ui-sortable">
+											<li ng-repeat="ticket in list.listaTicketsPendientes">
+												<span class="handle"> </span>
+
+												<p>	
+												<span class="date"><font size="2">{{ticket.fecha | date:"dd-MM-yyyy"}}</font></span>
+											    
+												<span><font size="2">Envia: {{list.getEmisor(ticket.emisor_id)}}      Recibe: {{list.getDepartamento(ticket.departamentoReceptor_id)}}</font></span>
+												<br/>
+												<span><font size="2"> {{ticket.titulo}}</font></span>
+												<br/>
+											    <span style="font-size: 100%;" ng-bind-html="ticket.nota"></span>
+											    <br/>
+											    
+												</p>
+
+
+
+												<span class="pull-right">
+													<form class="form-inline">
+													
+													<input type="date" class="form-control input-sm" id="sel3" ng-model="ticket.fechaCompromiso">
+													<br/><br/>
+														
+														<a href="#" ng-click="list.actualizar(ticket)" style="font-size:120%;  width: 80px; height: 30px;" class="btn btn-info ">Guardar</a>
+						
+													</form>
+												</span>
+											</li>
+										</ul>
+										<h5 class="todo-group-title"><i class="fa fa-exclamation"></i> En proceso</h5>
+										<ul id="sortable2" class="todo ui-sortable">
+											
+											<li ng-repeat="ticket in list.listaTicketsProceso">
+												<span class="handle">  </span>
+												<p>	
+												<span class="date"><font size="2">{{ticket.fecha | date:"dd-MM-yyyy"}}</font></span>
+											    
+												<span><font size="2">Envia: {{list.getEmisor(ticket.emisor_id)}}      Recibe: {{list.getDepartamento(ticket.departamentoReceptor_id)}}</font></span>
+												<br/>
+												<span><font size="2"> {{ticket.titulo}}</font></span>
+												<br/>
+											    <span style="font-size: 100%;" ng-bind-html="ticket.nota"></span>
+											    <br/>
+												</p>
+												<span class="pull-right">
+													<form class="form-inline">
+														<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary" style="font-size:120%;  width: 80px; height: 30px; margin-bottom: 100px; margin-left: 10px; ">Realizado</a>
+													</form>
+												</span>
+											</li>
+										
+										</ul>
+
+										<h5 class="todo-group-title"><i class="fa fa-check"></i> Realizados</h5>
+										<ul id="sortable3" class="todo ui sortable">
+										<li ng-repeat="ticket in list.listaTicketsRealizados">
+
+												
+														<span class="handle">  </span>
+													<p>	
+												<span class="date"><font size="2">{{ticket.fecha | date:"dd-MM-yyyy"}}</font></span>
+											
+												<span><font size="2">Envia: {{list.getEmisor(_ticket.emisor_id)}}  Recibe: {{list.getDepartamento(ticket.departamentoReceptor_id)}}</font></span>
+												<br/>
+												<span><font size="3"> {{ticket.titulo}}</font></span>
+											    <span style="font-size: 4;" ng-bind-html="ticket.nota"></span>
+											    <br/>
+											   {{list.getEmisor(_ticket.emisor_id)}}
+												</p>
+
+												<div  ng-model="ticket.rating" class="ui huge star rating" data-rating="3" data-max-rating="5" ng-click="list.dada(ticket._id, ticket.rating)"></div>
+												<!--<div  ng-model="ticket.rating" class="ui large star rating"></div>-->
+    											 <span class="date">
+												 <span  class="pull-right date"><font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font></span>
+												 </span>
+										
+
+											</li>
+										</ul>
+
+										<!-- end content -->
+									</div>
+								</div>
 							</div>
+
+
+
+							<!--	<div star-rating ng-model="ticket.rating" max="5" on-rating-select="list.rateFunction(ticket)"></div>-->

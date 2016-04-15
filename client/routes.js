@@ -96,17 +96,82 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       templateUrl: 'client/articulos/articulosUser.ng.html',
       controller: 'ArticulosUserCtrl as artU',
     })
-    ////////////////////////////////////////////////////////////////////////
+    ///////////////////////CATEGORIAS/////////////////////////////////////////////////
 
     .state('root.categorias', {
       url: '/categorias',
       templateUrl: 'client/categorias/categorias.ng.html',
-      controller: 'CategoriasCtrl as cate',
+      controller: 'CategoriasCtrl as catego',
+       resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
     })
+    .state('root.categoriasArts', {
+      url: '/categoriasArts',
+      templateUrl: 'client/categorias/categoriasArts.ng.html',
+      controller: 'CategoriasArtCtrl as cate',
+       resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
+    })
+    .state('root.categoriasLibreros', {
+      url: '/categoriasLibreros',
+      templateUrl: 'client/categorias/categoriasLibreros.ng.html',
+      controller: 'CategoriasLibrerosCtrl as catelib',
+       resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
+    })
+        .state('root.categoriasResults', {
+      url: '/categoriasResults',
+      templateUrl: 'client/categorias/categoriasResults.ng.html',
+      controller: 'CategoriasResultsCtrl as cateres',
+       resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
+    })
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
     .state('root.archivos', {
       url: '/archivos',
       templateUrl: 'client/archivos/archivos.ng.html',
       controller: 'ArchivosCtrl as archi',
+    })
+      .state('root.resultados', {
+      url: '/resultados',
+      templateUrl: 'client/resultados/resultados.ng.html',
+      controller: 'ResultadosCtrl as resu',
     })
     .state('root.calendario', {
       url: '/calendario',
@@ -118,16 +183,93 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       templateUrl: 'client/noticias/noticias.ng.html',
       controller: 'NoticiasCtrl as not',
     })
-    .state('root.departamentos', {
+   /*.state('root.departamentos', {
       url: '/departamentos',
       templateUrl: 'client/departamentos/departamentos.ng.html',
       controller: 'DepartamentosCtrl as depa',
-    })
-    .state('root.empleados', {
+    }) */
+     .state('root.empleados', {
       url: '/empleados',
       templateUrl: 'client/empleados/empleados.ng.html',
       controller: 'EmpleadosCtrl as emp',
+      resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
     })
+
+    .state('root.departamentos', {
+      url: '/departamentos/:id',
+      templateUrl: 'client/departamentos/departamentos.ng.html',
+      controller: 'DepartamentosCtrl as depa',
+      resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "empleado" || user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
+  }) 
+    .state('root.jefeAreas', {
+      url: '/jefeAreas/:id',
+      templateUrl: 'client/empleados/jefeAreas.ng.html',
+      controller: 'JefeAreasCtrl as jefe',
+      resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "jefeArea" || user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
+  }) 
+     .state('root.gerentes', {
+      url: '/gerentes/:id',
+      templateUrl: 'client/empleados/gerentes.ng.html',
+      controller: 'GerentesCtrl as ger',
+      
+  }) 
+
+     .state('root.asesorVentas', {
+      url: '/asesorVentas/:id',
+      templateUrl: 'client/empleados/asesorVentas.ng.html',
+      controller: 'AsesorVentasCtrl as asesor',
+      
+  }) 
+
+ 
+     /*.state('root.empleados', {
+      url: '/empleados/:id',
+      templateUrl: 'client/empleados/empleados.ng.html',
+      controller: 'EmpleadosCtrl as emp',
+      resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "cosme"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
+    })*/
+
+
     .state('root.tickets', {
       url: '/tickets',
       templateUrl: 'client/tickets/tickets.ng.html',
@@ -169,38 +311,6 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
        }]
       }
     })       
-    .state('root.verAsistencias', {
-      url: '/verAsistencias/:id',
-      templateUrl: 'client/maestro/asistencias/verAsistencias.ng.html',
-      controller: 'MaestroVerAsistenciasCtrl',
-      resolve: {
-				"currentUser": ["$meteor", "toastr", function($meteor, toastr){
-					return $meteor.requireValidUser(function(user) {
-						if(user.roles[0] == "maestro"){
-							return true;
-						}else{
-							return 'UNAUTHORIZED'; 
-						}
-         });
-       }]
-      }
-    })
-    .state('root.maestroGrupos', {
-      url: '/gruposMaestro/:id',
-      templateUrl: 'client/maestro/grupos/grupos.ng.html',
-      controller: 'MaestroGruposCtrl',
-      resolve: {
-				"currentUser": ["$meteor", "toastr", function($meteor, toastr){
-					return $meteor.requireValidUser(function(user) {
-						if(user.roles[0] == "maestro"){
-							return true;
-						}else{
-							return 'UNAUTHORIZED'; 
-						}
-         });
-       }]
-      }
-    })
     .state('root.alumnoCalificaciones', {
       url: '/alumnoCalificaciones',
       templateUrl: 'client/alumno/calificaciones/calificaciones.ng.html',

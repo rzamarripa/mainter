@@ -4,14 +4,14 @@ angular.module("interCeramic")
  	$reactive(this).attach($scope);
   this.action = true;
 	this.subscribe('articulos');
-	this.subscribe('categorias');
+	this.subscribe('categoriasArts');
 
 	this.helpers({
 	  articulos : () => {
 		  return Articulos.find();
 	  },
-	   categorias : () => {
-		  return Categorias.find();
+	   categoriasArts : () => {
+		  return CategoriasArts.find();
 	  }
   });
   	  
@@ -25,6 +25,7 @@ angular.module("interCeramic")
   
   this.guardar = function(articulo)
 	{
+		this.articulo.nota = $('#summernote').summernote('code');
 		this.articulo.nombre = Meteor.user().profile.nombre;
 		this.articulo.estatus = true;
 		console.log(this.articulo);
@@ -73,4 +74,26 @@ angular.module("interCeramic")
 	};	
 
 		
+	this.tienePermiso = function()
+	{
+		if(Meteor.user().roles[0] == "empleado" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "asesorVenta" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "gerente" )
+		{
+			return false;
+		}
+		else{
+			return true;
+		}
+		
+	}
+	    $(document).ready(function() {
+  $('#summernote').summernote();
+}); 
 };
