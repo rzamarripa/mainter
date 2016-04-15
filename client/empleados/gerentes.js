@@ -1,15 +1,15 @@
 angular.module("interCeramic")
-.controller("EmpleadosCtrl", EmpleadosCtrl);  
- function EmpleadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+.controller("GerentesCtrl", GerentesCtrl);  
+ function GerentesCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	let rc =$reactive(this).attach($scope);
     this.action = true;
-    this.subscribe('empleados');
+    this.subscribe('gerentes');
 
 	this.subscribe('departamentos');
 
 	this.helpers({
-	  empleados : () => {
-		  return Empleados.find();
+	  gerentes : () => {
+		  return Gerentes.find();
 	  },
 	  departamentos : () => {
 		  return Departamentos.find();
@@ -17,28 +17,27 @@ angular.module("interCeramic")
   });
   	  
   this.nuevo = true;	  
-  this.nuevoEmpleado = function()
+  this.nuevoGerente = function()
   {
     this.action = true;
     this.nuevo = !this.nuevo;
-    rc.empleado = {};		
+    rc.gerente = {};		
   };
   
   
-	this.guardar = function(empleado)
+	this.guardar = function(gerente)
 	{
-		
-		rc.empleado.estatus = true;
-		console.log(rc.empleado);
-		
-		rc.empleado.nombreCompleto = rc.empleado.nombre + " " + rc.empleado.apPaterno + " " + rc.empleado.apMaterno;
-		Empleados.insert(rc.empleado, function(err, doc){
-		    Meteor.call('createUsuario', rc.empleado, 'empleado');
-		    toastr.success('empleado guardado.');
-		this.empleado = {};
+	
+		console.log(rc.gerente);			
+		rc.gerente.estatus = true;
+		rc.gerente.nombreCompleto = rc.gerente.nombre + " " + rc.gerente.apPaterno + " " + rc.gerente.apMaterno;
+		Gerentes.insert(rc.gerente, function(err, doc){
+		    Meteor.call('createUsuario', rc.gerente, 'gerente');
+		    toastr.success('Usuario guardado.');
+	//	this.gerente = {};
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
-		$state.go('root.empleados');
+		$state.go('root.gerentes');
 		
 	    });
     };
@@ -58,28 +57,21 @@ angular.module("interCeramic")
 		});
 	};*/
 
-
-
-
-
-
-
-
 	
 	this.editar = function(id)
 	{
-    this.empleado = Empleados.findOne({_id:id});
+    this.gerente = Gerentes.findOne({_id:id});
     this.action = false;
     $('.collapse').collapse('show');
     this.nuevo = false;
 	};
 	
 	
-	this.actualizar = function(empleado)
+	this.actualizar = function(gerente)
 	{
-		var idTemp = empleado._id;
-		delete empleado._id;		
-		Empleados.update({_id:idTemp},{$set:empleado});
+		var idTemp = gerente._id;
+		delete gerente._id;		
+		Gerentes.update({_id:idTemp},{$set:gerente});
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
 	};
@@ -87,19 +79,19 @@ angular.module("interCeramic")
 
 	this.cambiarEstatus = function(id)
 	{
-		var empleado = Empleados.findOne({_id:id});
-		if(empleado.estatus == true)
-			empleado.estatus = false;
+		var gerente = Gerentes.findOne({_id:id});
+		if(gerente.estatus == true)
+			gerente.estatus = false;
 		else
-			empleado.estatus = true;
+			gerente.estatus = true;
 		
-		Empleados.update({_id: id},{$set :  {estatus : empleado.estatus}});
+		gerentes.update({_id: id},{$set :  {estatus : gerente.estatus}});
     };
 
    
 	this.tomarFoto = function(){
     $meteor.getPicture().then(function(data){
-      rc.empleado.fotografia = data;
+      rc.gerente.fotografia = data;
     });
    };
 

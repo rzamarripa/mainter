@@ -46,45 +46,24 @@ A LA BARRA LATERAL
 		        <i class="fa fa-lg fa-fw fa fa-archive"></i>
 		        <span class="menu-item-parent">Noticias</span>
 		      </a>
+		    </li>  
+		     <li>
+		      <a ui-sref="root.categorias">
+		        <i class="fa fa-lg fa-fw fa fa-archive"></i>
+		        <span class="menu-item-parent">Categorias</span>
+		      </a>
 		    </li>       
-	  <li data-menu-collapse>
-	    <a href="#">
+	  <li>
+	    <a ui-sref="root.resultados">
 	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
 	      <span class="menu-item-parent">Resultados</span>
 	    </a>
-	    <ul>
-		 <li>
-	    <a ui-sref="root.categorias">
-	      <i class="fa fa-lg fa-fw fa-bars"></i>
-	      <span class="menu-item-parent">Categorias</span>
-	    </a>
-	
-		    </li>	
-		
-	    </ul>
-
 	  </li>
-	   <li data-menu-collapse>
-	    <a href="#">
+	   <li>
+	    <a ui-sref="root.archivos">
 	      <i class="fa fa-lg fa-fw fa fa-book"></i>
 	      <span class="menu-item-parent">Librero</span>
 	    </a>
-	     <ul>
-	      <li>
-	    <a href="#">
-	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
-	      <span class="menu-item-parent">Categorias</span>
-	    </a>
-	    <ul>
-	    	<li>
-		      <a ui-sref="root.archivos">
-		        <i class=""></i>
-		        <span class="menu-item-parent">Archivos</span>
-		      </a>
-		    </li>
-	    </ul>
-		    </li>
-		    </ul>
 	     </li>
 	     <li>
 		      <a ui-sref="root.calendario">
@@ -112,11 +91,31 @@ A LA BARRA LATERAL
 		        <span class="menu-item-parent">Departamentos</span>
 		      </a>
 		    </li>
-		    <li>
+		    <li data-menu-collapse>
 		      <a ui-sref="root.empleados">
 		        <i class="fa fa-lg fa-fw fa-users"></i>
-		        <span class="menu-item-parent">Empleados</span>
+		        <span class="menu-item-parent">Staff</span>
 		      </a>
+		      <ul>
+		      <li>
+		      <a ui-sref="root.jefeAreas">
+		        <i class="fa fa-lg fa-fw fa-users"></i>
+		        <span class="menu-item-parent">Jefe de Areas</span>
+		      </a>
+		    </li>
+		    <li>
+		      <a ui-sref="root.gerentes">
+		        <i class="fa fa-lg fa-fw fa-users"></i>
+		        <span class="menu-item-parent">Gerentes de Tienda</span>
+		      </a>
+		    </li>
+		     <li>
+		      <a ui-sref="root.asesorVentas">
+		        <i class="fa fa-lg fa-fw fa-users"></i>
+		        <span class="menu-item-parent">Asesor de Ventas</span>
+		      </a>
+		    </li>
+		      </ul>
 		    </li>
 		    <li>
 		      <a ui-sref="root.mercas">
@@ -124,8 +123,8 @@ A LA BARRA LATERAL
 		        <span class="menu-item-parent">Mercadotecnia</span>
 		      </a>
 		    </li>
-		      <li data-menu-collapse>
-	    <a href="#">
+		      <li>
+	     <a ui-sref="root.listas">
 	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
 	      <span class="menu-item-parent">Quienes somos</span>
 	    </a>

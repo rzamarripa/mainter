@@ -1,5 +1,5 @@
 Meteor.methods({
-  sendEmail: function (to, from, subject, text) {
+  sendEmail: function (to, from, subject, html) {
 
     // Let other method calls from the same client start running,
     // without waiting for the email sending to complete.
@@ -9,7 +9,7 @@ Meteor.methods({
       to: to,
       from: from,
       subject: subject,
-      text: text
+      html: html
     });
   }
 });

@@ -35,6 +35,14 @@
 				    	<input type="text" class="form-control" placeholder="Apellido Materno" ng-model="emp.empleado.apMaterno" required>
 			    	</div>
 			    	<div class="col-sm-4">
+						<label for="fechaNac">Fecha de nacimiento</label>
+						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="emp.empleado.fechaNac">
+					</div>
+					<div class="col-sm-4">
+						<label>Fecha de Ingreso</label>
+						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="emp.empleado.fechaIn">
+					</div>
+			    	<div class="col-sm-4">
 			    		<label>Dirección</label>
 				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="emp.empleado.direccion" required>
 			    	</div>
@@ -96,11 +104,14 @@
 				<tr>
 					<th width="10%"><div class="text-center">Foto</div></th>
 					<th width="10%"><div class="text-center">Nombre</div></th>
-					<th width="15%"><div class="text-center">Departamento</div></th>
+					<th width="5%"><div class="text-center">Departamento</div></th>
+					
+					<th width="15%"><div class="text-center">Fecha de nacimiento </div></th>
+					<th width="15%"><div class="text-center">Fecha de ingreso </div></th>
 					<th width="15%"><div class="text-center">Dirección </div></th>
 					<th width="10%"><div class="text-center">Teléfono</div></th>
 					<th width="10%"><div class="text-center">correo</div></th>
-					<th width="10%">
+					<th width="5%">
 						<div class="text-center">
 							Estatus
 						</div>
@@ -117,7 +128,9 @@
 		    	<td><img width="100px" ng-src="{{empleado.fotografia}}" ng-class="{'img-thumbnail': !!empleado.fotografia}"/> </td>
 			    <td>{{empleado.nombre}} {{empleado.apPaterno}} {{empleado.apMaterno}}</td>
 			    <td> {{emp.getDepartamento(empleado.departamento_id)}}</td>
-			    <td>{{empleado.direccion}} </td>
+			    <td>{{empleado.fechaNac | date:"dd-MM-yyyy"}} </td>
+			    <td>{{empleado.fechaIn | date:"dd-MM-yyyy"}} </td>
+			    <td>{{empleado.direccion }} </td>
 			    <td>{{empleado.telefono}} </td>
 			    <td>{{empleado.correo}} </td>
 			    <td>

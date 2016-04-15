@@ -18,9 +18,9 @@
 					    </div>-->
 					    <div class="col-sm-3">
 						<label>Categoria</label>
-						<select class="form-control select2" placeholder="Seleccionar Categoria" ng-model="art.articulo.categoria_id">
-						  <option ng-repeat="categoria in art.categorias" value="{{categoria._id}}">
-						  	{{categoria.nombre}}
+						<select class="form-control select2" placeholder="Seleccionar Categoria" ng-model="art.articulo.categoriasArt_id">
+						  <option ng-repeat="categoriasArt in art.categoriasArts" value="{{categoriasArt._id}}">
+						  	{{categoriasArt.nombre}}
 						  </option>
 						</select>
 							</div>
@@ -33,16 +33,16 @@
 					    </div>
 					    <div class="col-sm-12">
 					    <div class="row">
-					    <div class="col-sm-6">
+					    <div class="col-sm-4">
 						    <label>Titulo</label>
 					    	<input type="text" class="form-control" placeholder="Titulo" ng-model="art.articulo.titulo" required>
 					    </div> 			  
 					    
 					    </div>
-					    <div class="row">
-					     <div class="col-sm-6">
-					    <label>Nota</label>
-					    <textarea class="form-control" placeholder="Nota" ng-model="art.articulo.nota"></textarea>
+					    <br/>
+                      <div class="row">
+			    	 <div class="col-sm-8">
+					    <div  id="summernote"  ng-model="art.articulo.nota" ></div>
 			    	</div>
 			    	</div>					     
 			    	</div>
@@ -65,23 +65,23 @@
 
 <div class="well padding-10" ng-repeat="articulo in art.articulos">
 
-							<div class="row">
-								<div class="col-md-4">
-									<img ng-src="{{articulo.imagen}}" class="img-responsive" alt="img">
-								
-								</div>
+	<div class="row">
+		<div class="col-md-4">
+			<img ng-src="{{articulo.imagen}}" class="img-responsive" alt="img">
+		
+		</div>
 
 
-								<div class="col-md-8 padding-left-0">
-									<h3 class="margin-top-0"><p>{{articulo.titulo}}</p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">{{articulo.nombre}}</a></i></small></h3>
-								
-										{{articulo.nota}}
-									
-									<a class="btn btn-primary" ng-click="art.editar(articulo._id)">Editar</a>
-									<a class="btn btn-danger" ng-click="art.cambiarEstatus(articulo._id)">Desactivar</a>
-								</div>
-							</div>
-							</div>
+		<div class="col-md-8 padding-left-0">
+			<h3 class="margin-top-0"><p>{{articulo.titulo}}</p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">{{articulo.nombre}}</a></i></small></h3>
+		
+			<span ng-bind-html>{{articulo.nota}}</span>
+			
+			<a class="btn btn-primary" ng-click="art.editar(articulo._id)" ng-show="art.tienePermiso()">Editar</a>
+			<a class="btn btn-danger" ng-click="art.cambiarEstatus(articulo._id)" ng-show="art.tienePermiso()">Desactivar</a>
+		</div>
+	</div>
+</div>
 		
 
 

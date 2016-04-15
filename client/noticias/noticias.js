@@ -22,6 +22,7 @@ angular.module("interCeramic")
   
   this.guardar = function(noticia)
 	{
+		this.noticia.nota = $('#summernote').summernote('code');
 		this.noticia.nombre = Meteor.user().profile.nombre;
 		this.noticia.estatus = true;
 		this.noticia.fecha = new Date();
@@ -63,5 +64,10 @@ angular.module("interCeramic")
 		
 		Noticias.update({_id: id},{$set :  {estatus : noticia.estatus}});
     };
+
+      
+    $(document).ready(function() {
+    $('#summernote').summernote();
+    }); 
 		
 };

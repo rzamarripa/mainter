@@ -1,7 +1,7 @@
 angular.module("interCeramic")
 .controller("UsuariosCtrl", UsuariosCtrl);  
  function UsuariosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
- 	$reactive(this).attach($scope);
+ let rc = $reactive(this).attach($scope);
     this.action = true;
     this.usuario = {};
 	this.subscribe('usuarios');
@@ -13,6 +13,12 @@ angular.module("interCeramic")
 	  },
 	   departamentos : () => {
 		  return Departamentos.find();
+	  },
+	  emitidos : () => {
+	  	return Tickets.find({depaemisor_id : emple.depaemisor_id})
+	  },
+	  recibidos : () => {
+	  	return Tickets.find({receptor_id : emple.depaemisor_id})
 	  }
 	 
   });
@@ -33,13 +39,16 @@ angular.module("interCeramic")
 	    //this.usuario.userId = Meteor.userId();
 		this.usuario.estatus = true;
 		console.log(this.usuario);
-		Usuarios.insert(this.usuario);
-		toastr.success('usuario guardado.');
+		rc.usuario.nombreCompleto = rc.usuario.nombre + " " + rc.usuario.apPaterno + " " + rc.usuario.apMaterno;
+		Usuarios.insert(rc.usuario, function(err, doc){
+		    Meteor.call('createUsuario', rc.usuario, 'admin');
+		    toastr.success('admin guardado.');
 		this.usuario = {}; 
 		$('.collapse').collapse('hide');
-		this.nuevo = true;
+		this.nuevo = false;
 		$state.go('root.usuarios')
-	};
+	});
+   };
 	
 	this.editar = function(id)
 	{

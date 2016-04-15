@@ -3,25 +3,51 @@ angular.module("interCeramic")
  function ListaTicketsCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
     this.action = true;
-    
+    this.ponerFechaCompromiso = false;
 
-    //departamento={};
-   // departamento.nombre="";
+
+    this.users = [];
+    
+    this.subscribe('users', () => {
+	return [{_id : {$in:this.getCollectionReactively('users')}}]
+	});
 
 	this.subscribe('tickets', () => {
 		//select * from tickets where departamento_id = user.departamento_id and estatus = true
-		return [{departamento_id : Meteor.user().profile.departamento_id, estatus : true}]
+		return [{departamento_id : Meteor.user().profile.departamento_id}]
 	});
 	this.subscribe('departamentos');
+	
 	this.ticket={};
 
 	this.helpers({
 	  listaTickets : () => {
 		  return Tickets.find();
 	  },
-	   departamentos : () => {
+	  listaTicketsPendientes : () => {
+		  return Tickets.find({estatus:1});
+	  },
+
+	  listaTicketsProceso : () => {
+		  return Tickets.find({estatus:2});
+	  },
+
+	  listaTicketsRealizados : () => {
+		  return Tickets.find({estatus:3});
+	  },
+	  departamentos : () => {
 		  return Departamentos.find();
-	  }	 
+	  },
+	  users : () =>{
+	  	var tickets = this.getReactively('tickets');
+	  	var users = [];
+	  	if(this.tickets){
+		  	_.each(this.tickets, function(_ticket){
+		  		users.push(_ticket.emisor_id);
+		  	});
+	  	}
+		  return users
+	  },
   	});
 
 
@@ -41,15 +67,28 @@ angular.module("interCeramic")
 	
 	this.actualizar = function(_ticket)
 	{
+        	this._ticket.emisor_id = Meteor.userId();
 		console.log(_ticket);
 		var idTemp = _ticket._id;
 		delete _ticket._id;	
-		delete _ticket.$$hashKey;		
+		delete _ticket.$$hashKey;	
+		_ticket.estatus = 2;	
 		Tickets.update({_id:idTemp},{$set:_ticket});
-		document.getElementById("input").style.visibility = "hidden";
-        document.getElementById("boton").style.visibility = "hidden";
 	
 	};
+
+	this.actualizarProceso = function(_ticket)
+	{
+	
+		console.log(_ticket);
+		var idTemp = _ticket._id;
+		delete _ticket._id;	
+		delete _ticket.$$hashKey;	
+		_ticket.estatus = 3;	
+		Tickets.update({_id:idTemp},{$set:_ticket});
+	
+	};
+
 
 	this.cambiarEstatus = function(id)
 	{
@@ -68,10 +107,35 @@ angular.module("interCeramic")
 		//console.log(departamento);
 		return departamento.nombre;
 	};	
+	this.getEmisor= function(emisor_id)
+	{
+		var emisor = Meteor.users.findOne(emisor_id);
+		if(emisor)
+		return emisor.profile.nombre;
+	};
+
 
 	$(document).ready(function() {
 	  $('#summernote').summernote();
 	});  
+
+	this.estaSeleccionado = function(id)
+	{		
+		this.ticket = Tickets.findOne({_id: id});
+		this.ponerFechaCompromiso = true;
+	}
+
+
+
+
+$('.ui.rating')
+  .rating()
+;
+
+this.dada = function(_id, rating){
+	Tickets.update({_id:_id},{$set:{rating:rating}});
+}
+
 
 
 

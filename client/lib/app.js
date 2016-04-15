@@ -12,6 +12,6 @@ angular.module('interCeramic',
     'datePicker',
     'ui.calendar',
     'ui.bootstrap',
-		'ngFileUpload'
+	'ngFileUpload',
   ]
 );

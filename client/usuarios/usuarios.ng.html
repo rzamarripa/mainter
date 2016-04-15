@@ -13,7 +13,7 @@
 			    	<div class="col-sm-12">	
 			    	<div class="col-sm-4">					    
 				    	<label>Usuario</label>
-				    	<input type="text" class="form-control" placeholder="Usuario" ng-model="user.empleado.usuario" required>
+				    	<input type="text" class="form-control" placeholder="Usuario" ng-model="user.usuario.usuario" required>
 			    	</div>
 			    	<div class="col-sm-4">					    
 				    	<label>Contraseña</label>
@@ -59,9 +59,8 @@
 		<table class="table table-bordered">
                 <thead>
                 	<tr>
-					<th width="20%"><div class="text-center">Departamento</div></th>
-					<!--<th width="20%"><div class="text-center">Responsable </div></th>-->
-					<th width="40%"><div class="text-center">Descripción</div></th>				
+					<th width="20%"><div class="text-center">Usuario</div></th>
+					<th width="20%"><div class="text-center"> Nombre</div></th>					
 					<th width="10%">
 						<div class="text-center">
 							Estatus
@@ -76,10 +75,9 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="usuario in user.usuarios">
-			    <td> {{user.getDepartamentoById(usuario.departamento_id).nombre}}</td>
-			    
-			    <!--<td>{{useret.responsable}}</td>-->
-			    <td>{{usuario.nota}}</td>
+			    <td> {{usuario.usuario}}</td>
+			    <td> {{usuario.nombre}}</td>
+	
 
 			    <td>
 				    <div class="text-center">
