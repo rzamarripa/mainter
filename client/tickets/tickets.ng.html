@@ -80,7 +80,7 @@
 			    <td>{{tick.getDepartamento(ticket.departamentoEmisor_id)}}</td>
 			    <td>{{ticket.fecha | date:"dd-MM-yyyy"}}</td>
 			    <td>{{tick.getDepartamento(ticket.departamentoReceptor_id)}}</td> 
-			    <td>{{ticket.nota}}</td>
+			    <td ng-bind-html="ticket.nota"></td>
 
 			    
 

@@ -84,6 +84,12 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
 	      }]
 	    }
     })
+    .state('root.perfil', {
+      url: '/perfil/:id',
+      templateUrl: 'client/listas/perfil.ng.html',  
+       controller: 'PerfilCtrl as perfil', 
+      
+    })
 
     ///////////////////////ARTICULOS///////////////////////////////////////////////
     .state('root.articulos', {

@@ -3,7 +3,9 @@ angular.module("interCeramic")
  function EmpleadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	let rc =$reactive(this).attach($scope);
     this.action = true;
-    this.subscribe('empleados');
+    this.subscribe('empleados',()=>{
+		return [{estatus:true}]
+	});
 
 	this.subscribe('departamentos');
 
@@ -97,11 +99,11 @@ angular.module("interCeramic")
     };
 
    
-	this.tomarFoto = function(){
+	/*this.tomarFoto = function(){
     $meteor.getPicture().then(function(data){
       rc.empleado.fotografia = data;
     });
-   };
+   };*/
 
 	this.getDepartamento= function(departamento_id)
 	{

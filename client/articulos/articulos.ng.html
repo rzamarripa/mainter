@@ -75,7 +75,7 @@
 		<div class="col-md-8 padding-left-0">
 			<h3 class="margin-top-0"><p>{{articulo.titulo}}</p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">{{articulo.nombre}}</a></i></small></h3>
 		
-			<span ng-bind-html>{{articulo.nota}}</span>
+			<span ng-bind-html="articulo.nota"></span>
 			
 			<a class="btn btn-primary" ng-click="art.editar(articulo._id)" ng-show="art.tienePermiso()">Editar</a>
 			<a class="btn btn-danger" ng-click="art.cambiarEstatus(articulo._id)" ng-show="art.tienePermiso()">Desactivar</a>

@@ -4,8 +4,6 @@ angular.module("interCeramic")
  	$reactive(this).attach($scope);
     this.action = true;
     this.ponerFechaCompromiso = false;
-
-
     this.users = [];
     
     this.subscribe('users', () => {
@@ -39,15 +37,15 @@ angular.module("interCeramic")
 		  return Departamentos.find();
 	  },
 	  users : () =>{
-	  	var tickets = this.getReactively('tickets');
+	  	var tickets = this.getReactively('listaTickets');
 	  	var users = [];
-	  	if(this.tickets){
-		  	_.each(this.tickets, function(_ticket){
+	  	if(this.listaTickets){
+		  	_.each(this.listaTickets, function(_ticket){
 		  		users.push(_ticket.emisor_id);
 		  	});
 	  	}
 		  return users
-	  },
+	  }
   	});
 
 
@@ -67,7 +65,7 @@ angular.module("interCeramic")
 	
 	this.actualizar = function(_ticket)
 	{
-        	this._ticket.emisor_id = Meteor.userId();
+        	//this._ticket.emisor_id = Meteor.userId();
 		console.log(_ticket);
 		var idTemp = _ticket._id;
 		delete _ticket._id;	

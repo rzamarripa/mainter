@@ -33,6 +33,7 @@ angular.module("interCeramic")
 	{
 		this.resultado.nombre = Meteor.user().profile.nombre;
 		this.resultado.estatus = true;
+		this.resultado.extension = resultado.select.split('.').pop();
 		console.log(this.resultado);
 		Resultados.insert(this.resultado);
 		toastr.success('resultado guardado.');
