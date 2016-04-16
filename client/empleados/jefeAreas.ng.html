@@ -35,6 +35,14 @@
 				    	<input type="text" class="form-control" placeholder="Apellido Materno" ng-model="jefe.jefeArea.apMaterno" required>
 			    	</div>
 			    	<div class="col-sm-4">
+						<label for="fechaNac">Fecha de nacimiento</label>
+						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="jefe.jefeArea.fechaNac">
+					</div>
+					<div class="col-sm-4">
+						<label>Fecha de Ingreso</label>
+						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="jefe.jefeArea.fechaIn">
+					</div>
+			    	<div class="col-sm-4">
 			    		<label>Dirección</label>
 				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="jefe.jefeArea.direccion" required>
 			    	</div>
@@ -70,11 +78,9 @@
 					</div>-->
 
 			    	  <div class="col-sm-4">
-						<label for="talla">Fotografía</label>
-						<button class="btn btn-primary" ng-click="jefe.tomarFoto()"><i class="fa fa-camera"></i></button>
-						<img width="100px" ng-src="{{jefe.jefeArea.fotografia}}" ng-class="{'img-thumbnail': !!jefeArea.fotografia}" />
-						</div>
-
+						    <label>Imagen</label>
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="ger.gerente.imagen" required>
+					    </div>
 					</div>				
 				</div>
 				<div class="row">
@@ -114,7 +120,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="jefeArea in jefe.jefeAreas">
-		    	<td><img width="100px" ng-src="{{jefeArea.fotografia}}" ng-class="{'img-thumbnail': !!jefeArea.fotografia}"/> </td>
+		    	<td><img width="200px" ng-src="{{jefeArea.imagen}} "></td>
 			    <td>{{jefeArea.nombre}} {{jefeArea.apPaterno}} {{jefeArea.apMaterno}}</td>
 			    <td> {{jefe.getDepartamento(jefeArea.departamento_id)}}</td>
 			    <td>{{jefeArea.direccion}} </td>

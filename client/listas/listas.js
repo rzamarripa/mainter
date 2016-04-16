@@ -73,6 +73,18 @@ angular.module("interCeramic")
 		var departamento = Departamentos.findOne(departamento_id);
 		return departamento.nombre;
 	};
+
+	/*this.resizeheight= function() {
+    var height = ((2*screen.height)/20);
+	
+	return height;
+}
+
+    this.resizewidth= function() {
+    var width = ((2*screen.width)/20);
+	
+	return width;
+}*/
   
 		
 };
