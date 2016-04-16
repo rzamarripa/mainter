@@ -88,12 +88,7 @@ angular.module("interCeramic")
 		gerentes.update({_id: id},{$set :  {estatus : gerente.estatus}});
     };
 
-   
-	this.tomarFoto = function(){
-    $meteor.getPicture().then(function(data){
-      rc.gerente.fotografia = data;
-    });
-   };
+  
 
 	this.getDepartamento= function(departamento_id)
 	{

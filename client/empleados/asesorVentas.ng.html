@@ -35,6 +35,14 @@
 				    	<input type="text" class="form-control" placeholder="Apellido Materno" ng-model="asesor.asesorVenta.apMaterno" required>
 			    	</div>
 			    	<div class="col-sm-4">
+						<label for="fechaNac">Fecha de nacimiento</label>
+						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="asesor.asesorVenta.fechaNac">
+					</div>
+					<div class="col-sm-4">
+						<label>Fecha de Ingreso</label>
+						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="asesor.empleado.fechaIn">
+					</div>
+			    	<div class="col-sm-4">
 			    		<label>Dirección</label>
 				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="asesor.asesorVenta.direccion" required>
 			    	</div>
@@ -70,10 +78,9 @@
 					</div>-->
 
 			    	  <div class="col-sm-4">
-						<label for="talla">Fotografía</label>
-						<button class="btn btn-primary" ng-click="asesor.tomarFoto()"><i class="fa fa-camera"></i></button>
-						<img width="100px" ng-src="{{asesor.asesorVenta.fotografia}}" ng-class="{'img-thumbnail': !!asesorVenta.fotografia}" />
-						</div>
+						    <label>Imagen</label>
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="asesor.asesorVenta.imagen" required>
+					    </div>
 
 					</div>				
 				</div>
@@ -114,7 +121,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="asesorVenta in asesor.asesorVentas">
-		    	<td><img width="100px" ng-src="{{asesorVenta.fotografia}}" ng-class="{'img-thumbnail': !!asesorVenta.fotografia}"/> </td>
+		    	<td><img width="200px" ng-src="{{aesorVenta.imagen}} "></td>
 			    <td>{{asesorVenta.nombre}} {{asesorVenta.apPaterno}} {{asesorVenta.apMaterno}}</td>
 			    <td> {{asesor.getDepartamento(asesorVenta.departamento_id)}}</td>
 			    <td>{{asesorVenta.direccion}} </td>

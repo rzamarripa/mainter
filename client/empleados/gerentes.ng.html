@@ -35,6 +35,14 @@
 				    	<input type="text" class="form-control" placeholder="Apellido Materno" ng-model="ger.gerente.apMaterno" required>
 			    	</div>
 			    	<div class="col-sm-4">
+						<label for="fechaNac">Fecha de nacimiento</label>
+						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="ger.gerente.fechaNac">
+					</div>
+					<div class="col-sm-4">
+						<label>Fecha de Ingreso</label>
+						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="ger.gerente.fechaIn">
+					</div>
+			    	<div class="col-sm-4">
 			    		<label>Dirección</label>
 				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="ger.gerente.direccion" required>
 			    	</div>
@@ -70,10 +78,9 @@
 					</div>-->
 
 			    	  <div class="col-sm-4">
-						<label for="talla">Fotografía</label>
-						<button class="btn btn-primary" ng-click="ger.tomarFoto()"><i class="fa fa-camera"></i></button>
-						<img width="100px" ng-src="{{ger.gerente.fotografia}}" ng-class="{'img-thumbnail': !!gerente.fotografia}" />
-						</div>
+						    <label>Imagen</label>
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="ger.gerente.imagen" required>
+					    </div>
 
 					</div>				
 				</div>
@@ -114,7 +121,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="gerente in ger.gerentes">
-		    	<td><img width="100px" ng-src="{{gerente.fotografia}}" ng-class="{'img-thumbnail': !!gerente.fotografia}"/> </td>
+		    	<td><img width="200px" ng-src="{{gerente.imagen}} "></td>
 			    <td>{{gerente.nombre}} {{gerente.apPaterno}} {{gerente.apMaterno}}</td>
 			    <td>{{ger.getDepartamento(gerente.departamento_id)}}</td>
 			    <td>{{gerente.direccion}} </td>
