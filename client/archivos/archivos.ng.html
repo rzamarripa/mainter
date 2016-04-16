@@ -1,4 +1,4 @@
-<h2>Archivos</h2>
+<h2>Librero</h2>
 <div class="row">
 	<div class="col-sm-12">
 		<a class="btn btn-{{archi.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
@@ -54,7 +54,8 @@
 		<table class="table table-bordered">
       <thead>
       	<tr>
-	      			<th width="5%"><div class="text-center">No.</div></th>
+    			<th width="5%"><div class="text-center">No.</div></th>
+    			<th>Categoría</th>
 					<th width="20%"><div class="text-center">Nombre</div></th>
 					<th width="25%"><div class="text-center">Descripción</div></th>
 					<th width="25%"><div class="text-center">Archivo </div></th>
@@ -73,6 +74,7 @@
 			<tbody>
 		    <tr ng-repeat="archivo in archi.archivos">
 			    <td>{{$index+1}}</td>
+			    <td>{{archi.getCategoria(archivo.categoriasLibrero_id)}}</td>
 			    <td>{{archivo.nombre}}</td>		 
 			    <td>{{archivo.descripcion}}</td>
 			    <td class="text-center">

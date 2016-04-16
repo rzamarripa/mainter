@@ -86,8 +86,8 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="ger.guardar(gerente)" value="Guardar" class="btn btn-primary" ng-show="ger.action">
-						<input type="submit" ng-click="ger.actualizar(gerente)" value="Actualizar" class="btn btn-primary" ng-show="!ger.action">				
+						<input type="submit" ng-click="ger.guardar(ger.gerente)" value="Guardar" class="btn btn-primary" ng-show="ger.action">
+						<input type="submit" ng-click="ger.actualizar(ger.gerente)" value="Actualizar" class="btn btn-primary" ng-show="!ger.action">				
 					</div>
 				</div>	  
 		  </form>
@@ -121,7 +121,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="gerente in ger.gerentes">
-		    	<td><img width="200px" ng-src="{{gerente.imagen}} "></td>
+		    	<td><img width="50px" ng-src="{{gerente.imagen}} "></td>
 			    <td>{{gerente.nombre}} {{gerente.apPaterno}} {{gerente.apMaterno}}</td>
 			    <td>{{ger.getDepartamento(gerente.departamento_id)}}</td>
 			    <td>{{gerente.direccion}} </td>
