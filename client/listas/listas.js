@@ -7,6 +7,18 @@ angular.module("interCeramic")
 	this.subscribe('empleados',()=>{
 		return [{estatus:true}]
 	});
+	this.subscribe('asesorVentas',()=>{
+		return [{estatus:true}]
+	});
+	this.subscribe('gerentes',()=>{
+		return [{estatus:true}]
+	});
+	this.subscribe('empleados',()=>{
+		return [{estatus:true}]
+	});
+	this.subscribe('jefeAreas',()=>{
+		return [{estatus:true}]
+	});
 	
 
 	this.helpers({
@@ -15,7 +27,20 @@ angular.module("interCeramic")
 	  },
 	   empleados : () => {
 		  return Empleados.find();
-	  }
+	  },
+	  asesorVentas : () => {
+		  return AsesorVentas.find();
+	  },
+	  gerentes : () => {
+		  return Gerentes.find();
+	  },
+	  departamentos : () => {
+		  return Departamentos.find();
+	  },
+	  jefeAreas : () => {
+		  return JefeAreas.find();
+	  },
+
   });
   	  
   this.nuevo = true;	  
