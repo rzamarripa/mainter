@@ -4,8 +4,10 @@ Meteor.startup(function () {
       username: 'admin',
       password: 'inter123',
       profile: {
-	      nombre: 'Administrador'
+	      nombre: 'Administrador',
+        departamento_id: 'Recursos humanos'
       }
+
     });
 		Roles.addUsersToRoles(usuario_id, "admin");
   }

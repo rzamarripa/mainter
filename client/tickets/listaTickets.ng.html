@@ -226,7 +226,7 @@
 												 </span>
 												<span class="pull-right">
 													<form class="form-inline">
-														<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary pull right" style="font-size:120%;  width: 80px; height: 30px; margin-top: 90px; margin-left: 50px; ">Realizado</a>
+														<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary pull right" style="font-size:120%;  width: 80px; height: 30px; margin-bottom: 10px; ">Realizado</a>
 													</form>
 												</span>
 											</li>
@@ -248,20 +248,20 @@
 												<br/>
 											    <span style="font-size: 100%;" ng-bind-html="ticket.nota"></span>
 											    <br/>
-										
+											    <br/>
+											    <div  ng-model="ticket.rating" class="ui huge star rating" data-rating="3" data-max-rating="5" ng-click="list.dada(ticket._id, ticket.rating)"></div>
+
 												</p>
 
-												<div  ng-model="ticket.rating" class="ui huge star rating pull-right" data-rating="3" data-max-rating="5" ng-click="list.dada(ticket._id, ticket.rating)" style="margin-left: 100px; margin-top: 90px;  margin-bottom: 0px;"></div>
-												<!--<div  ng-model="ticket.rating" class="ui large star rating"></div>-->
+												
+												
     											 <span class="date">
-												 <span  class="pull-right date"><font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font></span>
+												 <span  class="pull-right "><font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font></span>
 												 </span>
 										
 
 											</li>
 										</ul>
-
-										<!-- end content -->
 									</div>
 								</div>
 							</div>

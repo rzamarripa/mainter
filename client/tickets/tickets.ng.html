@@ -10,7 +10,8 @@
 			<form class="form-horizontal" role="form" data-parsley-validate>
 		  	<div class="well">	    
 			    <div class="row">
-			    	<div class="col-sm-12">		 			  
+			    	<div class="col-sm-12">	
+			    	<div class="row">	 			  
 					    <div class="col-sm-4">
 						<label>Departamento</label>
 						<select class="form-control select2" placeholder="Seleccione" ng-model="tick.ticket.departamento_id">
@@ -24,17 +25,21 @@
 					    	<input type="text" class="form-control" placeholder="Titulo" ng-model="tick.ticket.titulo" required>
 					    </div> 
 					</div>
+					
 					<br/>
-					<div class="col-sm-12">	
+					<br/>
+
+					
 					<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-6">
 					    <input id="summernote"  ng-model="tick.ticket.nota" >
+			    	</div>
 			    	</div>
 			    	</div>
 			    	</div>
 			   	
 			    </div>  
-			    </div> 
+			  
 				<div class="row">
 					<div class="col-sm-12">
 						<input type="submit" ng-click="tick.guardar(tick.ticket)" value="Enviar" class="btn btn-primary" ng-show="tick.action">

@@ -234,7 +234,7 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       resolve: {
         "currentUser": ["$meteor", "toastr", function($meteor, toastr){
           return $meteor.requireValidUser(function(user) {
-            if(user.roles[0] == "jefeArea" || user.roles[0] == "admin"){
+            if(user.roles[0] /*== "jefeArea" || user.roles[0]*/ == "admin"){
               return true;
             }else{
               return 'UNAUTHORIZED'; 
@@ -247,15 +247,39 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       url: '/gerentes/:id',
       templateUrl: 'client/empleados/gerentes.ng.html',
       controller: 'GerentesCtrl as ger',
-      
+      resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
   }) 
+      
+ 
 
      .state('root.asesorVentas', {
       url: '/asesorVentas/:id',
       templateUrl: 'client/empleados/asesorVentas.ng.html',
       controller: 'AsesorVentasCtrl as asesor',
-      
+      resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
   }) 
+      
+
 
  
      /*.state('root.empleados', {
