@@ -11,28 +11,28 @@
 			    <div class="row">
 			    	<div class="col-sm-4">					    
 				    	<label>Usuario</label>
-				    	<input type="text" class="form-control" placeholder="Usuario" ng-model="emp.empleado.usuario" required>
+				    	<input type="text" class="form-control" placeholder="Usuario" ng-model="emp.empleado.usuario" >
 			    	</div>
 			    	<div class="col-sm-4">					    
 				    	<label>Contraseña</label>
-				    	<input type="password" class="form-control" placeholder="Contraseña" ng-model="emp.empleado.contrasena" required>
+				    	<input type="password" class="form-control" placeholder="Contraseña" ng-model="emp.empleado.contrasena" >
 			    	</div>		    				    	    
 			    	<div class="col-sm-4">					    
 				    	<label>Confirmar Contraseña</label>
-				    	<input type="password" class="form-control" placeholder="Confirmar Contraseña" ng-model="emp.empleado.confirmarContrasena" required>
+				    	<input type="password" class="form-control" placeholder="Confirmar Contraseña" ng-model="emp.empleado.confirmarContrasena" >
 					</div>
 			    	<div class="col-sm-4">
 			    		<label>Nombre </label>
-				    	<input type="text" class="form-control" placeholder="Nombre" ng-model="emp.empleado.nombre" required>
+				    	<input type="text" class="form-control" placeholder="Nombre" ng-model="emp.empleado.nombre" >
 			    	</div>
 
 			    	<div class="col-sm-4">
 			    		<label>Apellido Paterno </label>
-				    	<input type="text" class="form-control" placeholder="Apellido Paterno" ng-model="emp.empleado.apPaterno" required>
+				    	<input type="text" class="form-control" placeholder="Apellido Paterno" ng-model="emp.empleado.apPaterno" >
 			    	</div>
 			    	<div class="col-sm-4">
 			    		<label>Apellido Materno</label>
-				    	<input type="text" class="form-control" placeholder="Apellido Materno" ng-model="emp.empleado.apMaterno" required>
+				    	<input type="text" class="form-control" placeholder="Apellido Materno" ng-model="emp.empleado.apMaterno" >
 			    	</div>
 			    	<div class="col-sm-4">
 						<label for="fechaNac">Fecha de nacimiento</label>
@@ -44,15 +44,15 @@
 					</div>
 			    	<div class="col-sm-4">
 			    		<label>Dirección</label>
-				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="emp.empleado.direccion" required>
+				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="emp.empleado.direccion" >
 			    	</div>
 			    	<div class="col-sm-4">
 			    		<label>Teléfono</label>
-				    	<input type="text" class="form-control" placeholder="Teléfono" ng-model="emp.empleado.telefono" required>
+				    	<input type="text" class="form-control" placeholder="Teléfono" ng-model="emp.empleado.telefono" >
 			    	</div>
 			    	<div class="col-sm-4">
 			    		<label>Correo</label>
-				    	<input type="text" class="form-control" placeholder="Correo" ng-model="emp.empleado.correo" required>
+				    	<input type="text" class="form-control" placeholder="Correo" ng-model="emp.empleado.correo" >
 			    	</div>
 			    	<div class="col-sm-4">
 						<label>Departamento</label>
@@ -79,15 +79,15 @@
 
 			    	  <div class="col-sm-4">
 						    <label>Imagen</label>
-					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="emp.empleado.imagen" required>
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="emp.empleado.imagen" >
 					    </div>
 
 					</div>				
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="emp.guardar(empleado)" value="Guardar" class="btn btn-primary" ng-show="emp.action">
-						<input type="submit" ng-click="emp.actualizar(empleado)" value="Actualizar" class="btn btn-primary" ng-show="!emp.action">				
+						<input type="submit" ng-click="emp.guardar(emp.empleado)" value="Guardar" class="btn btn-primary" ng-show="emp.action">
+						<input type="submit" ng-click="emp.actualizar(emp.empleado)" value="Actualizar" class="btn btn-primary" ng-show="!emp.action">				
 					</div>
 				</div>	  
 		  </form>
@@ -124,7 +124,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="empleado in emp.empleados">
-		    	<td><img width="200px" ng-src="{{empleado.imagen}} "></td>
+		    	<td><img width="50px" ng-src="{{empleado.imagen}} "></td>
 			    <td>{{empleado.nombre}} {{empleado.apPaterno}} {{empleado.apMaterno}}</td>
 			    <td>{{emp.getDepartamento(empleado.departamento_id)}}</td>
 			    <td>{{empleado.fechaNac | date:"dd-MM-yyyy"}} </td>

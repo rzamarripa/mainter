@@ -79,14 +79,14 @@
 
 			    	  <div class="col-sm-4">
 						    <label>Imagen</label>
-					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="ger.gerente.imagen" required>
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="jefe.jefeArea.imagen" required>
 					    </div>
 					</div>				
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="jefe.guardar(jefeArea)" value="Guardar" class="btn btn-primary" ng-show="jefe.action">
-						<input type="submit" ng-click="jefe.actualizar(jefeArea)" value="Actualizar" class="btn btn-primary" ng-show="!jefe.action">				
+						<input type="submit" ng-click="jefe.guardar(jefe.jefeArea)" value="Guardar" class="btn btn-primary" ng-show="jefe.action">
+						<input type="submit" ng-click="jefe.actualizar(jefe.jefeArea)" value="Actualizar" class="btn btn-primary" ng-show="!jefe.action">				
 					</div>
 				</div>	  
 		  </form>
@@ -120,7 +120,7 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="jefeArea in jefe.jefeAreas">
-		    	<td><img width="200px" ng-src="{{jefeArea.imagen}} "></td>
+		    	<td><img width="50px" ng-src="{{jefeArea.imagen}} "></td>
 			    <td>{{jefeArea.nombre}} {{jefeArea.apPaterno}} {{jefeArea.apMaterno}}</td>
 			    <td> {{jefe.getDepartamento(jefeArea.departamento_id)}}</td>
 			    <td>{{jefeArea.direccion}} </td>

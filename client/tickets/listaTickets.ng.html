@@ -218,16 +218,11 @@
 												</p>
 												<span class="date">
 												 <span  class="pull-right">
-												 <form class="form-inline">
-												 <font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font> 
-												 </form>
+												 	<form class="form-inline">
+												 		<font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font> <br/><br/>
+												 		<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary pull right" style="font-size:120%;  width: 80px; height: 30px; margin-bottom: 10px; ">Realizado</a>
+												 	</form>
 												 </span>
-
-												 </span>
-												<span class="pull-right">
-													<form class="form-inline">
-														<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary pull right" style="font-size:120%;  width: 80px; height: 30px; margin-bottom: 10px; ">Realizado</a>
-													</form>
 												</span>
 											</li>
 										
@@ -255,9 +250,9 @@
 
 												
 												
-    											 <span class="date">
+    										<span class="date">
 												 <span  class="pull-right "><font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font></span>
-												 </span>
+												</span>
 										
 
 											</li>
