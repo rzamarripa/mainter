@@ -216,9 +216,12 @@
 											    <span style="font-size: 100%;" ng-bind-html="ticket.nota"></span>
 											    <br/>
 												</p>
+												<span class="date">
+												 <span  class="pull-right date"><font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font></span>
+												 </span>
 												<span class="pull-right">
 													<form class="form-inline">
-														<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary" style="font-size:120%;  width: 80px; height: 30px; margin-bottom: 100px; margin-left: 10px; ">Realizado</a>
+														<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary" style="font-size:120%;  width: 80px; height: 30px; margin-top: 90px; margin-left: 200px; ">Realizado</a>
 													</form>
 												</span>
 											</li>
@@ -233,19 +236,21 @@
 														<span class="handle">  </span>
 													<p>	
 												<span class="date"><font size="2">{{ticket.fecha | date:"dd-MM-yyyy"}}</font></span>
-											
-												<span><font size="2">Envia: {{list.getEmisor(_ticket.emisor_id)}}  Recibe: {{list.getDepartamento(ticket.departamentoReceptor_id)}}</font></span>
+											    
+												<span><font size="2">Envia: {{list.getEmisor(ticket.emisor_id)}}      Recibe: {{list.getDepartamento(ticket.departamentoReceptor_id)}}</font></span>
 												<br/>
-												<span><font size="3"> {{ticket.titulo}}</font></span>
-											    <span style="font-size: 4;" ng-bind-html="ticket.nota"></span>
+												<span><font size="2"> {{ticket.titulo}}</font></span>
+												<br/>
+											    <span style="font-size: 100%;" ng-bind-html="ticket.nota"></span>
 											    <br/>
-											   {{list.getEmisor(_ticket.emisor_id)}}
+										
 												</p>
 
-												<div  ng-model="ticket.rating" class="ui huge star rating" data-rating="3" data-max-rating="5" ng-click="list.dada(ticket._id, ticket.rating)"></div>
+												<div  ng-model="ticket.rating" class="ui huge star rating" data-rating="3" data-max-rating="5" ng-click="list.dada(ticket._id, ticket.rating)" style="margin-left: 1500px;  margin-top: 70px;  margin-bottom: 20px;"></div>
 												<!--<div  ng-model="ticket.rating" class="ui large star rating"></div>-->
     											 <span class="date">
-												 <span  class="pull-right date"><font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font></span>
+												 <span  class="pull-right date"  style=" margin-top: -90px;
+												 margin-bottom: 50px;"><font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font></span>
 												 </span>
 										
 

@@ -66,12 +66,12 @@
 													<tr>
 														<th>Nombre</th>
 														<th>Departamento</th>
-														<th>Date</th>
+														<th>Correo</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr ng-repeat="empleado in lis.empleados">
-														<td>{{empleado.nombre}}</td>
+														<td><a href="/perfil/{{empleado._id}}" > {{empleado.nombre}} {{empleado.apPaterno}} {{empleado.apMaterno}}</a></td>
 														<td>{{lis.getDepartamento(empleado.departamento_id)}}</td>
 														<td>{{empleado.correo}}</td>
 													</tr>

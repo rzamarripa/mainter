@@ -12,7 +12,7 @@
 										<a href="javascript:void(0);" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-envelope-o"></i> Enviar Mensaje</a>
 									</div>
 									<div class="air air-top-left padding-10">
-										<h4 class="txt-color-white font-md"><i class="fa fa-calendar"></i>&nbsp;&nbsp;Fecha actual<small> <a class="btn btn-primary" href="alumnos/{{al.alumno._id}}" ng-show="elMismo(alumno._id)">Modificar</a></small></h4>
+										<h4 class="txt-color-white font-md"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{perfil.empleado.fechaIn | date:"dd-MM-yyyy"}}<small> <a class="btn btn-primary" href="alumnos/{{al.alumno._id}}" ng-show="elMismo(alumno._id)">Modificar</a></small></h4>
 									</div>
 									<ol class="carousel-indicators">
 										<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -38,7 +38,7 @@
 							<div class="col-sm-12">
 								<div class="row">
 									<div class="col-sm-3 profile-pic">
-										<img src="" >
+										<img width="200px" src="{{perfil.empleado.imagen}}" >
 										<div class="padding-10">
 											<h4 class="font-md"><strong>1,543</strong>
 											<br>
@@ -50,27 +50,27 @@
 										</div>
 									</div>
 									<div class="col-sm-6">
-										<h1>nombbre <span class="semi-bold">appaterno apmaterno</span>
+										<h1>{{perfil.empleado.nombre}}<span class="semi-bold">{{perfil.empleado.apPaterno}} {{perfil.empleado.apMaterno}}</span>
 										<br>
 										<small> empleado</small></h1>
 										<ul class="list-unstyled">
 											<li>
 												<p class="text-muted">
-													<i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken">telefono</span>
+													<i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken">{{perfil.empleado.telefono}}</span>
 												</p>
 											</li>
 											<li>
 												<p class="text-muted">
-													<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:{{al.alumno.correo}}">correo</a>
+													<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:{{al.alumno.correo}}">{{perfil.empleado.correo}}</a>
 												</p>
 											</li>
 											<li>
 												<p class="text-muted">
-													<i class="fa fa-birthday-cake"></i>&nbsp;&nbsp;<span class="txt-color-darken">fecha de nacimiento</span>
+													<i class="fa fa-birthday-cake">{{perfil.empleado.fechaNac | date:"dd-MM-yyyy"}}</i>&nbsp;&nbsp;<span class="txt-color-darken"></span>
 												</p>
 											</li>
 										</ul>
-										<br>
+										<!--<br>
 										<p class="font-sm">
 											<i>Un poco acerca de mi...</i>
 										</p>
@@ -78,7 +78,7 @@
 											{{al.alumno.observacionesGenerales}}
 										</p>
 										<br>
-										<!--<ul class="nav nav-tabs ">
+										<ul class="nav nav-tabs ">
 											<li>
 												<a href="#masinfo" data-toggle="tab">Más Información</a>
 											</li>

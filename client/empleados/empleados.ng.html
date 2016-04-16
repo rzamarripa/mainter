@@ -78,10 +78,9 @@
 					</div>-->
 
 			    	  <div class="col-sm-4">
-						<label for="talla">Fotografía</label>
-						<button class="btn btn-primary" ng-click="emp.tomarFoto()"><i class="fa fa-camera"></i></button>
-						<img width="100px" ng-src="{{emp.empleado.fotografia}}" ng-class="{'img-thumbnail': !!empleado.fotografia}" />
-						</div>
+						    <label>Imagen</label>
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="emp.empleado.imagen" required>
+					    </div>
 
 					</div>				
 				</div>
@@ -125,9 +124,9 @@
 			</thead>
 			<tbody>
 		    <tr ng-repeat="empleado in emp.empleados">
-		    	<td><img width="100px" ng-src="{{empleado.fotografia}}" ng-class="{'img-thumbnail': !!empleado.fotografia}"/> </td>
+		    	<td><img width="200px" ng-src="{{empleado.imagen}} "></td>
 			    <td>{{empleado.nombre}} {{empleado.apPaterno}} {{empleado.apMaterno}}</td>
-			    <td> {{emp.getDepartamento(empleado.departamento_id)}}</td>
+			    <td>{{emp.getDepartamento(empleado.departamento_id)}}</td>
 			    <td>{{empleado.fechaNac | date:"dd-MM-yyyy"}} </td>
 			    <td>{{empleado.fechaIn | date:"dd-MM-yyyy"}} </td>
 			    <td>{{empleado.direccion }} </td>

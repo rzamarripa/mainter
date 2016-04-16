@@ -72,7 +72,7 @@
 		    <tr ng-repeat="noticia in not.noticias">
 		        <td>{{$index+1}}</td>
 			    <td>{{noticia.nombre}}</td>
-			    <td>{{noticia.nota}}</td>
+			    <td ng-bind-html="noticia.nota"></td>
 
 			    <td>
 				    <div class="text-center">

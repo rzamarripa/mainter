@@ -4,7 +4,9 @@ angular.module("interCeramic")
  	$reactive(this).attach($scope);
   this.action = true;
 	this.subscribe('listas');
-	this.subscribe('empleados');
+	this.subscribe('empleados',()=>{
+		return [{estatus:true}]
+	});
 	
 
 	this.helpers({
