@@ -3,6 +3,9 @@ Meteor.startup(function () {
     var usuario_id= Accounts.createUser({
       username: 'admin',
       password: 'inter123',
+      profile: {
+	      nombre: 'Administrador'
+      }
     });
 		Roles.addUsersToRoles(usuario_id, "admin");
   }
