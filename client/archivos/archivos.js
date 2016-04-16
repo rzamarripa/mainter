@@ -46,7 +46,7 @@ angular.module("interCeramic")
 	{
     this.archivo = Archivos.findOne({_id:id});
     this.action = false;
-    $('.collapse').coll
+    $('.collapse').collapse('show');
     this.nuevo = false;
 	};
 	

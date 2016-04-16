@@ -75,8 +75,8 @@ angular.module("interCeramic")
 
     this.getCategoria= function(id)
 	{
-		var categoriaLibrero = CategoriasLibreros.findOne(id);
-		return categoriaLibrero.nombre;
+		var categoriasResult = CategoriasResults.findOne(id);
+		return categoriasResult.nombre;
 	};	
 		
 };
