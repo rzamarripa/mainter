@@ -1,17 +1,17 @@
 angular.module("interCeramic")
-.controller("ArticulosCtrl", ArticulosCtrl);  
- function ArticulosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+.controller("ArticulosUserCtrl", ArticulosUserCtrl);  
+ function ArticulosUserCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
   this.action = true;
 	this.subscribe('articulos');
-	this.subscribe('categoriasArts');
+	this.subscribe('categorias');
 
 	this.helpers({
 	  articulos : () => {
 		  return Articulos.find();
 	  },
-	   categoriasArts : () => {
-		  return CategoriasArts.find();
+	   categorias : () => {
+		  return Categorias.find();
 	  }
   });
   	  
@@ -25,7 +25,6 @@ angular.module("interCeramic")
   
   this.guardar = function(articulo)
 	{
-		this.articulo.nota = $('#summernote').summernote('code');
 		this.articulo.nombre = Meteor.user().profile.nombre;
 		this.articulo.estatus = true;
 		console.log(this.articulo);
@@ -35,7 +34,7 @@ angular.module("interCeramic")
 		this.articulo = {}; 
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
-		$state.go('root.articulos')
+		$state.go('root.articulosUser')
 	};
 	
 	this.editar = function(id)
@@ -74,26 +73,4 @@ angular.module("interCeramic")
 	};	
 
 		
-	this.tienePermiso = function()
-	{
-		if(Meteor.user().roles[0] == "empleado" )
-		{
-			return false;
-		}
-		if(Meteor.user().roles[0] == "asesorVenta" )
-		{
-			return false;
-		}
-		if(Meteor.user().roles[0] == "gerente" )
-		{
-			return false;
-		}
-		else{
-			return true;
-		}
-		
-	}
-	    $(document).ready(function() {
-  $('#summernote').summernote();
-}); 
 };
