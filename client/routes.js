@@ -179,10 +179,10 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       templateUrl: 'client/resultados/resultados.ng.html',
       controller: 'ResultadosCtrl as resu',
     })
-    .state('root.calendario', {
-      url: '/calendario',
-      templateUrl: 'client/calendario/calendario.ng.html',
-      controller: 'CalendarioCtrl as calen',
+    .state('root.eventos', {
+      url: '/eventos',
+      templateUrl: 'client/eventos/eventos.ng.html',
+      controller: 'EventosCtrl as e',
     })
     .state('root.noticias', {
       url: '/noticias',

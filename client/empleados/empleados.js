@@ -36,7 +36,7 @@ angular.module("interCeramic")
 		rc.empleado.nombreCompleto = rc.empleado.nombre + " " + rc.empleado.apPaterno + " " + rc.empleado.apMaterno;
 		Empleados.insert(rc.empleado, function(err, doc){
 		    Meteor.call('createUsuario', rc.empleado, 'empleado');
-		    toastr.success('empleado guardado.');
+		    toastr.success('Empleado guardado.');
 		this.empleado = {};
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
