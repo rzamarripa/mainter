@@ -66,6 +66,7 @@
 					<th width="20%"><div class="text-center">Envía</div></th>
 					<th width="20%"><div class="text-center">Fecha </div></th>
 					<th width="20%"><div class="text-center">Recibe</div></th>
+					<!--<th width="15%"><div class="text-center">Usuario Receptor</div></th>-->
 					<th width="40%"><div class="text-center">Descripción</div></th>				
 					<th width="10%">
 						<div class="text-center">
@@ -85,6 +86,7 @@
 			    <td>{{tick.getDepartamento(ticket.departamentoEmisor_id)}}</td>
 			    <td>{{ticket.fecha | date:"dd-MM-yyyy"}}</td>
 			    <td>{{tick.getDepartamento(ticket.departamentoReceptor_id)}}</td> 
+
 			    <td ng-bind-html="ticket.nota"></td>
 
 			    

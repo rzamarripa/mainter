@@ -33,7 +33,7 @@ angular.module("interCeramic")
 	{
 		this.resultado.nombre = Meteor.user().profile.nombre;
 		this.resultado.estatus = true;
-		this.resultado.extension = resultado.select.split('.').pop();
+		//this.resultado.extension = resultado.select.split('.').pop();
 		console.log(this.resultado);
 		Resultados.insert(this.resultado);
 		toastr.success('resultado guardado.');
@@ -71,12 +71,12 @@ angular.module("interCeramic")
 		Resultados.update({_id: id},{$set :  {estatus : resultado.estatus}});
     };
 
-    
+
 
     this.getCategoria= function(id)
 	{
-		var categoriasResult = CategoriasResults.findOne(id);
-		return categoriasResult.nombre;
+		var categoriaResult = CategoriasResults.findOne(id);
+		return categoriaResult.nombre;
 	};	
 		
 };

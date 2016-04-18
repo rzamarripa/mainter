@@ -5,17 +5,31 @@ angular.module("interCeramic")
     this.action = true;
     this.users = [];
     this.departamento_id = Meteor.user().profile.departamento_id;
+
    // this.ticket = {};
+   /*this.subscribe('ticketsMios', () => {
+   	return [{
+   		emisor_id : Meteor.userId()
+   	}]
+   });*/
+
+   this.subscribe('ticketsRecibidos', () => {
+   	return [{
+   		departamentoReceptor_id : Meteor.user().profile.departamento_id
+   	}]
+   });
+
+    this.subscribe('departamentos');
 	this.subscribe('tickets', () => {
 		//select * from tickets where departamento_id = user.departamento_id and estatus = true
-		return [{departamento_id : this.departamento_id}]
+		return [{emisor_id : Meteor.userId()}]
 	});
 
 	this.subscribe('users', () => {
 		return [{_id : {$in:this.getCollectionReactively('users')}}]
 	});
 
-	this.subscribe('departamentos');
+	
 
 	this.helpers({
 	  tickets : () => {
@@ -65,6 +79,7 @@ angular.module("interCeramic")
             this.ticket.nota);
 	    //this.ticket.userId = Meteor.userId();
 		Tickets.insert(this.ticket);
+		this.nuevo = true;
 		toastr.success('ticket guardado.');
 		this.ticket = {}; 
 		$('.collapse').collapse('hide');
