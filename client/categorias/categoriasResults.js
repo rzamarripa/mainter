@@ -28,6 +28,7 @@ angular.module("interCeramic")
 		this.categoriasResult.estatus = true;
 		this.categoriasResult.fecha = new Date();
 		CategoriasResults.insert(this.categoriasResult);
+		console.log(categoriasResult);
 		toastr.success('Artículo guardado.');
 		this.categoriasResult = {}; 
 		$('.collapse').collapse('hide');
