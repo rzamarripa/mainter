@@ -91,13 +91,40 @@ angular.module("interCeramic")
 			lista.estatus = true;
 		
 		Listas.update({_id: id},{$set :  {estatus : lista.estatus}});
-    };
-
-    this.getDepartamento= function(departamento_id)
+  };
+    
+  this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
 		return departamento.nombre;
 	};
+	
+	this.esCumpleanero = function(fechaNac){
+		var fechaNacimiento = new Date(fechaNac);
+		var diaNac = fechaNacimiento.getDate();		
+		var mesNac = fechaNacimiento.getMonth() + 1;
+		
+		var fechaActual = new Date();
+		var diaActual = fechaActual.getDate();
+		var mesActual = fechaActual.getMonth() + 1;
+		
+		if(mesNac == mesActual){
+			if(diaNac == diaActual){
+				return true;				
+			}
+		}
+		
+		return false;
+		console.log("fecha", fechaNacimiento);
+		console.log("dia", diaNac);
+		console.log("mes", mesNac);
+		console.log("fechaA", fechaActual);
+		console.log("diaA", diaActual);
+		console.log("mesA", mesActual);
+		console.log("--------")
+		
+//		return days;
+	}
 
 	/*this.resizeheight= function() {
     var height = ((2*screen.height)/20);
