@@ -2,12 +2,14 @@ angular.module("interCeramic")
 .controller("ArchivosCtrl", ArchivosCtrl);  
  function ArchivosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
-  this.action = true;
-	this.subscribe('archivos');
+ 	this.nada = undefined;
+ 	this.categoriasLibrero_id = '';
+  	this.action = true;
+	this.subscribe('archivos',()=>{
+		return [{categoriasLibrero_id:this.getReactively('categoriasLibrero_id'), estatus:true}]
+	});
 
-  this.subscribe('categoriasLibreros');
-
-
+  	this.subscribe('categoriasLibreros');
 
 	this.helpers({
 	  archivos : () => {
@@ -33,6 +35,7 @@ angular.module("interCeramic")
 	{
 		this.archivo.nombre = Meteor.user().profile.nombre;
 		this.archivo.estatus = true;
+		this.archivo.categoriasLibrero_id = this.categoriasLibrero_id;
 		console.log(this.archivo);
 		Archivos.insert(this.archivo);
 		toastr.success('archivo guardado.');
@@ -70,10 +73,10 @@ angular.module("interCeramic")
 		Archivos.update({_id: id},{$set :  {estatus : archivo.estatus}});
     };
 
-    this.getCategoria= function(id)
+    this.mostrarArchivos= function(id,nombre)
 	{
-		var categoriaLibrero = CategoriasLibreros.findOne(id);
-		return categoriaLibrero.nombre;
+		this.nada = nombre;
+		this.categoriasLibrero_id = id;
 	};	
 		
 };

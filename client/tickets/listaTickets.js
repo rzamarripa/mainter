@@ -14,6 +14,7 @@ angular.module("interCeramic")
 		//select * from tickets where departamento_id = user.departamento_id and estatus = true
 		return [{departamento_id : Meteor.user().profile.departamento_id}]
 	});
+
 	this.subscribe('departamentos');
 	
 	this.ticket={};
@@ -64,25 +65,39 @@ angular.module("interCeramic")
 
 	
 	this.actualizar = function(_ticket)
-	{
+	{     
         	//this._ticket.emisor_id = Meteor.userId();
 		console.log(_ticket);
 		var idTemp = _ticket._id;
 		delete _ticket._id;	
 		delete _ticket.$$hashKey;	
-		_ticket.estatus = 2;	
+		_ticket.estatus = 2;
 		Tickets.update({_id:idTemp},{$set:_ticket});
 	
 	};
 
 	this.actualizarProceso = function(_ticket)
 	{
+	 
+		console.log(_ticket);
+		var idTemp = _ticket._id;
+		delete _ticket._id;	
+		delete _ticket.$$hashKey;
+		_ticket.estatus = 3;	       
+		Tickets.update({_id:idTemp},{$set:_ticket});
 	
+	};
+
+	this.actualizarOtra = function(_ticket)
+	{     
+        	//this._ticket.emisor_id = Meteor.userId();
 		console.log(_ticket);
 		var idTemp = _ticket._id;
 		delete _ticket._id;	
 		delete _ticket.$$hashKey;	
-		_ticket.estatus = 3;	
+		_ticket.estatus = 2;
+		document.getElementById("input").style.visibility = "hidden";
+        document.getElementById("boton").style.visibility = "hidden";
 		Tickets.update({_id:idTemp},{$set:_ticket});
 	
 	};
@@ -121,6 +136,7 @@ angular.module("interCeramic")
 	{		
 		this.ticket = Tickets.findOne({_id: id});
 		this.ponerFechaCompromiso = true;
+		 
 	}
 
 
@@ -134,14 +150,22 @@ this.dada = function(_id, rating){
 	Tickets.update({_id:_id},{$set:{rating:rating}});
 }
 
+this.mostrarBoton= function()
+{
+	document.getElementById("edit").style.visibility = "hidden";
+    document.getElementById("input").style.visibility = "visible";
+    document.getElementById("boton").style.visibility = "visible";	
+}
 
 
 
-this.agregar= function(_ticket) {
-
+this.agregar= function(_ticket) 
+{
+   
     document.getElementById("input").style.visibility = "visible";
     document.getElementById("boton").style.visibility = "visible";
     this.ticket = _ticket;
+   
 }
 
 		

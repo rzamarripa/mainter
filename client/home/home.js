@@ -2,9 +2,22 @@ angular.module("interCeramic")
 .controller("HomeCtrl", HomeCtrl);  
  function HomeCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
-  this.action = true;
+  	this.action = true;
 	this.subscribe('home');
 	this.subscribe('noticias');
+
+	this.subscribe('empleados');
+	
+	this.subscribe('asesorVentas',()=>{
+		return [{estatus:true}]
+	});
+	this.subscribe('gerentes',()=>{
+		return [{estatus:true}]
+	});
+	
+	this.subscribe('jefeAreas',()=>{
+		return [{estatus:true}]
+	});
 	
 
 	this.helpers({
@@ -13,8 +26,41 @@ angular.module("interCeramic")
 	  },
 	   noticias : () => {
 		  return Noticias.find();
+	  },
+	   empleados: ()=>{
+	   	return Empleados.find();
+	   },
+	  cumpleaneros : () => {
+	  	var cumpleaneros = [];
+	  		var empleados = this.getReactively('empleados');
+	  		if(empleados){
+			  	_.each(empleados, function(empleado){
+			  		console.log(empleado);
+			  		var fechaNacimiento = new Date(empleado.fechaNac);
+					var diaNac = fechaNacimiento.getDate();		
+					var mesNac = fechaNacimiento.getMonth() + 1;
+					console.log(empleado.fechaNac);
+					var fechaActual = new Date();
+					var diaActual = fechaActual.getDate();
+					var mesActual = fechaActual.getMonth() + 1;
+					
+					if(mesNac == mesActual){
+						if(diaNac == diaActual){
+							cumpleaneros.push(empleado);				
+						}
+
+					}
+
+					if(cumpleaneros.length > 0){
+						 $('#myModal').modal('show');
+					}
+
+					
+			  	})
+			 }
+		 return cumpleaneros;
 	  }
-  });
+  	});
   	  
   this.nuevo = true;	  
   this.nuevoHome = function()
@@ -24,16 +70,21 @@ angular.module("interCeramic")
     this.home = {};		
   };
   
-  this.guardar = function(home)
+  this.enviar = function(cumpleanero)
 	{
-		this.home.estatus = true;
-		console.log(this.home);
-		Home.insert(this.home);
-		toastr.success('home guardado.');
-		this.home = {}; 
-		$('.collapse').collapse('hide');
-		this.nuevo = true;
-		$state.go('root.home')
+		 
+		console.log(cumpleanero.correo);
+		Meteor.call('sendEmail',
+            cumpleanero.correo,
+            'interceramic123@gmail.com',
+            'Sistemas de recursos humanos interceramic',
+            'Felicitaciones hoy en tu dia que la pases muy bien');
+		toastr.success('Felicitacion enviada.');
+			cumpleanero.estatus= false;
+
+
+	    //this.ticket.userId = Meteor.userId();
+
 	};
 	
 	this.editar = function(id)
@@ -65,6 +116,48 @@ angular.module("interCeramic")
 		
 		Home.update({_id: id},{$set :  {estatus : home.estatus}});
     };
-  
+
+
+   this.getDepartamento= function(departamento_id)
+	{
+		var departamento = Departamentos.findOne(departamento_id);
+		return departamento.nombre;
+	};
+
+
+
+  this.modal= function()
+  {
+  	
+
+  }
+	
+	this.esCumpleanero = function(fechaNac){
+		var fechaNacimiento = new Date(fechaNac);
+		var diaNac = fechaNacimiento.getDate();		
+		var mesNac = fechaNacimiento.getMonth() + 1;
+		
+		var fechaActual = new Date();
+		var diaActual = fechaActual.getDate();
+		var mesActual = fechaActual.getMonth() + 1;
+		
+		if(mesNac == mesActual){
+			if(diaNac == diaActual){
+				return true;				
+			}
+		}
+		
+		return false;
+		console.log("fecha", fechaNacimiento);
+		console.log("dia", diaNac);
+		console.log("mes", mesNac);
+		console.log("fechaA", fechaActual);
+		console.log("diaA", diaActual);
+		console.log("mesA", mesActual);
+		console.log("--------")
+		
+//		return days;
+	}
+
 		
 };

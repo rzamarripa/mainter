@@ -3,6 +3,7 @@ angular.module("interCeramic")
  function TicketsCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
     this.action = true;
+    this.nada = undefined;
     this.users = [];
     this.departamento_id = Meteor.user().profile.departamento_id;
 
@@ -20,6 +21,8 @@ angular.module("interCeramic")
    });
 
     this.subscribe('departamentos');
+
+    
 	this.subscribe('tickets', () => {
 		//select * from tickets where departamento_id = user.departamento_id and estatus = true
 		return [{emisor_id : Meteor.userId()}]
@@ -47,7 +50,20 @@ angular.module("interCeramic")
 	  },
 	   departamentos : () => {
 		  return Departamentos.find();
-	  }
+	  },
+	    empleados : () => {
+		  return Empleados.find();
+	  },
+	  asesorVentas : () => {
+		  return AsesorVentas.find();
+	  },
+	  gerentes : () => {
+		  return Gerentes.find();
+	  },
+	  jefeAreas : () => {
+		  return JefeAreas.find();
+	  },
+
 	 
   });
 
@@ -79,6 +95,7 @@ angular.module("interCeramic")
             this.ticket.nota);
 	    //this.ticket.userId = Meteor.userId();
 		Tickets.insert(this.ticket);
+		console.log(this.ticket);
 		this.nuevo = true;
 		toastr.success('ticket guardado.');
 		this.ticket = {}; 
@@ -116,6 +133,14 @@ angular.module("interCeramic")
 		Tickets.update({_id: id},{$set :  {estatus : ticket.estatus}});
     };
 
+     this.mostrarArchivos= function(id,rating)
+	{   
+		if(ticket.estatus == 3)
+			this.nada = rating;
+		else
+			ticket.nada = undefined;
+	};	
+
     
     this.getDepartamento= function(departamento_id)
 	{
@@ -132,8 +157,17 @@ angular.module("interCeramic")
 	};
 
 
-	    $(document).ready(function() {
-  $('#summernote').summernote();
-});  
+		$('.ui.rating')
+		  .rating()
+		;
+
+	    $(document).ready(function()
+    {
+        $('#summernote').summernote();
+    });  
+
+	    this.dada = function(_id, rating){
+	Tickets.update({_id:_id},{$set:{rating:rating}});
+}
 		
 };

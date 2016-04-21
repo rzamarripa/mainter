@@ -220,7 +220,15 @@
 												 <span  class="pull-right">
 												 	<form class="form-inline">
 												 		<font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font> <br/><br/>
-												 		<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary pull right" style="font-size:120%;  width: 80px; height: 30px; margin-bottom: 10px; ">Realizado</a>
+												 		<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary pull right" style="font-size:120%;  width: 80px; height: 30px; margin-bottom: 10px;  ">Realizado</a>
+												 		<a href="#" ng-click="list.mostrarBoton(ticket)" id="edit" class="btn btn-primary pull right" style="font-size:120%;  width: 100px; height: 30px; margin-bottom: 10px; visibility: visible; ">Editar fecha</a>
+												 		<br/><br/>
+														
+														<a href="#" ng-click="list.actualizarOtra(ticket)" id="boton" style="font-size:120%;  width: 80px; height: 30px; visibility: hidden;" class="btn btn-info ">Guardar</a>
+														<input type="date" class="form-control input-sm" id="input" ng-model="ticket.fechaCompromiso" style="visibility: hidden;">
+													
+						
+												
 												 	</form>
 												 </span>
 												</span>
@@ -244,7 +252,7 @@
 											    <span style="font-size: 100%;" ng-bind-html="ticket.nota"></span>
 											    <br/>
 											    <br/>
-											    <div  ng-model="ticket.rating" class="ui huge star rating" data-rating="3" data-max-rating="5" ng-click="list.dada(ticket._id, ticket.rating)"></div>
+											    <div  ng-if="ticket.rating != undefined" ng-model="ticket.rating" class="ui huge star rating" data-rating="3" data-max-rating="5"></div>
 
 												</p>
 
@@ -252,7 +260,10 @@
 												
     										<span class="date">
 												 <span  class="pull-right "><font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font></span>
+                                                  <br/>  <br/>
+												 <span  class="pull-right "><font size="2">Fecha de Realización: {{ticket.fecha | date:"dd-MM-yyyy"}}</font></span>
 												</span>
+												
 										
 
 											</li>

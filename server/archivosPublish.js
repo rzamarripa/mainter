@@ -1,3 +1,3 @@
-Meteor.publish("archivos", function(){
-	return Archivos.find({estatus:true});
+Meteor.publish("archivos", function(params){
+	return Archivos.find(params);
 });
