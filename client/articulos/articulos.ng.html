@@ -73,10 +73,14 @@
 
 
 		<div class="col-md-8 padding-left-0">
-			<h3 class="margin-top-0"><p>{{articulo.titulo}}</p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">{{articulo.nombre}}</a></i></small></h3>
+	
+			<h3 class="margin-top-0"><p>{{articulo.titulo}} <span class="pull-right">{{articulo.fecha | date:"dd-MM-yyyy"}}</span> <br/> </p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">{{articulo.nombre}}</a></i></small></h3>
+
+			<h4 class=" margin-top-0 pull-right"></h4>
+			
 		
 			<span ng-bind-html="articulo.nota"></span>
-			
+			<br/>
 			<a class="btn btn-primary" ng-click="art.editar(articulo._id)" ng-show="art.tienePermiso()">Editar</a>
 			<a class="btn btn-danger" ng-click="art.cambiarEstatus(articulo._id)" ng-show="art.tienePermiso()">Desactivar</a>
 		</div>

@@ -1,0 +1,25 @@
+<div class="col-sm-12">
+		<div class="panel panel-default">
+
+			<div class="panel-body status">
+
+				<div class="who clearfix" >
+					<h4>Mensajes de Felicitación</h4>
+				</div>
+
+				<br/>
+
+				<div class="who clearfix" ng-repeat="felicitacion in cumple.felicitaciones" >
+					<span class="name font-sm">  <b> {{cumple.getEmisor(felicitacion.emisor_id)}}  <span class="pull-right font-xs text-muted"><i>{{cumple.getDepartamento(felicitacion.departamentoReceptor_id)}}</i></span> </b>
+					</span>
+					<br>
+					<span class="name font-sm">  <b> {{felicitacion.felicitacion}} </b>
+					</span>
+					<br/>
+				</div>
+
+			
+
+			</div>
+		</div>
+	</div>

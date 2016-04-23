@@ -115,6 +115,7 @@ angular.module("interCeramic")
 
 	this.actualizar = function(ticket)
 	{
+	    this.ticket.nota = $('#summernote').summernote('code');
 		var idTemp = ticket._id;
 		delete ticket._id;		
 		Tickets.update({_id:idTemp},{$set:ticket});
@@ -155,6 +156,7 @@ angular.module("interCeramic")
 		if(emisor)
 		return emisor.profile.nombre;
 	};
+
 
 
 		$('.ui.rating')

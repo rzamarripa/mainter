@@ -51,6 +51,7 @@ angular.module("interCeramic")
 	
 	this.actualizar = function(merca)
 	{
+		this.merca.nota = $('#summernote').summernote('code');
 		var idTemp = merca._id;
 		delete merca._id;		
 		Mercas.update({_id:idTemp},{$set:merca});

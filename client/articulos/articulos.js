@@ -45,9 +45,15 @@ angular.module("interCeramic")
     $('.collapse').collapse('show');
     this.nuevo = false;
 	};
+
+
+
+
+
 	
 	this.actualizar = function(articulo)
 	{
+		this.articulo.nota = $('#summernote').summernote('code');
 		var idTemp = articulo._id;
 		delete articulo._id;		
 		Articulos.update({_id:idTemp},{$set:articulo});
@@ -69,8 +75,8 @@ angular.module("interCeramic")
 
     this.getCategoria= function(id)
 	{
-		var categoria = Categorias.findOne(id);
-		return categoria.nombre;
+		var categorias = CategoriasArts.findOne(id);
+		return categorias.nombre;
 	};	
 
 		

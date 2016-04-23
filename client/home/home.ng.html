@@ -1,10 +1,14 @@
 
-<h1></h1>
+
+<h3>Culiacan Sinaloa México</h3>
+<h3><span id="demo"></span>&nbsp;<span>{{hom.clock()}}</span><span id="dia">{{hom.dia()}}</span>&nbsp; de <span id="mes">{{hom.mes()}}</span>&nbsp; de <span id="year">{{hom.year()}}</span>&nbsp;&nbsp; <br/><span id="txt">{{hom.startTime()}}</span><span class="pull-right">Muro Web interceramic de Grupo Kuroda</span></h3>
+
+
 
 <section id="widget-grid" data-widget-grid="data-widget-grid" style="margin-top: 80px;">
  <div class="row">
     <div class="col-sm-12">
-      <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" ng-repeat="noticia in hom.noticias">
+      <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
         <header>
           <h2>Bienvenido</h2>
         </header>
@@ -24,7 +28,7 @@
   </div>
 <div class="row">
   <div class="col-sm-12">
-    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" ng-repeat="noticia in hom.noticias">
+    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
       <header>
         <h2>Explora</h2>
       </header>
@@ -44,7 +48,7 @@
     </div>
   </div>
   <div class="col-sm-6">
-    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" ng-repeat="noticia in hom.noticias">
+    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
       <header>
         <h2>Eventos</h2>
       </header>
@@ -63,7 +67,7 @@
     </div>
   </div>
    <div class="col-sm-6">
-    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" ng-repeat="noticia in hom.noticias">
+    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
       <header>
         <h2>Librero</h2>
       </header>
@@ -82,7 +86,7 @@
     </div>
   </div>
    <div class="col-sm-6">
-    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" ng-repeat="noticia in hom.noticias">
+    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget">
       <header>
         <h2>Resultados</h2>
       </header>
@@ -127,6 +131,7 @@
   </div>
 </section>
 
+<h3>Noticias</h3>
 
 <div class="container">
   
@@ -140,12 +145,22 @@
         <div class="modal-header">
           <h4 class="modal-title">Felicita a tu compañero en su dia</h4>
         </div>
-        <div class="modal-body" ng-repeat=" cumpleanero in hom.cumpleaneros">
+      
+        <div class="modal-body" ng-repeat="(key,cumpleanero) in hom.cumpleaneros">
       
           <img src="{{cumpleanero.imagen}}" alt="img" width="60px" height="70px" class="online">
           <span class="name font-sm">  <b>  {{cumpleanero.nombre}} {{cumpleanero.apPaterno}} {{cumpleanero.apMaterno}} <span class="pull-right font-xs text-muted"><i></i></span> </b>
           <span class="name font-sm">{{cumpleanero.departamento}}</span>
-          <button  type="button" class=" pull-right btn btn-primary" ng-click="hom.enviar(cumpleanero)">Felicitar</button>
+            <div class="pull-right col-sm-6">
+            <div class="row" >
+
+              <input type="text" class="form-control" placeholder="Escribe tu comentario aqui" ng-model="feli.key">
+              <button  type="button" class="btn btn-primary" ng-click="hom.guardarFeli(feli.key, cumpleanero._id)">Felicitar</button>
+              <br/>
+             
+            </div>
+            </div>
+          
       
           </span>
           <br>

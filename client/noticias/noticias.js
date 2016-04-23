@@ -45,6 +45,7 @@ angular.module("interCeramic")
 	
 	this.actualizar = function(noticia)
 	{
+		this.noticia.nota = $('#summernote').summernote('code');
 		var idTemp = noticia._id;
 		delete noticia._id;		
 		Noticias.update({_id:idTemp},{$set:noticia});

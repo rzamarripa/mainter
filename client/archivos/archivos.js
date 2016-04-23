@@ -69,7 +69,6 @@ angular.module("interCeramic")
 			archivo.estatus = false;
 		else
 			archivo.estatus = true;
-		
 		Archivos.update({_id: id},{$set :  {estatus : archivo.estatus}});
     };
 

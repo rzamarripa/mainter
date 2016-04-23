@@ -90,6 +90,12 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
        controller: 'PerfilCtrl as perfil', 
       
     })
+    .state('root.miCumple', {
+      url: '/miCumple/:id',
+      templateUrl: 'client/miCumple/miCumple.ng.html',  
+       controller: 'MiCumpleCtrl as cumple', 
+      
+    })
 
     ///////////////////////ARTICULOS///////////////////////////////////////////////
     .state('root.articulos', {

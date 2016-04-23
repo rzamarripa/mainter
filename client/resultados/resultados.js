@@ -73,10 +73,10 @@ angular.module("interCeramic")
 
 
 
-    this.getCategoria= function(id)
+    this.getCategoria= function(categoria_id)
 	{
-		var categoriaResult = CategoriasResults.findOne(id);
-		return categoriaResult.nombre;
+		var categoriasResult = CategoriasResults.findOne(id);
+		return categoriasResult.nombre;
 	};	
 		
 };

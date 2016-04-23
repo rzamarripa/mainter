@@ -45,6 +45,7 @@ angular.module("interCeramic")
 	
 	this.actualizar = function(sucursal)
 	{
+		this.sucursal.nota = $('#summernote').summernote('code');
 		var idTemp = sucursal._id;
 		delete sucursal._id;		
 		Sucursales.update({_id:idTemp},{$set:sucursal});

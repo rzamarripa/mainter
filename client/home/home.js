@@ -3,10 +3,13 @@ angular.module("interCeramic")
  function HomeCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
   	this.action = true;
+  	this.felicitacion = {};
+  	this.departamento_id = Meteor.user().profile.departamento_id;
 	this.subscribe('home');
 	this.subscribe('noticias');
 
 	this.subscribe('empleados');
+	this.subscribe('felicitaciones');
 	
 	this.subscribe('asesorVentas',()=>{
 		return [{estatus:true}]
@@ -29,36 +32,41 @@ angular.module("interCeramic")
 	  },
 	   empleados: ()=>{
 	   	return Empleados.find();
-	   },
+	  },
+	   felicitaciones : () => {
+	  	return Felicitaciones.find();
+	  },
 	  cumpleaneros : () => {
-	  	var cumpleaneros = [];
+	  	var _cumpleaneros = [];
 	  		var empleados = this.getReactively('empleados');
-	  		if(empleados){
+	  		var felicitaciones = this.getReactively('felicitaciones');
+	  		if(empleados != undefined && felicitaciones != undefined){
 			  	_.each(empleados, function(empleado){
-			  		console.log(empleado);
+			  		console.log('1',empleado);
 			  		var fechaNacimiento = new Date(empleado.fechaNac);
 					var diaNac = fechaNacimiento.getDate();		
 					var mesNac = fechaNacimiento.getMonth() + 1;
-					console.log(empleado.fechaNac);
 					var fechaActual = new Date();
 					var diaActual = fechaActual.getDate();
 					var mesActual = fechaActual.getMonth() + 1;
-					
-					if(mesNac == mesActual){
-						if(diaNac == diaActual){
-							cumpleaneros.push(empleado);				
+					if(mesNac === mesActual){
+						if(diaNac === diaActual){
+							console.log('2',empleado);
+							var felicitado = _.contains(felicitaciones,{receptor_id:empleado._id,emisor_id:Meteor.userId()});
+							console.log('2.5',felicitado);
+							if(!felicitado){
+								console.log('3',felicitado)
+								_cumpleaneros.push(empleado);
+								console.log('4',_cumpleaneros);
+							}				
 						}
-
 					}
-
-					if(cumpleaneros.length > 0){
-						 $('#myModal').modal('show');
-					}
-
-					
 			  	})
 			 }
-		 return cumpleaneros;
+			 if(_cumpleaneros.length > 0){
+				 $('#myModal').modal('show');
+			}
+		 return _cumpleaneros;
 	  }
   	});
   	  
@@ -72,18 +80,35 @@ angular.module("interCeramic")
   
   this.enviar = function(cumpleanero)
 	{
-		 
+		 this.emisor_id = Meteor.userId();
 		console.log(cumpleanero.correo);
 		Meteor.call('sendEmail',
             cumpleanero.correo,
             'interceramic123@gmail.com',
             'Sistemas de recursos humanos interceramic',
             'Felicitaciones hoy en tu dia que la pases muy bien');
-		toastr.success('Felicitacion enviada.');
-			cumpleanero.estatus= false;
+		     toastr.success('Felicitacion enviada.');
+
+			 cumpleanero.estatus= false;
 
 
 	    //this.ticket.userId = Meteor.userId();
+
+	};
+
+	 this.guardarFeli = function(feli,receptor_id)
+	{
+		this.felicitacion.receptor_id = receptor_id;
+		this.felicitacion.felicitacion = feli;
+         this.felicitacion.emisor_id = Meteor.userId();
+         this.felicitacion.departamentoReceptor_id = Meteor.user().profile.departamento_id;
+       // this.feli = true;
+		this.felicitacion.fecha = new Date();
+		Felicitaciones.insert(this.felicitacion);
+		toastr.success('Felicitacion guardada.');
+		console.log(this.felicitacion);
+		//this.feli = false;
+		
 
 	};
 	
@@ -125,12 +150,6 @@ angular.module("interCeramic")
 	};
 
 
-
-  this.modal= function()
-  {
-  	
-
-  }
 	
 	this.esCumpleanero = function(fechaNac){
 		var fechaNacimiento = new Date(fechaNac);
@@ -159,5 +178,76 @@ angular.module("interCeramic")
 //		return days;
 	}
 
+this.clock = function()
+{   
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Domingo";
+    weekday[1] = "Lunes";
+    weekday[2] = "Martes";
+    weekday[3] = "Miercoles";
+    weekday[4] = "Jueves";
+    weekday[5] = "Viernes";
+    weekday[6] = "Sabado";
+
+
+
+
+    var n = weekday[d.getDay()];
+    document.getElementById("demo").innerHTML = n;
+}
+this.mes = function()
+{   
+    var d = new Date();
+    var weekday = new Array(12);
+    weekday[0] = "Enero";
+    weekday[1] = "Febrero";
+    weekday[2] = "Marzo";
+    weekday[3] = "Abril";
+    weekday[4] = "Mayo";
+    weekday[5] = "Junio";
+    weekday[6] = "Julio";
+    weekday[7] = "Agosto";
+    weekday[8] = "Septiembre";
+    weekday[9] = "Octubre";
+    weekday[10] = "Noviembre";
+    weekday[11] = "Diciembre";
+
+ 
+
+
+    var n = weekday[d.getMonth()];
+    document.getElementById("mes").innerHTML = n;
+}
+ 
+ this.dia = function() {
+    var d = new Date();
+    var n = d.getDate();
+    document.getElementById("dia").innerHTML = n;
+}
+   this.year = function()
+  {
+
+   var d = new Date();
+    var n = d.getFullYear();
+    document.getElementById("year").innerHTML = n;
+}
+
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
 		
-};
+ };
