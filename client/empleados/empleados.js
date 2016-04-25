@@ -32,9 +32,10 @@ angular.module("interCeramic")
 		
 		rc.empleado.estatus = true;
 		console.log(rc.empleado);
-		
+		this.empleado.fecha = new Date();
 		rc.empleado.nombreCompleto = rc.empleado.nombre + " " + rc.empleado.apPaterno + " " + rc.empleado.apMaterno;
 		Empleados.insert(rc.empleado, function(err, doc){
+			rc.empleado.empleado_id = doc;
 		    Meteor.call('createUsuario', rc.empleado, 'empleado');
 		    toastr.success('Empleado guardado.');
 		this.empleado = {};

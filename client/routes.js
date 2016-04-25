@@ -90,12 +90,21 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
        controller: 'PerfilCtrl as perfil', 
       
     })
+
+      .state('root.panel', {
+      url: '/panel/:id',
+      templateUrl: 'client/layouts/left-nav.ng.html',  
+       controller: 'RootCtrl as root', 
+      
+    })
     .state('root.miCumple', {
       url: '/miCumple/:id',
       templateUrl: 'client/miCumple/miCumple.ng.html',  
        controller: 'MiCumpleCtrl as cumple', 
-      
+        
     })
+      
+    
 
     ///////////////////////ARTICULOS///////////////////////////////////////////////
     .state('root.articulos', {

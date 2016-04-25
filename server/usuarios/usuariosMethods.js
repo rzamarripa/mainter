@@ -1,5 +1,5 @@
 Meteor.methods({
-  createUsuario: function (usuario, rol, grupo) {
+  createUsuario: function (usuario, rol, rolExtra) {
   	console.log(usuario);
 		var usuario_id = Accounts.createUser({
 			username: usuario.usuario,
@@ -10,16 +10,17 @@ Meteor.methods({
 				apellidos: usuario.apPaterno + " " + usuario.apMaterno,
 				nombreCompleto : usuario.nombre  + " " + usuario.apPaterno + " " + usuario.apMaterno,
 				fotografia : usuario.fotografia,
-				departamento_id : usuario.departamento_id
+				departamento_id : usuario.departamento_id,
+				empleado_id : usuario.empleado_id
 			}
 		});
 
 
-		Roles.addUsersToRoles(usuario_id, rol, grupo);
+		Roles.addUsersToRoles(usuario_id, rol, rolExtra);
 		
 	},
-	userIsInRole: function(usuario, rol, grupo, vista){
-		if (!Roles.userIsInRole(usuario, rol, grupo)) {
+	userIsInRole: function(usuario, rol, rolExtra, vista){
+		if (!Roles.userIsInRole(usuario, rol, rolExtra)) {
 	    throw new Meteor.Error(403, "Usted no tiene permiso para entrar a " + vista);
 	  }
 	}

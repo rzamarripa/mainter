@@ -42,7 +42,6 @@ angular.module("interCeramic")
 	  		var felicitaciones = this.getReactively('felicitaciones');
 	  		if(empleados != undefined && felicitaciones != undefined){
 			  	_.each(empleados, function(empleado){
-			  		console.log('1',empleado);
 			  		var fechaNacimiento = new Date(empleado.fechaNac);
 					var diaNac = fechaNacimiento.getDate();		
 					var mesNac = fechaNacimiento.getMonth() + 1;
@@ -51,13 +50,11 @@ angular.module("interCeramic")
 					var mesActual = fechaActual.getMonth() + 1;
 					if(mesNac === mesActual){
 						if(diaNac === diaActual){
-							console.log('2',empleado);
-							var felicitado = _.contains(felicitaciones,{receptor_id:empleado._id,emisor_id:Meteor.userId()});
-							console.log('2.5',felicitado);
-							if(!felicitado){
-								console.log('3',felicitado)
+							console.log(felicitaciones);
+							var felicitado = _.where(felicitaciones,{receptor_id:empleado._id,emisor_id:Meteor.userId()});
+							console.log(felicitado);
+							if(felicitado.length == 0){
 								_cumpleaneros.push(empleado);
-								console.log('4',_cumpleaneros);
 							}				
 						}
 					}
@@ -167,13 +164,13 @@ angular.module("interCeramic")
 		}
 		
 		return false;
-		console.log("fecha", fechaNacimiento);
+		/*console.log("fecha", fechaNacimiento);
 		console.log("dia", diaNac);
 		console.log("mes", mesNac);
 		console.log("fechaA", fechaActual);
 		console.log("diaA", diaActual);
 		console.log("mesA", mesActual);
-		console.log("--------")
+		console.log("--------")*/
 		
 //		return days;
 	}
@@ -233,21 +230,6 @@ this.mes = function()
     document.getElementById("year").innerHTML = n;
 }
 
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML =
-    h + ":" + m + ":" + s;
-    var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
-
+ 
 		
  };
