@@ -21,19 +21,48 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 		  estatus : true
 	  }]
   });
+
+
+  this.subscribe('departamentos',()=>{
+    return [{_id: Meteor.user().profile.departamento_id}]
+  });
   	
 	this.helpers({
 		eventos : () => {
 			this.eventosTotales = Eventos.find().count();
 			return Eventos.find();
 		},
+    departamento : ()  =>  {
+    return Departamentos.findOne();
+    }
 	});
+  
+
+ $(function() {
+        $('#cp7').colorpicker({
+            color: '#ffaa00',
+            container: true,
+            inline: true
+        });
+    });
+
+  this.fecha = function(fechaNac)
+{
+  if(new Date(fechaNac).getDate() == new Date().getDate() && new Date(fechaNac).getMonth() == new Date().getMonth()){
+    return true; 
+  }else{
+    return false;
+    }     
+}
 	
 
   this.agregarEvento = function(evento){
+ //   $('.sample-selector').colorpicker({ /*options...*/ });
+    console.log(rc.departamento);
 	  evento.estatus = true;
 	  evento.start 	= moment(evento.start).format("YYYY-MM-DD HH:mm");
 		evento.end 		= moment(evento.end).format("YYYY-MM-DD HH:mm");
+    evento.className = rc.departamento.className;
 	  Eventos.insert(evento);
 	  this.evento 	= {};
   }
@@ -55,6 +84,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 		Eventos.update({_id:idTemp},{$set:evento}, function(err){
 			console.log(err);
 		});
+   // document.getElementById("colores").style.visibility = "hidden";
 		this.actionAgregar = true;
 		this.evento = {};
   }
@@ -84,6 +114,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 	/* alert on eventClick */
   this.alertOnEventClick = function(date, jsEvent, view){
     rc.evento = angular.copy(date);
+    //document.getElementById("colores").style.visibility = "visible";
 		
     rc.colorSeleccionado = date.className;
     rc.evento.start 	= moment(date.start).format("YYYY-MM-DD HH:mm");

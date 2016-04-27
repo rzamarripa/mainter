@@ -3,6 +3,7 @@ angular.module("interCeramic")
  function EmpleadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	let rc =$reactive(this).attach($scope);
     this.action = true;
+    this.departamento_id = Meteor.user().profile.departamento_id;
     this.subscribe('empleados',()=>{
 		return [{estatus:true}]
 	});
@@ -16,6 +17,9 @@ angular.module("interCeramic")
 	  departamentos : () => {
 		  return Departamentos.find();
 	  },
+	  empleado : () => {
+	  	return Empleados.findOne();
+	  }
   });
   	  
   this.nuevo = true;	  
@@ -36,6 +40,7 @@ angular.module("interCeramic")
 		rc.empleado.nombreCompleto = rc.empleado.nombre + " " + rc.empleado.apPaterno + " " + rc.empleado.apMaterno;
 		Empleados.insert(rc.empleado, function(err, doc){
 			rc.empleado.empleado_id = doc;
+			rc.empleado.departamento_id = doc;
 		    Meteor.call('createUsuario', rc.empleado, 'empleado');
 		    toastr.success('Empleado guardado.');
 		this.empleado = {};

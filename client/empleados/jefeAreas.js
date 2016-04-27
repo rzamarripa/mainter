@@ -5,7 +5,9 @@ angular.module("interCeramic")
     this.action = true;
     this.subscribe('jefeAreas');
 
-	this.subscribe('departamentos');
+    this.subscribe('departamentos',()=>{
+		return [{estatus:true}]
+	});
 
 	this.helpers({
 	  jefeAreas : () => {
@@ -32,6 +34,7 @@ angular.module("interCeramic")
 		rc.jefeArea.estatus = true;
 		rc.jefeArea.nombreCompleto = rc.jefeArea.nombre + " " + rc.jefeArea.apPaterno + " " + rc.jefeArea.apMaterno;
 		JefeAreas.insert(rc.jefeArea, function(err, doc){
+			rc.jefeArea.empleado_id = doc;
 		    Meteor.call('createUsuario', rc.jefeArea, 'jefeArea');
 		    toastr.success('Usuario guardado.');
 	//	this.jefeArea = {};

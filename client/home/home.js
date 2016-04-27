@@ -9,6 +9,7 @@ angular.module("interCeramic")
 	this.subscribe('noticias');
 
 	this.subscribe('empleados');
+	
 	this.subscribe('felicitaciones');
 	
 	this.subscribe('asesorVentas',()=>{

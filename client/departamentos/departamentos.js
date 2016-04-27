@@ -4,14 +4,28 @@ angular.module("interCeramic")
  	$reactive(this).attach($scope);
     this.action = true;
     this.departamento = {};
-	this.subscribe('departamentos');
+	this.subscribe('departamentos',()=>{
+		return [{estatus:true}]
+	});
 
 	this.helpers({
 	  departamentos : () => {
 		  return Departamentos.find();
+	  },
+
+	  empleado : () => {
+	  	return Empleados.findOne();
 	  }
-	 
   });
+
+
+	$(function() {
+        $('#cp7').colorpicker({
+            color: '#ffaa00',
+            container: true,
+            inline: true
+        });
+    });
 
 	this.nuevo = true;	  
   this.nuevoDepartamento = function()
@@ -23,6 +37,7 @@ angular.module("interCeramic")
 
   this.guardar = function(departamento)
 	{
+		$('.sample-selector').colorpicker({ /*options...*/ });
 		this.departamento.estatus = true;
 		console.log(this.departamento);
 		Departamentos.insert(this.departamento);

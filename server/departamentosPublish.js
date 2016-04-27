@@ -1,3 +1,3 @@
-Meteor.publish("departamentos", function(){
-	return Departamentos.find({estatus:true});
+Meteor.publish("departamentos", function(params){
+	return Departamentos.find(params);
 });
