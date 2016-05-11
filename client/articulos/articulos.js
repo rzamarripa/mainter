@@ -21,6 +21,7 @@ angular.module("interCeramic")
     this.action = true;
     this.nuevo = !this.nuevo;
     this.articulo = {};		
+    $('#summernote').summernote('reset');
   };
   
   this.guardar = function(articulo)
@@ -76,6 +77,7 @@ angular.module("interCeramic")
     this.getCategoria= function(id)
 	{
 		var categorias = CategoriasArts.findOne(id);
+		if(categorias)
 		return categorias.nombre;
 	};	
 

@@ -23,6 +23,7 @@ angular.module("interCeramic")
     this.action = true;
     this.nuevo = !this.nuevo;
     this.merca = {};		
+    $('#summernote').summernote('reset');
   };
 
 

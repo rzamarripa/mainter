@@ -86,10 +86,26 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
     })
     .state('root.perfil', {
       url: '/perfil/:id',
+      params: {'id':':id'},
       templateUrl: 'client/listas/perfil.ng.html',  
        controller: 'PerfilCtrl as perfil', 
       
     })
+    .state('root.perfilGerente', {
+      url: '/perfilGerente/:id',
+      params: {'id':':id'},
+      templateUrl: 'client/listas/perfilGerente.ng.html',  
+       controller: 'PerfilCtrl as perfil', 
+      
+    })
+    .state('root.perfilJefe', {
+      url: '/perfilJefe/:id',
+      params: {'id':':id'},
+      templateUrl: 'client/listas/perfilJefe.ng.html',  
+       controller: 'PerfilCtrl as perfil', 
+      
+    })
+
 
       .state('root.panel', {
       url: '/panel/:id',
@@ -100,8 +116,34 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
     .state('root.miCumple', {
       url: '/miCumple/:id',
       templateUrl: 'client/miCumple/miCumple.ng.html',  
-       controller: 'MiCumpleCtrl as cumple', 
-        
+       controller: 'MiCumpleCtrl as cumple',  
+    })
+
+      .state('root.recuperar', {
+      url: '/recuperar/',
+      templateUrl: 'client/login/recuperar.ng.html',  
+       controller: 'RecuperarCtrl as forgot',  
+    })
+       .state('root.sucursales', {
+      url: '/sucursales/:id',
+      templateUrl: 'client/sucursales/sucursales.ng.html',  
+       controller: 'SucursalesCtrl as sucu', 
+       resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      } 
+    })
+       .state('root.sucursalVista', {
+      url: '/sucursalVista/:id',
+      templateUrl: 'client/sucursales/sucursalVista.ng.html',  
+       controller: 'SucursalesCtrl as sucu',  
     })
       
     
@@ -174,7 +216,7 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
        resolve: {
         "currentUser": ["$meteor", "toastr", function($meteor, toastr){
           return $meteor.requireValidUser(function(user) {
-            if(user.roles[0] == "admin"){
+             if(user.roles[0] == "jefeArea" || user.roles[0] == "admin"){
               return true;
             }else{
               return 'UNAUTHORIZED'; 
@@ -193,6 +235,17 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       url: '/resultados',
       templateUrl: 'client/resultados/resultados.ng.html',
       controller: 'ResultadosCtrl as resu',
+      resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+            if(user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
     })
     .state('root.eventos', {
       url: '/eventos',
@@ -203,6 +256,17 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       url: '/noticias',
       templateUrl: 'client/noticias/noticias.ng.html',
       controller: 'NoticiasCtrl as not',
+       resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+             if(user.roles[0] == "jefeArea" || user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
     })
    /*.state('root.departamentos', {
       url: '/departamentos',
@@ -233,7 +297,7 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       resolve: {
         "currentUser": ["$meteor", "toastr", function($meteor, toastr){
           return $meteor.requireValidUser(function(user) {
-            if(user.roles[0] == "empleado" || user.roles[0] == "admin"){
+            if(user.roles[0] == "admin"){
               return true;
             }else{
               return 'UNAUTHORIZED'; 
@@ -296,15 +360,14 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       
 
 
- 
-     /*.state('root.empleados', {
-      url: '/empleados/:id',
-      templateUrl: 'client/empleados/empleados.ng.html',
-      controller: 'EmpleadosCtrl as emp',
-      resolve: {
+    .state('root.tickets', {
+      url: '/tickets',
+      templateUrl: 'client/tickets/tickets.ng.html',
+      controller: 'TicketsCtrl as tick',
+       resolve: {
         "currentUser": ["$meteor", "toastr", function($meteor, toastr){
           return $meteor.requireValidUser(function(user) {
-            if(user.roles[0] == "cosme"){
+             if(user.roles[0] == "jefeArea" || user.roles[0] == "admin"){
               return true;
             }else{
               return 'UNAUTHORIZED'; 
@@ -312,14 +375,8 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
          });
        }]
       }
-    })*/
-
-
-    .state('root.tickets', {
-      url: '/tickets',
-      templateUrl: 'client/tickets/tickets.ng.html',
-      controller: 'TicketsCtrl as tick',
     })
+
     .state('root.usuarios', {
       url: '/usuarios',
       templateUrl: 'client/usuarios/usuarios.ng.html',
@@ -339,6 +396,17 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       url: '/listaTickets',
       templateUrl: 'client/tickets/listaTickets.ng.html',
       controller: 'ListaTicketsCtrl as list',
+         resolve: {
+        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
+          return $meteor.requireValidUser(function(user) {
+             if(user.roles[0] == "jefeArea" || user.roles[0] == "admin"){
+              return true;
+            }else{
+              return 'UNAUTHORIZED'; 
+            }
+         });
+       }]
+      }
     })
     .state('root.asistenciaGrupo', {
       url: '/asistenciaGrupo/:id',

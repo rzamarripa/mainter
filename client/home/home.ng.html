@@ -1,14 +1,16 @@
+<div class="row" style="background-color: #8A0808;  " >
+
+
+<h3 style="color:white;">Culiacan Sinaloa México <br/>
+{{hom.dia()}} {{hom.mes()}} de {{hom.year()}}
+<br/><span style="color:white;" class="pull-right">Muro Web interceramic de Grupo Kuroda</span> </h3>
 
 
 
-<h3>Culiacan Sinaloa México <br/><span id="demo"></span>&nbsp;<span>{{hom.clock()}}</span><span id="dia">{{hom.dia()}}</span>&nbsp; de <span id="mes">{{hom.mes()}}</span>&nbsp; de <span id="year">{{hom.year()}}</span>&nbsp;&nbsp; <br/><span class="pull-right">Muro Web interceramic de Grupo Kuroda</span></h3>
-
-
-
-<section id="widget-grid" data-widget-grid="data-widget-grid" style="margin-top: 80px;">
+<section id="widget-grid" data-widget-grid="data-widget-grid" >
  <div class="row">
     <div class="col-sm-12">
-      <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
+      <div data-widget-color="blue" style="color: #848484" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
         <header>
           <h2>Bienvenido</h2>
         </header>
@@ -26,8 +28,48 @@
       </div>
     </div>
   </div>
+
+  <h3><font color="white"> Noticias </font></h3>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" ng-repeat="noticia in hom.noticias">
+        <header>
+          <h2>{{noticia.nombre}}</h2>
+        </header>
+        <div>
+          <div class="widget-body">
+           <div class="col-sm-12" >
+            <h3 class="card-header">{{noticia.titulo}}</h3>
+            <div class="card card-block">
+              <h8 class="card-title" ng-bind-html="noticia.nota"></h8>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <h3><font color="white"> Articulos </font></h3>
+
+  <div class="well padding-10" ng-repeat="articulo in hom.articulos">
+  <div class="row">
+    <div class="col-md-4">
+      <img ng-src="{{articulo.imagen}}" class="img-responsive" alt="img">
+    </div>
+    <div class="col-md-8 padding-left-0">
+      <h3 class="margin-top-0"><p>{{articulo.titulo}} <span class="pull-right">{{articulo.fecha | date:"dd-MM-yyyy"}}</span> <br/> </p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">{{articulo.nombre}}</a></i></small> <span class=" margin-top-0 pull-right">{{art.getCategoria(articulo.categoriasArt_id)}}</span>  </h3>
+      <span ng-bind-html="articulo.nota"></span>
+      <br/>
+      <a class="btn btn-primary" ng-click="art.editar(articulo._id)" ng-show="art.tienePermiso()">Editar</a>
+      <a class="btn btn-danger" ng-click="art.cambiarEstatus(articulo._id)" ng-show="art.tienePermiso()">Desactivar</a>
+    </div>
+  </div>
+</div>
+
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-6">
     <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
       <header>
         <h2>Explora</h2>
@@ -47,6 +89,7 @@
       </div>
     </div>
   </div>
+  <div class="row">
   <div class="col-sm-6">
     <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
       <header>
@@ -85,7 +128,7 @@
       </div>
     </div>
   </div>
-   <div class="col-sm-6">
+   <div class=" pull-right col-sm-6">
     <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget">
       <header>
         <h2>Resultados</h2>
@@ -105,35 +148,16 @@
       </div>
     </div>
   </div>
+  </div>
 
 </div>
 
-<h3>Noticias</h3>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" ng-repeat="noticia in hom.noticias">
-        <header>
-          <h2>{{noticia.nombre}}</h2>
-        </header>
-        <div>
-          <div class="widget-body">
-           <div class="col-sm-12" >
-            <h3 class="card-header">{{noticia.titulo}}</h3>
-            <div class="card card-block">
-              <h8 class="card-title" ng-bind-html="noticia.nota"></h8>
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 
 
-<div class="container">
+<div class="container" >
   
   
   <!-- Modal -->
@@ -174,3 +198,5 @@
     </div>
   </div>
 </div>
+</div>
+

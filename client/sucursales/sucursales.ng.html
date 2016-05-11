@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<a class="btn btn-{{sucu.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
-			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevosucursales" ng-click="sucu.nuevoSucursales()">
+			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevosucursale" ng-click="sucu.nuevoSucursale()">
 	 {{sucu.nuevo == true ? 'Nuevo' : 'Cancelar'}}
 		</a>
 		<div class="collapse" id="collapseExample">
@@ -10,33 +10,41 @@
 		  	<div class="well">	    
 			    <div class="row">
 			    	<div class="col-sm-4">
-			    		<label>Nombre </label>
-				    	<input type="text" class="form-control" placeholder="Nombre" ng-model="sucu.sucursales.nombre" >
+			    		<label>Nombre de la Sucursal</label>
+				    	<input type="text" class="form-control" placeholder="Nombre" ng-model="sucu.sucursale.nombre" >
+			    	</div>
+			    	<div class="col-sm-4">
+			    		<label>Ciudad</label>
+				    	<input type="text" class="form-control" placeholder="Ciudad" ng-model="sucu.sucursale.ciudad" >
 			    	</div>
 			    	<div class="col-sm-4">
 			    		<label>Dirección</label>
-				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="sucu.sucursales.direccion" >
+				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="sucu.sucursale.direccion" >
 			    	</div>
 			    	<div class="col-sm-4">
 			    		<label>Teléfono</label>
-				    	<input type="text" class="form-control" placeholder="Teléfono" ng-model="sucu.sucursales.telefono" >
+				    	<input type="text" class="form-control" placeholder="Teléfono" ng-model="sucu.sucursale.telefono" >
 			    	</div>
 			    	<div class="col-sm-4">
 			    		<label>Correo</label>
-				    	<input type="text" class="form-control" placeholder="Correo" ng-model="sucu.sucursales.correo" >
+				    	<input type="text" class="form-control" placeholder="Correo" ng-model="sucu.sucursale.correo" >
+			    	</div>
+			    	<div class="col-sm-4">
+			    		<label>Gerente Responsable</label>
+				    	<input type="text" class="form-control" placeholder="Nombre del Gerente" ng-model="sucu.sucursale.gerente" >
 			    	</div>
 
 			    	  <div class="col-sm-4">
 						    <label>Imagen</label>
-					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="sucu.sucursales.imagen" >
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="sucu.sucursale.imagen" >
 					    </div>
 
 					</div>				
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="sucu.guardar(sucu.sucursales)" value="Guardar" class="btn btn-primary" ng-show="sucu.action">
-						<input type="submit" ng-click="sucu.actualizar(sucu.sucursales)" value="Actualizar" class="btn btn-primary" ng-show="!sucu.action">				
+						<input type="submit" ng-click="sucu.guardar(sucu.sucursale)" value="Guardar" class="btn btn-primary" ng-show="sucu.action">
+						<input type="submit" ng-click="sucu.actualizar(sucu.sucursale)" value="Actualizar" class="btn btn-primary" ng-show="!sucu.action">				
 					</div>
 				</div>	  
 		  </form>
@@ -52,7 +60,9 @@
 				<tr>
 					<th width="10%"><div class="text-center">Foto</div></th>
 					<th width="10%"><div class="text-center">Nombre</div></th>
+					<th width="10%"><div class="text-center">Ciudad</div></th>
 					<th width="15%"><div class="text-center">Dirección </div></th>
+					<th width="15%"><div class="text-center">Nombre del gerente </div></th>
 					<th width="10%"><div class="text-center">Teléfono</div></th>
 					<th width="10%"><div class="text-center">correo</div></th>
 					<th width="5%">
@@ -68,18 +78,21 @@
 				</tr>
 			</thead>
 			<tbody>
-		    <tr ng-repeat="sucursales in sucu.sucursaless">
-		    	<td><img width="50px" ng-src="{{sucursales.imagen}} "></td>
-			    <td>{{sucursales.nombre}}</td>
-			    <td>{{sucursales.direccion }} </td>
-			    <td>{{sucursales.telefono}} </td>
-			    <td>{{sucursales.correo}} </td>
+		    <tr ng-repeat="sucursale in sucu.sucursales">
+		    	<td><img width="50px" ng-src="{{sucursale.imagen}} "></td>
+			    <td>{{sucursale.nombre}}</td>
+			    <td>{{sucursale.ciudad }} </td>
+			    <td>{{sucursale.direccion }} </td>
+
+			    <td>{{sucursale.gerente }} </td>
+			    <td>{{sucursale.telefono}} </td>
+			    <td>{{sucursale.correo}} </td>
 			    <td>
 				    <div class="text-center">
-				    	<span ng-if="sucursales.estatus" class="label label-success">
+				    	<span ng-if="sucursale.estatus" class="label label-success">
 							  Activo
 							</span>
-							<span ng-if="!sucursales.estatus" class="label label-danger">
+							<span ng-if="!sucursale.estatus" class="label label-danger">
 							  Inactivo
 							</span>
 				    </div>
@@ -92,8 +105,8 @@
 							    <span class="sr-only">Toggle Dropdown</span>
 							  </button>
 							  <ul class="dropdown-menu text-left">
-							    <li><a href="#" ng-click="sucu.editar(sucursales._id)"><i class="fa fa-pencil"></i> Editar</a></li>
-							  <li><a href="#" ng-click="sucu.cambiarEstatus(sucursales._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
+							    <li><a href="#" ng-click="sucu.editar(sucursale._id)"><i class="fa fa-pencil"></i> Editar</a></li>
+							  <li><a href="#" ng-click="sucu.cambiarEstatus(sucursale._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
 							  </ul>
 							</div>
 				    </div>	

@@ -3,6 +3,9 @@ angular.module("interCeramic")
  function ListasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
   this.action = true;
+
+
+
 	this.subscribe('listas');
 	this.subscribe('empleados',()=>{
 		return [{estatus:true}]
@@ -19,6 +22,7 @@ angular.module("interCeramic")
 	this.subscribe('jefeAreas',()=>{
 		return [{estatus:true}]
 	});
+	this.subscribe('sucursales');
 	
 
 	this.helpers({
@@ -26,7 +30,7 @@ angular.module("interCeramic")
 		  return Listas.find();
 	  },
 	   empleados : () => {
-		  return Empleados.find();
+		  return Empleados.find({}, { sort: {score: -1, name: 1} });
 	  },
 	  asesorVentas : () => {
 		  return AsesorVentas.find();
@@ -40,6 +44,19 @@ angular.module("interCeramic")
 	  jefeAreas : () => {
 		  return JefeAreas.find();
 	  },
+	   sucursales : () => {
+		  return Sucursales.find();
+	  },
+
+	   listaEmpleados : () =>
+		{
+		 var listaEmpleados = [];
+		 listaEmpleados.push(this.getReactively('jefeAreas'));
+		 listaEmpleados.push(this.getReactively('empleados'));
+		 listaEmpleados.push(this.getReactively('gerentes'));
+		 console.log(listaEmpleados);
+		  	return listaEmpleados;
+	   },
 
   });
   	  
@@ -50,6 +67,15 @@ angular.module("interCeramic")
     this.nuevo = !this.nuevo;
     this.lista = {};		
   };
+
+
+  this.listaEmpleados = function()
+  {
+  	this.empleados.push("jefeAreas");
+  	this.empleados.push("asesorVentas");
+  	this.empleados.push("gerentes");
+
+  }
   
   this.guardar = function(lista)
 	{
@@ -96,6 +122,7 @@ angular.module("interCeramic")
   this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
+		if(departamento)
 		return departamento.nombre;
 	};
 	
@@ -126,17 +153,12 @@ angular.module("interCeramic")
 //		return days;
 	}
 
-	/*this.resizeheight= function() {
-    var height = ((2*screen.height)/20);
-	
-	return height;
-}
 
-    this.resizewidth= function() {
-    var width = ((2*screen.width)/20);
-	
-	return width;
-}*/
+
+		this.show = function(id){
+		 $state.go("roots.perfil", {id:id});	
+	}
+
   
 		
 };

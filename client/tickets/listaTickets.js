@@ -117,6 +117,7 @@ angular.module("interCeramic")
     this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
+		if(departamento)
 		//console.log(departamento);
 		return departamento.nombre;
 	};	

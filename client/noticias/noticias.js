@@ -18,6 +18,7 @@ angular.module("interCeramic")
     this.action = true;
     this.nuevo = !this.nuevo;
     this.noticia = {};		
+    $('#summernote').summernote('reset');
   };
   
   this.guardar = function(noticia)

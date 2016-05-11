@@ -20,7 +20,9 @@ angular.module("interCeramic")
    	}]
    });
 
-    this.subscribe('departamentos');
+    this.subscribe('departamentos', () => {
+    	return [{estatus: true}];
+    });
 
     
 	this.subscribe('tickets', () => {
@@ -38,6 +40,7 @@ angular.module("interCeramic")
 	  tickets : () => {
 	  	return Tickets.find().fetch();  	
 	  },
+
 	  users : () =>{
 	  	var tickets = this.getReactively('tickets');
 	  	var users = [];
@@ -48,6 +51,7 @@ angular.module("interCeramic")
 	  	}
 		  return users
 	  },
+	  
 	   departamentos : () => {
 		  return Departamentos.find();
 	  },
@@ -62,7 +66,7 @@ angular.module("interCeramic")
 	  },
 	  jefeAreas : () => {
 		  return JefeAreas.find();
-	  },
+	  }
 
 	 
   });
@@ -74,7 +78,7 @@ angular.module("interCeramic")
     this.action = true;
     this.nuevo = !this.nuevo;
     this.ticket = {};	
-    this.ticket.nota = "http://localhost:3000/tickets"	
+    $('#summernote').summernote('reset');
   };
 
 
@@ -153,6 +157,7 @@ angular.module("interCeramic")
 	this.getEmisor= function(emisor_id)
 	{
 		var emisor = Meteor.users.findOne(emisor_id);
+		console.log(emisor);
 		if(emisor)
 		return emisor.profile.nombre;
 	};

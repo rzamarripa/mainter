@@ -34,31 +34,20 @@ angular.module("interCeramic")
 		rc.jefeArea.estatus = true;
 		rc.jefeArea.nombreCompleto = rc.jefeArea.nombre + " " + rc.jefeArea.apPaterno + " " + rc.jefeArea.apMaterno;
 		JefeAreas.insert(rc.jefeArea, function(err, doc){
+			   this.nuevo = true;
 			rc.jefeArea.empleado_id = doc;
 		    Meteor.call('createUsuario', rc.jefeArea, 'jefeArea');
+
 		    toastr.success('Usuario guardado.');
-	//	this.jefeArea = {};
+		this.jefeArea = {};
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
 		$state.go('root.jefeAreas');
+		  this.nuevo = true;
 		
 	    });
     };
 
-    
-   
-
-	/*rc.guardar = function (alumno) {
-	  console.log(alumno);
-		rc.alumno.estatus = true;
-		rc.alumno.nombreCompleto = alumno.nombre + " " + alumno.apPaterno + " " + alumno.apMaterno;
-		Alumnos.insert(rc.alumno, function(err, doc){
-			Meteor.call('createUsuario', rc.alumno, 'alumno');
-			toastr.success('Alumno guardado.');
-			$state.go('root.alumnoDetalle',{'id':doc});			
-			rc.nuevo = true;
-		});
-	};*/
 
 	
 	this.editar = function(id)
@@ -73,7 +62,10 @@ angular.module("interCeramic")
 	this.actualizar = function(jefeArea)
 	{
 		var idTemp = jefeArea._id;
-		delete jefeArea._id;		
+		delete jefeArea._id;
+		console.log(jefeArea);		
+		Meteor.call('cambiaContra', jefeArea.usuario, jefeArea.contrasena);
+
 		JefeAreas.update({_id:idTemp},{$set:jefeArea});
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
@@ -101,6 +93,7 @@ angular.module("interCeramic")
 	this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
+		if(departamento)
 		return departamento.nombre;
 	};
 

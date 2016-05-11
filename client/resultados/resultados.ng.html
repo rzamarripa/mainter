@@ -1,5 +1,5 @@
 <h2>Resultados</h2>
-<div class="row">
+<!--<div class="row">
 	<div class="col-sm-12">
 		<a class="btn btn-{{resu.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
 			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoresultados" ng-click="resu.nuevoresultados()">
@@ -14,8 +14,8 @@
 			    	   <div class="col-sm-4">
 						<label>Categoria</label>
 						<select class="form-control select2" placeholder="Seleccionar Categoria" ng-model="resu.resultado.categoriasResultado_id">
-						  <option ng-repeat="categoriasResult in resu.categoriasResults" value="{{categoriasResult._id}}">
-						  	{{categoriasResult.nombre}}
+						  <option ng-repeat="categoriasResult in resu.categoriasResults" value="{{categoriasresu._id}}">
+						  	{{categoriasresu.nombre}}
 						  </option>
 						</select>
 							</div>	
@@ -48,14 +48,14 @@
 
 
 
-<!-- List -->
+
 <div class="row">
 	<div class="col-sm-12">
 		<table class="table table-bordered">
       <thead>
       	<tr>
 	      			<th width="5%"><div class="text-center">No.</div></th>
-	      			<!--<th width="15%"><div class="text-center">Categoria</div></th>-->
+	      			<th width="15%"><div class="text-center">Categoria</div></th>
 					<th width="20%"><div class="text-center">Nombre</div></th>
 					<th width="25%"><div class="text-center">Descripción</div></th>
 					<th width="25%"><div class="text-center">Archivo</div></th>
@@ -74,7 +74,8 @@
 			<tbody>
 		    <tr ng-repeat="resultado in resu.resultados">
 			    <td>{{$index+1}}</td>
-			    <!--<td>{{resu.getCategoria(resultado.categoriasResult_id)}}</td>-->
+			    <td>{{resu.getCategoria(resultado.categoriasResultado_id)}}</td>
+			  
 			     
 			    <td>{{resultado.nombre}}</td>
 			     
@@ -111,4 +112,111 @@
 			</tbody>
 		</table>
 	</div>
+</div>-->
+
+		
+<div class="well">	  
+	<div class="row"> 
+		<div class="col-sm-12">	
+			<div class="col-lg-3" ng-repeat="categoria in resu.categoriasResults">
+				<a href="#" ng-click="resu.mostrarArchivos(categoria._id, categoria.nombre)">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-xs-6">
+								  <i class="fa fa-bars fa-5x"></i>
+								</div>
+								<div class="col-xs-6 text-right">
+								  <h1 style="font-size:40pt;"><strong></strong></h1>
+								  <p class="announcement-text">{{categoria.nombre}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="panel-footer announcement-bottom">
+							<div class="row">
+							  <div class="col-xs-6" >
+							    Ver...
+							  </div>
+							  <div class="col-xs-6 text-right">
+							    <i class="fa fa-arrow-circle-right"></i>
+							  </div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div> 
+		</div>
+	</div> 
 </div>
+ 
+<br/>
+
+<div class="well">
+<div class="row">				
+	<div class="col-sm-4">
+		<h3 class="dark-grey" ng-show="resu.tienePermiso()" >Agregar archivos</h3>
+		
+		<div class="form-group col-lg-12" ng-show="resu.tienePermiso()">
+			<label>Seleccionar archivo</label>
+			<input type="text" class="form-control" placeholder="Nombre" ng-model="resu.resultado.select">
+		</div>
+		
+		<div class="form-group col-lg-12" ng-show="resu.tienePermiso()">
+			<label>Descripción</label>
+			<textarea class="form-control" placeholder="Descripción" ng-model="resu.resultado.descripcion"></textarea>
+		</div>	
+
+
+		<div class="row pull-right" ng-show="resu.tienePermiso()">
+			<div class="col-sm-12">
+				<input type="submit" ng-click="resu.guardar(resu.resultado)" value="Guardar" class="btn btn-primary" ng-show="resu.action">
+				<input type="submit" ng-click="resu.actualizar(resu.resultado)" value="Actualizar" class="btn btn-primary" ng-show="!resu.action">
+			</div>
+		</div>			
+	</div>
+		  
+	<div class="col-sm-8">
+		<h3 class="dark-grey">Listado de la categoría {{resu.nada}}</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr >
+					<th>No.</th>
+					<th>Archivos</th>
+					<th>Descripción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="resultado in resu.resultados">
+					<td>{{$index + 1}}</td>
+					<td class="text-center">
+                    	<a target="_blank" href="{{resultado.select}}">Ver Archivo</a>
+                    </td>
+					<td>{{resultado.descripcion}}</td>
+				</tr>
+		
+				
+				
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

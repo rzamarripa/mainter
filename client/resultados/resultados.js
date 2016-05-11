@@ -1,11 +1,17 @@
 angular.module("interCeramic")
 .controller("ResultadosCtrl", ResultadosCtrl);  
  function ResultadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
- 	$reactive(this).attach($scope);
+ 	rc = $reactive(this).attach($scope);
   this.action = true;
-	this.subscribe('resultados');
+  this.nada = undefined;
+  this.categoriasResult_id = '';
+	
+	this.subscribe('resultados',()=>{
+		return [{categoriasResult_id:this.getReactively('categoriasResult_id'), estatus:true}]
+	});
 
   this.subscribe('categoriasResults');
+  
 
 
 
@@ -73,10 +79,39 @@ angular.module("interCeramic")
 
 
 
-    this.getCategoria= function(categoria_id)
+    this.getCategoria= function(id)
 	{
-		var categoriasResult = CategoriasResults.findOne(id);
-		return categoriasResult.nombre;
+		var categorias = CategoriasResults.findOne(id);
+		if(categorias)
+		return categorias.nombre;
 	};	
+
+
+	 this.mostrarArchivos= function(id,nombre)
+	{
+		console.log(id, nombre);
+		rc.nada = nombre;
+		this.categoriasResult_id = id;
+	};	
+
+	this.tienePermiso = function()
+	{
+		if(Meteor.user().roles[0] == "empleado" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "asesorVenta" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "gerente" )
+		{
+			return false;
+		}
+		else{
+			return true;
+		}
+		
+	}
 		
 };

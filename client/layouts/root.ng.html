@@ -1,4 +1,4 @@
-<header id="header">
+<header id="header"    ><!--ng-class="{'home' : root.home == true}"-->
 
   <div class="pull-left" >
 <img  height="55px" width="250px" src="img/interc.png">
@@ -32,14 +32,14 @@
   </div>
 </header>
 
-<aside id="left-panel">
+<aside id="left-panel" >
   <div class="login-info">
 		<span ng-show="{{isLoggedIn()}}"> <!-- User image size is adjusted inside CSS, it should stay as it --> 
 			
-			<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-				<img ng-src="{{currentUser.profile.fotografia}}" alt="me" class="online"> 
+			<a  href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+				<img ng-src="{{root.currentUser.profile.fotografia}}" alt="me" class="online"> 
 				<span>
-					{{currentUser.profile.nombreCompleto}}
+					{{root.user}}
 				</span>
 				<i class="fa fa-angle-down"></i>
 			</a> 

@@ -3,6 +3,7 @@ angular.module("interCeramic")
  function MiCumpleCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
  	$reactive(this).attach($scope);
   this.action = true;
+  this.users = [];
 	this.subscribe('listas');
 	this.subscribe('empleados',()=>{
 		return [{estatus:true}]
@@ -18,9 +19,15 @@ angular.module("interCeramic")
 	});
 	this.subscribe('jefeAreas',()=>{
 		return [{estatus:true}]
-
 	});
-	this.subscribe('departamentos');
+	
+    this.subscribe('departamentos',()=>{
+		return [{estatus:true}]
+	});
+	this.subscribe('users', () => {
+		return [{_id : {$in:this.getCollectionReactively('users')}}]
+	});
+
 	
 
 	this.helpers({
@@ -41,6 +48,16 @@ angular.module("interCeramic")
 	  },
 	  jefeAreas : () => {
 		  return JefeAreas.find();
+	  },
+	    users : () =>{
+	  	var felicitaciones = this.getReactively('felicitaciones');
+	  	var users = [];
+	  	if(this.felicitaciones){
+		  	_.each(this.felicitaciones, function(felicitacion){
+		  		users.push(felicitacion.emisor_id);
+		  	});
+	  	}
+		  return users
 	  },
 
   });
@@ -97,14 +114,19 @@ angular.module("interCeramic")
 
   this.getEmisor= function(emisor_id)
 	{
+	 
 		var emisor = Meteor.users.findOne(emisor_id);
+		console.log(emisor);
 		if(emisor)
 		return emisor.profile.nombre;
+		
 	};
+
 	
 	this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
+		if(departamento)
 		//console.log(departamento);
 		return departamento.nombre;
 	};	

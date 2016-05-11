@@ -11,28 +11,28 @@
 			    <div class="row">
 			    	<div class="col-sm-4">					    
 				    	<label>Usuario</label>
-				    	<input type="text" class="form-control" placeholder="Usuario" ng-model="jefe.jefeArea.usuario" required>
+				    	<input type="text" class="form-control" placeholder="Usuario" ng-model="jefe.jefeArea.usuario" >
 			    	</div>
 			    	<div class="col-sm-4">					    
 				    	<label>Contraseña</label>
-				    	<input type="password" class="form-control" placeholder="Contraseña" ng-model="jefe.jefeArea.contrasena" required>
+				    	<input type="password" class="form-control" placeholder="Contraseña" ng-model="jefe.jefeArea.contrasena" >
 			    	</div>		    				    	    
 			    	<div class="col-sm-4">					    
 				    	<label>Confirmar Contraseña</label>
-				    	<input type="password" class="form-control" placeholder="Confirmar Contraseña" ng-model="jefe.jefeArea.confirmarContrasena" required>
+				    	<input type="password" class="form-control" placeholder="Confirmar Contraseña" ng-model="jefe.jefeArea.confirmarContrasena" >
 					</div>
 			    	<div class="col-sm-4">
 			    		<label>Nombre </label>
-				    	<input type="text" class="form-control" placeholder="Nombre" ng-model="jefe.jefeArea.nombre" required>
+				    	<input type="text" class="form-control" placeholder="Nombre" ng-model="jefe.jefeArea.nombre" >
 			    	</div>
 
 			    	<div class="col-sm-4">
 			    		<label>Apellido Paterno </label>
-				    	<input type="text" class="form-control" placeholder="Apellido Paterno" ng-model="jefe.jefeArea.apPaterno" required>
+				    	<input type="text" class="form-control" placeholder="Apellido Paterno" ng-model="jefe.jefeArea.apPaterno" >
 			    	</div>
 			    	<div class="col-sm-4">
 			    		<label>Apellido Materno</label>
-				    	<input type="text" class="form-control" placeholder="Apellido Materno" ng-model="jefe.jefeArea.apMaterno" required>
+				    	<input type="text" class="form-control" placeholder="Apellido Materno" ng-model="jefe.jefeArea.apMaterno" >
 			    	</div>
 			    	<div class="col-sm-4">
 						<label for="fechaNac">Fecha de nacimiento</label>
@@ -42,17 +42,14 @@
 						<label>Fecha de Ingreso</label>
 						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="jefe.jefeArea.fechaIn">
 					</div>
-			    	<div class="col-sm-4">
-			    		<label>Dirección</label>
-				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="jefe.jefeArea.direccion" required>
-			    	</div>
+			    	
 			    	<div class="col-sm-4">
 			    		<label>Teléfono</label>
-				    	<input type="text" class="form-control" placeholder="Teléfono" ng-model="jefe.jefeArea.telefono" required>
+				    	<input type="text" class="form-control" placeholder="Teléfono" ng-model="jefe.jefeArea.telefono" >
 			    	</div>
 			    	<div class="col-sm-4">
 			    		<label>Correo</label>
-				    	<input type="text" class="form-control" placeholder="Correo" ng-model="jefe.jefeArea.correo" required>
+				    	<input type="text" class="form-control" placeholder="Correo" ng-model="jefe.jefeArea.correo" >
 			    	</div>
 			    	<div class="col-sm-4">
 						<label>Departamento</label>
@@ -62,24 +59,9 @@
 						  </option>
 						</select>
 							</div>
-
-			    	<!--
-			    	<div class="col-sm-4">
-						<label >Departamento academico</label>
-						<ui-select ng-model="emp.empleado.deptoAcademico_id"
-					             theme="bootstrap"
-					             ng-disabled="disabled"
-					             reset-search-input="false">
-					    <ui-select-match placeholder="Seleccione">{{$select.selected.descripcionCorta}}</ui-select-match>
-					    <ui-select-choices repeat="emp.deptoAcademico._id as deptoAcademico in deptosAcademicos | filter: $select.search">
-					      <div ng-bind-html="deptoAcademico.descripcionCorta | highlight: $select.search"></div>
-					    </ui-select-choices>
-					  </ui-select>
-					</div>-->
-
 			    	  <div class="col-sm-4">
 						    <label>Imagen</label>
-					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="jefe.jefeArea.imagen" required>
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="jefe.jefeArea.imagen" >
 					    </div>
 					</div>				
 				</div>
@@ -103,7 +85,6 @@
 					<th width="10%"><div class="text-center">Foto</div></th>
 					<th width="10%"><div class="text-center">Nombre</div></th>
 					<th width="15%"><div class="text-center">Departamento</div></th>
-					<th width="15%"><div class="text-center">Dirección </div></th>
 					<th width="10%"><div class="text-center">Teléfono</div></th>
 					<th width="10%"><div class="text-center">correo</div></th>
 					<th width="10%">
@@ -123,7 +104,6 @@
 		    	<td><img width="50px" ng-src="{{jefeArea.imagen}} "></td>
 			    <td>{{jefeArea.nombre}} {{jefeArea.apPaterno}} {{jefeArea.apMaterno}}</td>
 			    <td> {{jefe.getDepartamento(jefeArea.departamento_id)}}</td>
-			    <td>{{jefeArea.direccion}} </td>
 			    <td>{{jefeArea.telefono}} </td>
 			    <td>{{jefeArea.correo}} </td>
 			    <td>

@@ -1,7 +1,7 @@
 angular.module("interCeramic")
 .controller("ArchivosCtrl", ArchivosCtrl);  
  function ArchivosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
- 	$reactive(this).attach($scope);
+ 	rc = $reactive(this).attach($scope);
  	this.nada = undefined;
  	this.categoriasLibrero_id = '';
   	this.action = true;
@@ -74,8 +74,25 @@ angular.module("interCeramic")
 
     this.mostrarArchivos= function(id,nombre)
 	{
-		this.nada = nombre;
+		console.log(id, nombre);
+		rc.nada = nombre;
 		this.categoriasLibrero_id = id;
 	};	
+		this.tienePermiso = function()
+	{
+		if(Meteor.user().roles[0] == "empleado" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "gerente" )
+		{
+			return false;
+		}
+		else{
+			return true;
+		}
+		
+	}
+
 		
 };

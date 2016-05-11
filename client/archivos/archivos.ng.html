@@ -5,7 +5,7 @@
 	<div class="row"> 
 		<div class="col-sm-12">	
 			<div class="col-lg-3" ng-repeat="categoria in archi.categoriasLibreros">
-				<a href="archivos#" ng-click="archi.mostrarArchivos(categoria._id, categoria.nombre)">
+				<a href="#" ng-click="archi.mostrarArchivos(categoria._id, categoria.nombre)">
 					<div class="panel panel-info">
 						<div class="panel-heading">
 							<div class="row">
@@ -113,105 +113,53 @@
 		</table>
 	</div>
 </div>-->
-<div ng-if="archi.nada" class="container-fluid">
-    <section class="container">
-		<div class="container-page">				
-			<div class="col-md-6">
-				<h3 class="dark-grey">Agregar archivos</h3>
-				
-				<div class="form-group col-lg-12">
-					<label>Seleccionar archivo</label>
-					<input type="text" class="form-control" placeholder="Nombre" ng-model="archi.archivo.select">
-				</div>
-				
-				<div class="form-group col-lg-12">
-					<label>Descripción</label>
-					<textarea class="form-control" placeholder="Descripción" ng-model="archi.archivo.descripcion"></textarea>
-				</div>	
-
-
-				<div class="row">
-					<div class="col-sm-12">
-						<input type="submit" ng-click="archi.guardar(archi.archivo)" value="Guardar" class="btn btn-primary" ng-show="archi.action">
-						<input type="submit" ng-click="archi.actualizar(archi.archivo)" value="Actualizar" class="btn btn-primary" ng-show="!archi.action">
-					</div>
-				</div>			
-			</div>
-				  
-		<div class="col-sm-6 jarviswidget jarviswidget-color-greenDark jarviswidget-sortable" id="wid-id-18" data-widget-colorbutton="false" data-widget-editbutton="false" role="widget" style=" margin-bottom: 50px;">
-								<!-- widget options:
-									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-									
-									data-widget-colorbutton="false"	
-									data-widget-editbutton="false"
-									data-widget-togglebutton="false"
-									data-widget-deletebutton="false"
-									data-widget-fullscreenbutton="false"
-									data-widget-custombutton="false"
-									data-widget-collapsed="true" 
-									data-widget-sortable="false"
-									
-								-->
-								<header role="heading"><div class="jarviswidget-ctrls" role="menu">   <a href="javascript:void(0);" class="button-icon jarviswidget-toggle-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Collapse"><i class="fa fa-minus "></i></a> <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a> <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div>
-									<h2><strong>{{archi.nada}}</strong></h2>				
-									
-								<span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
-
-								<!-- widget div-->
-								<div role="content">
-									
-									<!-- widget edit box -->
-									<div class="jarviswidget-editbox">
-										<!-- This area used as dropdown edit box -->
-										<input class="form-control" type="text">
-										<span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
-										
-									</div>
-									<!-- end widget edit box -->
-									
-									<!-- widget content -->
-									<div class="widget-body no-padding" style="margin-bottom:20px; ">
-										
-										
-										<div class="custom-scroll table-responsive" style=" height:190px; overflow-y: scroll;">
-											
-
-											<table class="table table-bordered">
-												<thead>
-													<tr >
-														<!--<th><i class="fa fa-key text-warning"></i>Nombre</th>-->
-														<th>Archivos <i class="text-danger">!</i></th>
-														<th>Descripción</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr ng-repeat="archivo in archi.archivos">
-														<!--<td>{{archivo.nombre}}</td>-->
-														<td class="text-center">
-				                                        <a target="_blank" href="{{archivo.select}}">Ver Archivo</a>
-			                                            </td>
-														<td>{{archivo.descripcion}}</td>
-													</tr>
-											
-													
-													
-												</tbody>
-											</table>
-										
-										</div>
-										
-										
-									
-									</div>
-									<!-- end widget content -->
-									
-								</div>
-	
-								
-							</div>
+<div class="well">
+<div class="row">				
+	<div class="col-sm-4">
+		<h3 class="dark-grey" ng-show="archi.tienePermiso()" >Agregar archivos</h3>
+		
+		<div class="form-group col-lg-12" ng-show="archi.tienePermiso()">
+			<label>Seleccionar archivo</label>
+			<input type="text" class="form-control" placeholder="Nombre" ng-model="archi.archivo.select">
 		</div>
-	</section>
+		
+		<div class="form-group col-lg-12" ng-show="archi.tienePermiso()">
+			<label>Descripción</label>
+			<textarea class="form-control" placeholder="Descripción" ng-model="archi.archivo.descripcion"></textarea>
+		</div>	
+
+
+		<div class="row pull-right" ng-show="archi.tienePermiso()">
+			<div class="col-sm-12">
+				<input type="submit" ng-click="archi.guardar(archi.archivo)" value="Guardar" class="btn btn-primary" ng-show="archi.action">
+				<input type="submit" ng-click="archi.actualizar(archi.archivo)" value="Actualizar" class="btn btn-primary" ng-show="!archi.action">
+			</div>
+		</div>			
+	</div>
+		  
+	<div class="col-sm-8">
+		<h3 class="dark-grey">Listado de la categoría {{archi.nada}}</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr >
+					<th>No.</th>
+					<th>Archivos</th>
+					<th>Descripción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="archivo in archi.archivos">
+					<td>{{$index + 1}}</td>
+					<td class="text-center">
+                    	<a target="_blank" href="{{archivo.select}}">Ver Archivo</a>
+                    </td>
+					<td>{{archivo.descripcion}}</td>
+				</tr>
+		
+				
+				
+			</tbody>
+		</table>
+	</div>
 </div>
-
-
-
+</div>

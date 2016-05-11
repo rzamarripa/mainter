@@ -8,7 +8,13 @@ angular.module("interCeramic")
 		return [{estatus:true}]
 	});
 
-	this.subscribe('departamentos');
+	 this.subscribe('departamentos',()=>{
+		return [{estatus:true}]
+	});
+
+	  this.subscribe('sucursales',()=>{
+		return [{estatus:true}]
+	});
 
 	this.helpers({
 	  empleados : () => {
@@ -16,6 +22,9 @@ angular.module("interCeramic")
 	  },
 	  departamentos : () => {
 		  return Departamentos.find();
+	  },
+	  sucursales : () => {
+		  return Sucursales.find();
 	  },
 	  empleado : () => {
 	  	return Empleados.findOne();
@@ -42,6 +51,7 @@ angular.module("interCeramic")
 			rc.empleado.empleado_id = doc;
 			rc.empleado.departamento_id = doc;
 		    Meteor.call('createUsuario', rc.empleado, 'empleado');
+		    this.nuevo = true;
 		    toastr.success('Empleado guardado.');
 		this.empleado = {};
 		$('.collapse').collapse('hide');
@@ -50,29 +60,6 @@ angular.module("interCeramic")
 		
 	    });
     };
-
-    
-   
-
-	/*rc.guardar = function (alumno) {
-	  console.log(alumno);
-		rc.alumno.estatus = true;
-		rc.alumno.nombreCompleto = alumno.nombre + " " + alumno.apPaterno + " " + alumno.apMaterno;
-		Alumnos.insert(rc.alumno, function(err, doc){
-			Meteor.call('createUsuario', rc.alumno, 'alumno');
-			toastr.success('Alumno guardado.');
-			$state.go('root.alumnoDetalle',{'id':doc});			
-			rc.nuevo = true;
-		});
-	};*/
-
-
-
-
-
-
-
-
 	
 	this.editar = function(id)
 	{
@@ -83,15 +70,17 @@ angular.module("interCeramic")
 	};
 	
 	
-	this.actualizar = function(empleado)
+		this.actualizar = function(empleado)
 	{
 		var idTemp = empleado._id;
-		delete empleado._id;		
+		delete empleado._id;
+		console.log(empleado);		
+		Meteor.call('cambiaContra', empleado.usuario, empleado.contrasena);
+
 		Empleados.update({_id:idTemp},{$set:empleado});
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
 	};
-	
 
 	this.cambiarEstatus = function(id)
 	{
@@ -104,23 +93,40 @@ angular.module("interCeramic")
 		Empleados.update({_id: id},{$set :  {estatus : empleado.estatus}});
     };
 
-   
-	/*this.tomarFoto = function(){
-    $meteor.getPicture().then(function(data){
-      rc.empleado.fotografia = data;
-    });
-   };*/
 
 	this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
+		if(departamento)
 		return departamento.nombre;
 	};
 
-	/*rc.getOcupacion = function(id){
-		var ocupacion = Ocupaciones.findOne(rc.alumno.ocupacion_id);
-		return ocupacion.descripcion;
-	};*/
+
+	this.getSucursal= function(sucursale_id)
+	{
+		var sucursale = Sucursales.findOne(sucursale_id);
+		if(sucursale)
+		return sucursale.nombre;
+	};
+     
+
+    this.desSelect= function()
+    {
+   	 document.getElementById("depa").disabled = false;
+    }
+      this.desSelect= function()
+    {
+   	 document.getElementById("sucu").disabled = false;
+    }
+
+      this.SelectSucu= function()
+    {
+   	 document.getElementById("depa").disabled = false;
+    }
+    this.SelectDepa= function()
+    {
+   	 document.getElementById("sucu").disabled = false;
+    }
 	
 		
 };

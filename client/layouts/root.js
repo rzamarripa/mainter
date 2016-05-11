@@ -4,65 +4,89 @@ angular
  function RootCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
 	$reactive(this).attach($scope);
     this.action = true;
-    this.fechaNac = this
+    users = []; 
 
-    this.subscribe('empleado', () => {
-    	return [{id : Meteor.user().profile.empleado_id}];
+    this.subscribe('gerente', () => {
+      return [{id : this.getReactively('empleado_id')}];
     });
-
-     this.subscribe('departamentos');
+          this.subscribe('jefeArea', () => {
+      return [{id : this.getReactively('empleado_id')}];
+    });
+     this.subscribe('empleado', () => {
+      return [{id : this.getReactively('empleado_id')}];
+    });
+    this.subscribe('departamentos',()=>{
+      return [{estatus:true}]
+    });
 
     this.helpers({
 	  empleado : () => {
 		  return Empleados.findOne();
 	  },
+     gerente : () => {
+      return Gerentes.findOne();
+    },
+     jefeArea : () => {
+      return JefeAreas.findOne();
+    },
 	  departamentos : () => {
 		  return Departamentos.find();
 	  },
+    empleado_id : () =>{
+      if(Meteor.user() != undefined){
+        return Meteor.user().profile.empleado_id
+      }else{
+        return "";
+      }
+    },
+    user: () =>{
+      if(Meteor.user() != undefined){
+        return Meteor.user().username;
+      }else{
+        return "";
+      }
+    }
   });
 
-    this.isLoggedIn = function(){
+  this.isLoggedIn = function(){
 	  return Meteor.user();
+  }
 
 
-
-
-	 //admin = this.departamento.nombre = Meteor.user().profile.nombre;
+  this.logeado=function()
+  {
+    if (this.isLoggedIn) {
+      return Meteor.user().profile.nombre
+    }
   }
 
 
 
-
-/*this.fecha= function(fechaNac)
-{
-
-  a = new Date(1995,11,17);
-  b = new Date(1995,11,17);
-
-  a.getTime() === b.getTime()
-
-}*/
+  console.log($state.current.name);
+    if($state.current.name == "root.home"){
+    this.home = true;
+    }else{
+    this.home = false;
+    }
+  
 
 
+  this.linkers = function(id)
+        {
+          
+    if(Meteor.user().roles[0] == "jefeArea"){
+      $state.go('root.perfilJefe', {'id': 'id'}); 
+    }
+     if(Meteor.user().roles[0] == "gerente"){
+      $state.go('root.perfilGerente', {'id': 'id'}); 
+    }
+     if(Meteor.user().roles[0] == "empleado"){
+      $state.go('root.perfil', {'id': 'id'}); 
+    }
 
+  };
+ 
 
-
-
-/*this.fecha = function(fechaNac) 
-{
-
-var first = '2016-14-23';
-var second = '2015-14-23';
-if( (new Date(first).getTime() > new Date(second).getTime()))
-
-	{
-    return true;
-     
-	}else {
-     return false;
-
-  }
-}*/
 
 this.fecha = function(fechaNac)
 {

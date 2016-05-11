@@ -42,10 +42,7 @@
 						<label>Fecha de Ingreso</label>
 						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="ger.gerente.fechaIn">
 					</div>
-			    	<div class="col-sm-4">
-			    		<label>Dirección</label>
-				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="ger.gerente.direccion" required>
-			    	</div>
+			    	
 			    	<div class="col-sm-4">
 			    		<label>Teléfono</label>
 				    	<input type="text" class="form-control" placeholder="Teléfono" ng-model="ger.gerente.telefono" required>
@@ -62,21 +59,6 @@
 						  </option>
 						</select>
 							</div>
-
-			    	<!--
-			    	<div class="col-sm-4">
-						<label >Departamento academico</label>
-						<ui-select ng-model="emp.empleado.deptoAcademico_id"
-					             theme="bootstrap"
-					             ng-disabled="disabled"
-					             reset-search-input="false">
-					    <ui-select-match placeholder="Seleccione">{{$select.selected.descripcionCorta}}</ui-select-match>
-					    <ui-select-choices repeat="emp.deptoAcademico._id as deptoAcademico in deptosAcademicos | filter: $select.search">
-					      <div ng-bind-html="deptoAcademico.descripcionCorta | highlight: $select.search"></div>
-					    </ui-select-choices>
-					  </ui-select>
-					</div>-->
-
 			    	  <div class="col-sm-4">
 						    <label>Imagen</label>
 					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="ger.gerente.imagen" required>
@@ -104,7 +86,6 @@
 					<th width="10%"><div class="text-center">Foto</div></th>
 					<th width="10%"><div class="text-center">Nombre</div></th>
 					<th width="15%"><div class="text-center">Departamento</div></th>
-					<th width="15%"><div class="text-center">Dirección </div></th>
 					<th width="10%"><div class="text-center">Teléfono</div></th>
 					<th width="10%"><div class="text-center">correo</div></th>
 					<th width="10%">
@@ -124,7 +105,6 @@
 		    	<td><img width="50px" ng-src="{{gerente.imagen}} "></td>
 			    <td>{{gerente.nombre}} {{gerente.apPaterno}} {{gerente.apMaterno}}</td>
 			    <td>{{ger.getDepartamento(gerente.departamento_id)}}</td>
-			    <td>{{gerente.direccion}} </td>
 			    <td>{{gerente.telefono}} </td>
 			    <td>{{gerente.correo}} </td>
 			    <td>

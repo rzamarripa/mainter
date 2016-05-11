@@ -5,7 +5,9 @@ angular.module("interCeramic")
     this.action = true;
     this.subscribe('gerentes');
 
-	this.subscribe('departamentos');
+this.subscribe('departamentos',()=>{
+		return [{estatus:true}]
+	});
 
 	this.helpers({
 	  gerentes : () => {
@@ -33,8 +35,9 @@ angular.module("interCeramic")
 		rc.gerente.nombreCompleto = rc.gerente.nombre + " " + rc.gerente.apPaterno + " " + rc.gerente.apMaterno;
 		Gerentes.insert(rc.gerente, function(err, doc){
 		    Meteor.call('createUsuario', rc.gerente, 'gerente');
+		    this.nuevo = true;
 		    toastr.success('Usuario guardado.');
-	//	this.gerente = {};
+	 	this.gerente = {};
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
 		$state.go('root.gerentes');
@@ -43,20 +46,7 @@ angular.module("interCeramic")
     };
 
     
-   
-
-	/*rc.guardar = function (alumno) {
-	  console.log(alumno);
-		rc.alumno.estatus = true;
-		rc.alumno.nombreCompleto = alumno.nombre + " " + alumno.apPaterno + " " + alumno.apMaterno;
-		Alumnos.insert(rc.alumno, function(err, doc){
-			Meteor.call('createUsuario', rc.alumno, 'alumno');
-			toastr.success('Alumno guardado.');
-			$state.go('root.alumnoDetalle',{'id':doc});			
-			rc.nuevo = true;
-		});
-	};*/
-
+  
 	
 	this.editar = function(id)
 	{
@@ -71,6 +61,7 @@ angular.module("interCeramic")
 	{
 		var idTemp = gerente._id;
 		delete gerente._id;		
+		 Meteor.call('cambiaContra', rc.gerente, 'gerente');
 		Gerentes.update({_id:idTemp},{$set:gerente});
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
@@ -85,7 +76,7 @@ angular.module("interCeramic")
 		else
 			gerente.estatus = true;
 		
-		gerentes.update({_id: id},{$set :  {estatus : gerente.estatus}});
+		Gerentes.update({_id: id},{$set :  {estatus : gerente.estatus}});
     };
 
   
@@ -93,6 +84,7 @@ angular.module("interCeramic")
 	this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
+		if(departamento)
 		return departamento.nombre;
 	};
 

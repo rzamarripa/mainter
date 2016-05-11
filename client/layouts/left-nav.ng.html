@@ -29,6 +29,7 @@ A LA BARRA LATERAL
 
 <nav>
 	<ul data-smart-menu>
+
 	 <li data-ui-sref-active="active">
 		      <a ui-sref="root.home" tilte="Home">
 		        <i class="fa fa-lg fa-fw fa-home"></i>
@@ -44,7 +45,7 @@ A LA BARRA LATERAL
 		    <li data-ui-sref-active="active">
 		      <a ui-sref="root.noticias">
 		        <i class="fa fa-lg fa-fw fa fa-archive"></i>
-		        <span class="menu-item-parent">Notas</span>
+		        <span class="menu-item-parent">Noticias</span>
 		      </a>
 		    </li>  
 		     <li>
@@ -62,7 +63,7 @@ A LA BARRA LATERAL
 	   <li>
 	    <a ui-sref="root.archivos">
 	      <i class="fa fa-lg fa-fw fa fa-book"></i>
-	      <span class="menu-item-parent">Librero</span>
+	      <span class="menu-item-parent">Biblioteca</span>
 	    </a>
 	     </li>
 	     <li>
@@ -129,6 +130,12 @@ A LA BARRA LATERAL
 		        <span class="menu-item-parent">Mercadotecnia</span>
 		      </a>
 		    </li>
+		        <li>
+		      <a ui-sref="root.sucursales">
+		        <i class="fa fa-industry"></i>
+		        <span class="menu-item-parent">Sucursales</span>
+		      </a>
+		    </li>
 		      <li>
 	     <a ui-sref="root.listas">
 	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
@@ -137,11 +144,20 @@ A LA BARRA LATERAL
 	    
 	    </li>
 	    <li>
-	     <a ui-sref="root.miCumple" ng-if="root.fecha(root.empleado.fechaNac)">
+	     <a ui-sref="root.miCumple" ng-if="root.fecha(root.empleado.fechaNac) || root.fecha(root.jefeArea.fechaNac) || root.fecha(root.gerente.fechaNac) ">
 	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
 	      <span class="menu-item-parent">Mi cumpleaños</span>
 	    </a>
 	    
 	    </li>
+
+	    <li class=" pull-right" >
+	     <a  align="right" ng-click="root.linkers()">
+	      <i  class="fa fa-lg fa-fw fa fa-user"></i>
+	      <span class="menu-item-parent">{{root.user}}</span>
+	    </a>
+	    
+	    </li>
   </ul>
+
 </nav>

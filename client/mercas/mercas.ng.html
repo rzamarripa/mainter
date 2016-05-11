@@ -1,7 +1,7 @@
 <h2>Mercadotecnia</h2>
 <div class="row">
 	<div class="col-sm-12">
-		<a class="btn btn-{{merc.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+		<a  ng-show="currentUser.username == 'edna'" class="btn btn-{{merc.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
 			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevomerca" ng-click="merc.nuevoMerca()">
 		 {{merc.nuevo == true ? 'Nuevo' : 'Cancelar'}}
 		</a>
@@ -61,8 +61,8 @@
 									<h3 class="margin-top-0"><p>{{merca.titulo}}</p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">	{{merca.nombre}}</a></i></small></h3>
 									
 										<h4 ng-bind-html="merca.nota"></h4>
-									<a class="btn btn-primary" ng-click="merc.editar(merca._id)" > Editar </a>
-									<a class="btn btn-danger" ng-click="merc.cambiarEstatus(merca._id)" > Desactivar </a>
+									<a ng-show="currentUser.username == 'edna'" class="btn btn-primary" ng-click="merc.editar(merca._id)" > Editar </a>
+									<a ng-show="currentUser.username == 'edna'" class="btn btn-danger" ng-click="merc.cambiarEstatus(merca._id)" > Desactivar </a>
 								</div>
 							</div>
 							</div>

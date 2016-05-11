@@ -1,7 +1,7 @@
 angular.module("interCeramic")
 .controller("DepartamentosCtrl", DepartamentosCtrl);  
  function DepartamentosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
- 	$reactive(this).attach($scope);
+ 	rc = $reactive(this).attach($scope);
     this.action = true;
     this.departamento = {};
 	this.subscribe('departamentos',()=>{
@@ -25,6 +25,10 @@ angular.module("interCeramic")
             container: true,
             inline: true
         });
+
+        $('#cp1').colorpicker();
+
+
     });
 
 	this.nuevo = true;	  
@@ -37,10 +41,10 @@ angular.module("interCeramic")
 
   this.guardar = function(departamento)
 	{
-		$('.sample-selector').colorpicker({ /*options...*/ });
-		this.departamento.estatus = true;
-		console.log(this.departamento);
-		Departamentos.insert(this.departamento);
+		rc.departamento.className = $("#cp1").val();
+		rc.departamento.estatus = true;
+		console.log(rc.departamento);
+		Departamentos.insert(rc.departamento);
 		toastr.success('departamento guardado.');
 		this.departamento = {}; 
 		$('.collapse').collapse('hide');

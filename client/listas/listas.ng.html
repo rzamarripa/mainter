@@ -1,4 +1,5 @@
-<div class="row">
+<header style="background-color: red"></header>
+<div class="row" style="background-color: red">
 	<div class="col-sm-7">
 		<div class="panel panel-default">
 			<div class="panel-body status">
@@ -65,38 +66,75 @@
 			<div class="panel-body status">
 
 				<div class="who clearfix">
-					<h4>Lista de Empleados</h4>
+				<input id="filter"  ng-model="buscar.nombre" type="text" placeholder="Buscar" />
+				   <br/><br/>
+					<h4>Lista de Sucursales</h4>
 				</div>
+					<br/>
 
-				<div class="who clearfix" ng-repeat="gerente in lis.gerentes">
-					<img src="{{gerente.imagen}}" alt="img" width="60px" height="70px" class="online">
-					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(gerente.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> {{gerente.nombre}} {{gerente.apPaterno}} {{gerente.apMaterno}} <span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(gerente.departamento_id)}}</i></span> </b>
-					</span>
-					<br>
-				</div>
 
-				<div class="who clearfix" ng-repeat="jefeArea in lis.jefeAreas">
-					<img src="{{jefeArea.imagen}}" alt="img" width="60px" height="70px" class="offline">
-					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(jefeArea.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> {{jefeArea.nombre}} {{jefeArea.apPaterno}} {{jefeArea.apMaterno}} <span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(jefeArea.departamento_id)}}</i></span> </b>
-						<br>
-					</span>
-				</div>
-				
-				<div class="who clearfix" ng-repeat="asesorVenta in lis.asesorVentas">
-					<img src="{{asesorVenta.imagen}}" alt="img" width="60px" height="70px" class="offline">
-					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(asesorVenta.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> {{asesorVenta.nombre}} {{asesorVenta.apPaterno}} {{asesorVenta.apMaterno}} <span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(asesorVenta.departamento_id)}}</i></span> </b>
-						<br>
+                 
+				<div class="who clearfix" style="margin-bottom: 5px;"  ng-repeat="sucursale in lis.sucursales | orderBy:'nombre' | filter:buscar">
+					<img src="{{sucursale.imagen}}" alt="img" width="60px" height="70px" class="online">
+					<span class="name font-sm">  <b><a href="/sucursalVista/{{sucursal._id}}">{{sucursale.nombre}} </a><span class="pull-right font-xs text-muted"><i>{{sucursale.ciudad}}</i></span> </b>
 					</span>
 				</div>
 
-				<div class="who clearfix" ng-repeat="empleado in lis.empleados">
-					<img src="{{empleado.imagen}}" alt="img" width="60px" height="70px" class="away">
-					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(empleado.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> {{empleado.nombre}} {{empleado.apPaterno}} {{empleado.apMaterno}} <span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(empleado.departamento_id)}}</i></span> </b>
-						<br>
-					</span>
-				</div>
 
 			</div>
 		</div>
 	</div>
+	<div class="col-sm-5">
+		<div class="panel panel-default">
+
+			<div class="panel-body status">
+
+				<div class="who clearfix">
+                 
+				<input id="filter"  ng-model="search.nombre" type="text" placeholder="Buscar" />
+		
+				<br/> <br/><br/>
+					<h4>Lista de Empleados</h4>
+				</div>
+
+				<br/>
+
+				<div class="who clearfix"  ng-repeat="listaEmpleado in lis.listaEmpleados">
+                
+				<div class="who clearfix"  style="margin-bottom: 5px;" ng-repeat="empleado in listaEmpleado | orderBy:'nombre' | filter:search ">
+					<img src="{{empleado.imagen}}" alt="img" width="60px" height="70px" class="online">
+					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(empleado.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> <a href="/perfilGerente/{{gerente._id}}">{{empleado.nombre}}&nbsp;{{empleado.apPaterno}}&nbsp;{{empleado.apMaterno}} </a><span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(empleado.departamento_id)}}</i></span> </b>
+					</span>
+					<br>
+				</div>
+					
+					<!--<span class="name font-sm" ng-repeat=" empleado in listaEmpleado | orderBy:'nombre' | filter:search">{{empleado.nombre}}</span>-->
+					<br>
+				</div>
+				<!--<div class="who clearfix"  ng-repeat="gerente in lis.gerentes">
+					<img src="{{gerente.imagen}}" alt="img" width="60px" height="70px" class="online">
+					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(gerente.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> <a href="/perfilGerente/{{gerente._id}}">{{gerente.nombre}}&nbsp;{{gerente.apPaterno}}&nbsp;{{gerente.apMaterno}} </a><span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(gerente.departamento_id)}}</i></span> </b>
+					</span>
+					<br>
+				</div>-->
+
+				<!--<div class="who clearfix"   ng-repeat="jefeArea in lis.jefeAreas">
+					<img src="{{jefeArea.imagen}}" alt="img" width="60px" height="70px" class="offline">
+					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(jefeArea.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> <a href="/perfilJefe/{{jefeArea._id}}" >{{jefeArea.nombre}}&nbsp;{{jefeArea.apPaterno}}&nbsp;{{jefeArea.apMaterno}} </a><span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(jefeArea.departamento_id)}}</i></span> </b>
+						<br>
+					</span>
+				</div>
+			
+
+				<div class="who clearfix"   ng-repeat="empleado in lis.empleados">
+					<img src="{{empleado.imagen}}" alt="img" width="60px" height="70px" class="away">
+					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(empleado.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> <a href="/perfil/{{asesorVenta._id}}">{{empleado.nombre}}&nbsp;{{empleado.apPaterno}}&nbsp;{{empleado.apMaterno}}</a> <span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(empleado.departamento_id)}}</i></span> </b>
+						<br>
+					</span>
+				</div>-->
+
+			</div>
+		</div>
+	</div>
+	
 </div>

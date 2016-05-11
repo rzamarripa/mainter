@@ -6,9 +6,12 @@ angular.module("interCeramic")
   	this.felicitacion = {};
   	this.departamento_id = Meteor.user().profile.departamento_id;
 	this.subscribe('home');
-	this.subscribe('noticias');
+	this.subscribe('noticiasHome');
 
 	this.subscribe('empleados');
+
+	this.subscribe('articulos');
+
 	
 	this.subscribe('felicitaciones');
 	
@@ -34,36 +37,87 @@ angular.module("interCeramic")
 	   empleados: ()=>{
 	   	return Empleados.find();
 	  },
+	  gerentes: ()=>{
+	   	return Gerentes.find();
+	  },
+	  jefeAreas: ()=>{
+	   	return JefeAreas.find();
+	  },
 	   felicitaciones : () => {
 	  	return Felicitaciones.find();
 	  },
+	  articulos : () => {
+		  return Articulos.find();
+	  },
 	  cumpleaneros : () => {
 	  	var _cumpleaneros = [];
-	  		var empleados = this.getReactively('empleados');
-	  		var felicitaciones = this.getReactively('felicitaciones');
-	  		if(empleados != undefined && felicitaciones != undefined){
-			  	_.each(empleados, function(empleado){
-			  		var fechaNacimiento = new Date(empleado.fechaNac);
-					var diaNac = fechaNacimiento.getDate();		
-					var mesNac = fechaNacimiento.getMonth() + 1;
-					var fechaActual = new Date();
-					var diaActual = fechaActual.getDate();
-					var mesActual = fechaActual.getMonth() + 1;
-					if(mesNac === mesActual){
-						if(diaNac === diaActual){
-							console.log(felicitaciones);
-							var felicitado = _.where(felicitaciones,{receptor_id:empleado._id,emisor_id:Meteor.userId()});
-							console.log(felicitado);
-							if(felicitado.length == 0){
-								_cumpleaneros.push(empleado);
-							}				
-						}
+  		var empleados = this.getReactively('empleados');
+  		var felicitaciones = this.getReactively('felicitaciones');
+  		if(empleados != undefined && felicitaciones != undefined){
+		  	_.each(empleados, function(empleado){
+		  		var fechaNacimiento = new Date(empleado.fechaNac);
+				var diaNac = fechaNacimiento.getDate();		
+				var mesNac = fechaNacimiento.getMonth() + 1;
+				var fechaActual = new Date();
+				var diaActual = fechaActual.getDate();
+				var mesActual = fechaActual.getMonth() + 1;
+				if(mesNac === mesActual){
+					if(diaNac === diaActual){
+						console.log(felicitaciones);
+						var felicitado = _.where(felicitaciones,{receptor_id:empleado._id,emisor_id:Meteor.userId()});
+						console.log(felicitado);
+						if(felicitado.length == 0){
+							_cumpleaneros.push(empleado);
+						}				
 					}
-			  	})
-			 }
-			 if(_cumpleaneros.length > 0){
-				 $('#myModal').modal('show');
-			}
+				}
+		  	})
+		}
+		var empleados = this.getReactively('jefeAreas');
+  		if(empleados != undefined && felicitaciones != undefined){
+		  	_.each(empleados, function(empleado){
+		  		var fechaNacimiento = new Date(empleado.fechaNac);
+				var diaNac = fechaNacimiento.getDate();		
+				var mesNac = fechaNacimiento.getMonth() + 1;
+				var fechaActual = new Date();
+				var diaActual = fechaActual.getDate();
+				var mesActual = fechaActual.getMonth() + 1;
+				if(mesNac === mesActual){
+					if(diaNac === diaActual){
+						console.log(felicitaciones);
+						var felicitado = _.where(felicitaciones,{receptor_id:empleado._id,emisor_id:Meteor.userId()});
+						console.log(felicitado);
+						if(felicitado.length == 0){
+							_cumpleaneros.push(empleado);
+						}				
+					}
+				}
+		  	})
+		}
+		var empleados = this.getReactively('gerentes');
+  		if(empleados != undefined && felicitaciones != undefined){
+		  	_.each(empleados, function(empleado){
+		  		var fechaNacimiento = new Date(empleado.fechaNac);
+				var diaNac = fechaNacimiento.getDate();		
+				var mesNac = fechaNacimiento.getMonth() + 1;
+				var fechaActual = new Date();
+				var diaActual = fechaActual.getDate();
+				var mesActual = fechaActual.getMonth() + 1;
+				if(mesNac === mesActual){
+					if(diaNac === diaActual){
+						console.log(felicitaciones);
+						var felicitado = _.where(felicitaciones,{receptor_id:empleado._id,emisor_id:Meteor.userId()});
+						console.log(felicitado);
+						if(felicitado.length == 0){
+							_cumpleaneros.push(empleado);
+						}				
+					}
+				}
+		  	})
+		}
+		if(_cumpleaneros.length > 0){
+			 $('#myModal').modal('show');
+		}
 		 return _cumpleaneros;
 	  }
   	});
@@ -144,6 +198,7 @@ angular.module("interCeramic")
    this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
+		if(departamento)
 		return departamento.nombre;
 	};
 
@@ -215,20 +270,20 @@ this.mes = function()
 
 
     var n = weekday[d.getMonth()];
-    document.getElementById("mes").innerHTML = n;
+    return n;
 }
  
  this.dia = function() {
     var d = new Date();
     var n = d.getDate();
-    document.getElementById("dia").innerHTML = n;
+    return n;
 }
-   this.year = function()
-  {
+ this.year = function()
+{
 
    var d = new Date();
     var n = d.getFullYear();
-    document.getElementById("year").innerHTML = n;
+    return n;
 }
 
  

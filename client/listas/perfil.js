@@ -11,6 +11,17 @@ angular.module("interCeramic")
 	    _id : $stateParams.id
     }];
   });
+      this.subscribe('jefeAreas', () => {
+    return [{
+	    _id : $stateParams.id
+    }];
+  });
+        this.subscribe('gerentes', () => {
+    return [{
+	    _id : $stateParams.id
+    }];
+  });
+
 
 	this.subscribe('departamentos');
 
@@ -18,16 +29,43 @@ angular.module("interCeramic")
 	  empleado : () => {
 		  return Empleados.findOne();
 	  },
+	
+	  jefeArea : () => {
+		  return JefeAreas.findOne();
+	  },
+	 
+	  gerente : () => {
+		  return Gerentes.findOne();
+	  },
+
 	  departamentos : () => {
 		  return Departamentos.find();
 	  },
   });
+
+
+	this.insertar= function(gerente)
+	{
+		
+		var idTemp = gerente._id;
+		delete gerente._id;		
+		Listas.update({_id:idTemp},{$set:gerente});
+		$('.collapse').collapse('hide');
+		document.getElementById("mi").style.visibility = "hidden";
+
+
+
+	}
+
   	  
- 
+
+
+  	  
 
 	this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
+		if(departamento)
 		return departamento.nombre;
 	};
 

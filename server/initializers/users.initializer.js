@@ -12,3 +12,13 @@ Meteor.startup(function () {
 		Roles.addUsersToRoles(usuario_id, "admin");
   }
 });
+
+
+/*  Meteor.methods({
+
+    changePassword:function(userId, newPassword){
+      var usuario = Meteor.users.findOne({'username' : userId});
+      Accounts.setPassword(usuario._id, newPassword);      
+    }
+ 
+});*/

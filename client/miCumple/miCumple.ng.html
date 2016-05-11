@@ -1,25 +1,59 @@
 <div class="col-sm-12">
-		<div class="panel panel-default">
+		
+		
+		<div class="jarviswidget  jarviswidget-color-darken jarviswidget-sortable" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-sortable="false" data-widget-deletebutton="false" role="widget" style="">
 
-			<div class="panel-body status">
 
-				<div class="who clearfix" >
-					<h4>Mensajes de Felicitación</h4>
-				</div>
+								<header role="heading"><div class="jarviswidget-ctrls" role="menu">    <a href="javascript:void(0);" class="button-icon jarviswidget-fullscreen-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Fullscreen"><i class="fa fa-expand "></i></a> </div>
+									<h2><strong>Mensajes de Felicitación</strong> <i></i></h2>				
+									
+								<span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
 
-				<br/>
+								<!-- widget div-->
+								<div role="content">
+									
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">	
+									</div>
+									<div class="widget-body " ng-repeat="felicitacion in cumple.felicitaciones" >
 
-				<div class="who clearfix" ng-repeat="felicitacion in cumple.felicitaciones" >
+									<span height="100px;" ><strong>{{cumple.getEmisor(felicitacion.emisor_id)}}</strong> <span class="pull-right"><strong>{{cumple.getDepartamento(felicitacion.departamentoReceptor_id)}}</strong></span></span>
+
+									<br>
+
+										<h2 class="alert alert-danger">{{felicitacion.felicitacion}} </h2>
+									
+									</div>
+								</div>
+								</div>
+
+
+			<!--	<div class="who clearfix" ng-repeat="felicitacion in cumple.felicitaciones" >  
 					<span class="name font-sm">  <b> {{cumple.getEmisor(felicitacion.emisor_id)}}  <span class="pull-right font-xs text-muted"><i>{{cumple.getDepartamento(felicitacion.departamentoReceptor_id)}}</i></span> </b>
 					</span>
 					<br>
-					<span class="name font-sm">  <b> {{felicitacion.felicitacion}} </b>
+					<span class="name font-sm">  <b> {{felicitacion.felicitacion}}  </b>
 					</span>
 					<br/>
-				</div>
+				</div>-->
+	        
 
-			
-
-			</div>
-		</div>
+		
 	</div>
+
+
+
+
+	<!-- widget options:
+									usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+									
+									data-widget-colorbutton="false"	
+									data-widget-editbutton="false"
+									data-widget-togglebutton="false"
+									data-widget-deletebutton="false"
+									data-widget-fullscreenbutton="false"
+									data-widget-custombutton="false"
+									data-widget-collapsed="true" 
+									data-widget-sortable="false"
+									
+								-->

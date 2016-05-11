@@ -42,10 +42,7 @@
 						<label>Fecha de Ingreso</label>
 						<input date-time class="form-control" view="year" max-view="year" min-view="date" ng-model="emp.empleado.fechaIn">
 					</div>
-			    	<div class="col-sm-4">
-			    		<label>Dirección</label>
-				    	<input type="text" class="form-control" placeholder="Dirección" ng-model="emp.empleado.direccion" >
-			    	</div>
+			    
 			    	<div class="col-sm-4">
 			    		<label>Teléfono</label>
 				    	<input type="text" class="form-control" placeholder="Teléfono" ng-model="emp.empleado.telefono" >
@@ -54,29 +51,24 @@
 			    		<label>Correo</label>
 				    	<input type="text" class="form-control" placeholder="Correo" ng-model="emp.empleado.correo" >
 			    	</div>
-			    	<div class="col-sm-4">
+			    	<div class="col-sm-2">
 						<label>Departamento</label>
-						<select class="form-control select2" placeholder="Seleccione" ng-model="emp.empleado.departamento_id">
-						  <option ng-repeat="departamento in emp.departamentos" value="{{departamento._id}}">
+						<select  id="depa" class="form-control select2" placeholder="Seleccione" ng-model="emp.empleado.departamento_id">
+						 <option>No soy departamento</option>
+						  <option ng-click="selectDepa" ng-repeat="departamento in emp.departamentos" value="{{departamento._id}}">
 						  	{{departamento.nombre}}
 						  </option>
 						</select>
 							</div>
-
-			    	<!--
-			    	<div class="col-sm-4">
-						<label >Departamento academico</label>
-						<ui-select ng-model="emp.empleado.deptoAcademico_id"
-					             theme="bootstrap"
-					             ng-disabled="disabled"
-					             reset-search-input="false">
-					    <ui-select-match placeholder="Seleccione">{{$select.selected.descripcionCorta}}</ui-select-match>
-					    <ui-select-choices repeat="emp.deptoAcademico._id as deptoAcademico in deptosAcademicos | filter: $select.search">
-					      <div ng-bind-html="deptoAcademico.descripcionCorta | highlight: $select.search"></div>
-					    </ui-select-choices>
-					  </ui-select>
-					</div>-->
-
+							<div class="col-sm-2">
+						<label>Sucursal</label>
+						<select id="sucu" class="form-control select2" placeholder="Seleccione" ng-model="emp.empleado.sucursale_id">
+						<option ng-click="emp.desSelect()">No soy sucursal</option>
+						  <option ng-click="selectSucu"  ng-repeat="sucursale in emp.sucursales" value="{{sucursale._id}}">
+						  	{{sucursale.nombre}}
+						  </option>
+						</select>
+							</div>
 			    	  <div class="col-sm-4">
 						    <label>Imagen</label>
 					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="emp.empleado.imagen" >
@@ -104,10 +96,10 @@
 					<th width="10%"><div class="text-center">Foto</div></th>
 					<th width="10%"><div class="text-center">Nombre</div></th>
 					<th width="5%"><div class="text-center">Departamento</div></th>
+					<th width="10%"><div class="text-center">Sucursal</div></th>
 					
 					<th width="15%"><div class="text-center">Fecha de nacimiento </div></th>
 					<th width="15%"><div class="text-center">Fecha de ingreso </div></th>
-					<th width="15%"><div class="text-center">Dirección </div></th>
 					<th width="10%"><div class="text-center">Teléfono</div></th>
 					<th width="10%"><div class="text-center">correo</div></th>
 					<th width="5%">
@@ -127,9 +119,9 @@
 		    	<td><img width="50px" ng-src="{{empleado.imagen}} "></td>
 			    <td>{{empleado.nombre}} {{empleado.apPaterno}} {{empleado.apMaterno}}</td>
 			    <td>{{emp.getDepartamento(empleado.departamento_id)}}</td>
+			    <td>{{emp.getSucursal(empleado.sucursale_id)}}</td>
 			    <td>{{empleado.fechaNac | date:"dd-MM-yyyy"}} </td>
 			    <td>{{empleado.fechaIn | date:"dd-MM-yyyy"}} </td>
-			    <td>{{empleado.direccion }} </td>
 			    <td>{{empleado.telefono}} </td>
 			    <td>{{empleado.correo}} </td>
 			    <td>
