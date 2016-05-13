@@ -1,8 +1,9 @@
 angular.module("interCeramic")
 .controller("MercasCtrl", MercasCtrl);  
- function MercasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function MercasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	$reactive(this).attach($scope);
     this.action = true;
+    $rootScope.home = false;
     this.merca = {};
 	this.subscribe('mercas');
 	this.subscribe('departamentos');

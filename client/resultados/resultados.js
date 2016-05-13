@@ -1,7 +1,8 @@
 angular.module("interCeramic")
 .controller("ResultadosCtrl", ResultadosCtrl);  
- function ResultadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
- 	rc = $reactive(this).attach($scope);
+ function ResultadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
+  rc = $reactive(this).attach($scope);
+  $rootScope.home = false;
   this.action = true;
   this.nada = undefined;
   this.categoriasResult_id = '';
@@ -11,10 +12,6 @@ angular.module("interCeramic")
 	});
 
   this.subscribe('categoriasResults');
-  
-
-
-
 	this.helpers({
 	  resultados : () => {
 		  return Resultados.find();
@@ -22,12 +19,11 @@ angular.module("interCeramic")
 	   categoriasResults : () => {
 		  return CategoriasResults.find();
 	  }
-  });
+  	});
   
   this.nuevo = true;	  
   this.nuevoResultado = function()
   {
-
     this.action = true;
     this.nuevo = !this.nuevo;
     this.resultado = {};	
@@ -37,6 +33,7 @@ angular.module("interCeramic")
 
   this.guardar = function(resultado)
 	{
+		this.resultado.categoriasResult_id = this.categoriasResult_id;
 		this.resultado.nombre = Meteor.user().profile.nombre;
 		this.resultado.estatus = true;
 		//this.resultado.extension = resultado.select.split('.').pop();
@@ -96,22 +93,23 @@ angular.module("interCeramic")
 
 	this.tienePermiso = function()
 	{
-		if(Meteor.user().roles[0] == "empleado" )
-		{
-			return false;
+		if(Meteor.user() != undefined){
+			if(Meteor.user().roles[0] == "empleado" )
+			{
+				return false;
+			}
+			if(Meteor.user().roles[0] == "asesorVenta" )
+			{
+				return false;
+			}
+			if(Meteor.user().roles[0] == "gerente" )
+			{
+				return false;
+			}
+			else{
+				return true;
+			}
 		}
-		if(Meteor.user().roles[0] == "asesorVenta" )
-		{
-			return false;
-		}
-		if(Meteor.user().roles[0] == "gerente" )
-		{
-			return false;
-		}
-		else{
-			return true;
-		}
-		
 	}
 		
 };

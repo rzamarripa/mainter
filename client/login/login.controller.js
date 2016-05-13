@@ -1,8 +1,8 @@
-angular.module('interCeramic').controller('LoginCtrl', ['$injector', function ($injector) {
+angular.module('interCeramic').controller('LoginCtrl', ['$injector', function ($injector, $rootScope) {
   var $meteor = $injector.get('$meteor');
   var $state 	= $injector.get('$state');
   var toastr 	= $injector.get('toastr');
-
+ 
   this.credentials = {
     username: '',
     password: ''

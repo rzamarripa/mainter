@@ -1,10 +1,12 @@
 angular.module("interCeramic")
 .controller("ArticulosCtrl", ArticulosCtrl);  
- function ArticulosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function ArticulosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	$reactive(this).attach($scope);
   this.action = true;
 	this.subscribe('articulos');
 	this.subscribe('categoriasArts');
+
+	$rootScope.home = false;
 
 	this.helpers({
 	  articulos : () => {

@@ -1,9 +1,10 @@
 angular.module("interCeramic")
 .controller("DepartamentosCtrl", DepartamentosCtrl);  
- function DepartamentosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function DepartamentosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	rc = $reactive(this).attach($scope);
     this.action = true;
     this.departamento = {};
+    $rootScope.home = false;
 	this.subscribe('departamentos',()=>{
 		return [{estatus:true}]
 	});

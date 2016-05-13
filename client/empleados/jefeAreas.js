@@ -1,9 +1,12 @@
 angular.module("interCeramic")
 .controller("JefeAreasCtrl", JefeAreasCtrl);  
- function JefeAreasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function JefeAreasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	let rc =$reactive(this).attach($scope);
     this.action = true;
-    this.subscribe('jefeAreas');
+    $rootScope.home = false;
+    this.subscribe('jefeAreas', () => {
+    	return [{estatus: true}];
+    });
 
     this.subscribe('departamentos',()=>{
 		return [{estatus:true}]

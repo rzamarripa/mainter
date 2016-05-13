@@ -1,8 +1,9 @@
 angular.module("interCeramic")
 .controller("NoticiasCtrl", NoticiasCtrl);  
- function NoticiasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function NoticiasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	$reactive(this).attach($scope);
   this.action = true;
+  $rootScope.home = false;
 	this.subscribe('noticias');
 	
 

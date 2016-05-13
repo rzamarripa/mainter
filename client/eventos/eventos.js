@@ -2,8 +2,9 @@ angular
   .module('interCeramic')
   .controller('EventosCtrl', EventosCtrl);
  
-function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $compile) {
+function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $compile, $rootScope) {
 	rc = $reactive(this).attach($scope);
+  $rootScope.home = false;
 
 	this.evento = {};
   this.actionAgregar = true;
@@ -24,7 +25,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 
 
   this.subscribe('departamentos',()=>{
-    return [{_id: Meteor.user().profile.departamento_id}]
+    return [{_id: this.getReactively('departamento_id')}]
   });
   	
 	this.helpers({
@@ -34,6 +35,14 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 		},
     departamento : ()  =>  {
     return Departamentos.findOne();
+    },
+    departamento_id : ()=>{
+      if(Meteor.user() != undefined){
+        if(Meteor.user().profile != undefined){
+          return Meteor.user().profile.departamento_id;
+        }
+      }
+      return '';
     }
 	});
   
@@ -70,7 +79,14 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
     rc.evento.start   = moment(date.start).format("YYYY-MM-DD HH:mm");
     rc.evento.end     = moment(date.end).format("YYYY-MM-DD HH:mm");
     rc.actionAgregar = false;
+    $("#eventInfo").html(rc.evento.description);
+    $("#eventContent").dialog({ modal: true, title: rc.evento.title });
+    $("#startTime").html(rc.evento.start);
+    $("#endTime").html(rc.evento.end);
+
+  
   };
+  
   
   this.cancelarEvento = function(){
 	  this.actionAgregar = true; 
@@ -139,13 +155,17 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
     
   /* Render Tooltip */
   this.eventRender = function( event, element, view ) { 
+    console.log("event", event)
+    console.log("element", element)
+    console.log("view", view)
     if (!event.description == "") {
         element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description +
             "</span>");
     }   
     if(view.name === 'month') {
         $(element).height(40);
-    } 
+    }
+     //$("#eventContent").dialog({ modal: true, title: event.title });
   };
   
   /* config object */

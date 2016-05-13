@@ -1,7 +1,4 @@
-Meteor.publish("gerentes", function(){
-	return Gerentes.find({estatus:true});
+Meteor.publish("gerentes", function(params){
+	return Gerentes.find(params);
 });
 
-Meteor.publish("gerente", function(params){
-	return Gerentes.find(params.id);
-});

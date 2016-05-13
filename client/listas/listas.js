@@ -1,12 +1,13 @@
 angular.module("interCeramic")
 .controller("ListasCtrl", ListasCtrl);  
- function ListasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function ListasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	$reactive(this).attach($scope);
   this.action = true;
 
 
 
 	this.subscribe('listas');
+
 	this.subscribe('empleados',()=>{
 		return [{estatus:true}]
 	});
@@ -22,7 +23,9 @@ angular.module("interCeramic")
 	this.subscribe('jefeAreas',()=>{
 		return [{estatus:true}]
 	});
-	this.subscribe('sucursales');
+		this.subscribe('sucursales',()=>{
+		return [{estatus:true}]
+	});
 	
 
 	this.helpers({
@@ -48,15 +51,7 @@ angular.module("interCeramic")
 		  return Sucursales.find();
 	  },
 
-	   listaEmpleados : () =>
-		{
-		 var listaEmpleados = [];
-		 listaEmpleados.push(this.getReactively('jefeAreas'));
-		 listaEmpleados.push(this.getReactively('empleados'));
-		 listaEmpleados.push(this.getReactively('gerentes'));
-		 console.log(listaEmpleados);
-		  	return listaEmpleados;
-	   },
+
 
   });
   	  
@@ -155,9 +150,7 @@ angular.module("interCeramic")
 
 
 
-		this.show = function(id){
-		 $state.go("roots.perfil", {id:id});	
-	}
+
 
   
 		

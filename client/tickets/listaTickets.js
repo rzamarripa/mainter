@@ -1,8 +1,9 @@
 angular.module("interCeramic")
 .controller("ListaTicketsCtrl", ListaTicketsCtrl);  
- function ListaTicketsCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function ListaTicketsCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	$reactive(this).attach($scope);
     this.action = true;
+    $rootScope.home = false;
     this.ponerFechaCompromiso = false;
     this.users = [];
     

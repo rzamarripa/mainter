@@ -1,7 +1,10 @@
 angular.module("interCeramic")
 .controller("HomeCtrl", HomeCtrl);  
- function HomeCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function HomeCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	$reactive(this).attach($scope);
+
+ 	$rootScope.home = true;
+
   	this.action = true;
   	this.felicitacion = {};
   	this.departamento_id = Meteor.user().profile.departamento_id;

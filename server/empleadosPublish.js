@@ -1,7 +1,4 @@
-Meteor.publish("empleados", function(){
-	return Empleados.find({estatus:true});
+Meteor.publish("empleados", function(params){
+	return Empleados.find(params);
 });
 
-Meteor.publish("empleado", function(params){
-	return Empleados.find(params.id);
-});

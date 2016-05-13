@@ -1,8 +1,9 @@
 angular.module("interCeramic")
 .controller("TicketsCtrl", TicketsCtrl);  
- function TicketsCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function TicketsCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	$reactive(this).attach($scope);
     this.action = true;
+    $rootScope.home = false;
     this.nada = undefined;
     this.users = [];
     this.departamento_id = Meteor.user().profile.departamento_id;

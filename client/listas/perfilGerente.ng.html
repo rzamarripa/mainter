@@ -69,13 +69,23 @@
 													<i class="fa fa-birthday-cake">{{perfil.gerente.fechaNac | date:"dd-MM-yyyy"}}</i>&nbsp;&nbsp;<span class="txt-color-darken"></span>
 												</p>
 											</li>
-											<li>{{perfil.gerente.acerca}}</li>
 
-											<div class="col-sm-8">
-											<textarea type="text" style="visibility: visible;" ng-model="root.gerente.acerca" class="form-control" id="mi" placeholder="Acerca de mi" 
-						 					></textarea>
+
+
+											<li ng-if="prefil.currentUser">{{perfil.gerente.acerca}}</li>
+ 								            <li>
+												<p class="text-muted">
+												{{perfil.gerente.acerca }}&nbsp;&nbsp;<span class="txt-color-darken"></span>
+												</p>
+											</li>
+											<li  ng-if="perfil.currentUser" >
+											<button class="btn btn-primary" id="editar" style="visibility: hidden;" ng-click="perfil.editarGerente()">Editar</button>
+											</li>
+
+											<div class="col-sm-8" ng-if="perfil.currentUser">
+											<textarea type="text" class="form-control" style="visibility: visible;" id="acerca" placeholder="Escribir acerca de mi" ng-model="perfil.gerente.acerca"></textarea>
+						 					<button class="btn btn-primary" id="botonGuardar" style="visibility: visible;" ng-click="perfil.insertarGerente(perfil.gerente)">Guardar</button>
 			  								</div>
-			  								<button class="btn btn-primary" ng-click="root.insertar()"></button>
 										</ul>
 										<!--<br>ng-click="root.ocultar()"
 										<p class="font-sm">

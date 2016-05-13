@@ -143,7 +143,7 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
        .state('root.sucursalVista', {
       url: '/sucursalVista/:id',
       templateUrl: 'client/sucursales/sucursalVista.ng.html',  
-       controller: 'SucursalesCtrl as sucu',  
+       controller: 'SucursalesVistaCtrl as sucu',  
     })
       
     
@@ -235,17 +235,7 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       url: '/resultados',
       templateUrl: 'client/resultados/resultados.ng.html',
       controller: 'ResultadosCtrl as resu',
-      resolve: {
-        "currentUser": ["$meteor", "toastr", function($meteor, toastr){
-          return $meteor.requireValidUser(function(user) {
-            if(user.roles[0] == "admin"){
-              return true;
-            }else{
-              return 'UNAUTHORIZED'; 
-            }
-         });
-       }]
-      }
+     
     })
     .state('root.eventos', {
       url: '/eventos',

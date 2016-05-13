@@ -36,43 +36,44 @@ A LA BARRA LATERAL
 		        <span class="menu-item-parent">Inicio</span>
 		      </a>
 		    </li>
+		   <li>
+	     <a ui-sref="root.listas">
+	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+	      <span class="menu-item-parent">Quienes somos</span>
+	    </a>
+	    </li>
+	       <li>
+		      <a ui-sref="root.eventos">
+		        <i class="fa fa-lg fa-fw fa-calendar-o"></i>
+		        <span class="menu-item-parent">Eventos</span>
+		      </a>
+		    </li>
+		      <li>
+	    <a ui-sref="root.resultados">
+	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
+	      <span class="menu-item-parent">Resultados</span>
+	    </a>
+	  </li>
 	<li data-ui-sref-active="active">
 		      <a ui-sref="root.articulos">
 		        <i class="fa fa-lg fa-fw fa-bars"></i>
 		        <span class="menu-item-parent">Artículos</span>
 		      </a>
 		    </li>
-		    <li data-ui-sref-active="active">
-		      <a ui-sref="root.noticias">
-		        <i class="fa fa-lg fa-fw fa fa-archive"></i>
-		        <span class="menu-item-parent">Noticias</span>
-		      </a>
-		    </li>  
-		     <li>
-		      <a ui-sref="root.categorias">
-		        <i class="fa fa-list-alt" ></i>
-		        <span class="menu-item-parent">Categorias</span>
-		      </a>
-		    </li>       
-	  <li>
-	    <a ui-sref="root.resultados">
-	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
-	      <span class="menu-item-parent">Resultados</span>
-	    </a>
-	  </li>
-	   <li>
+		    <li>
 	    <a ui-sref="root.archivos">
 	      <i class="fa fa-lg fa-fw fa fa-book"></i>
 	      <span class="menu-item-parent">Biblioteca</span>
 	    </a>
 	     </li>
-	     <li>
-		      <a ui-sref="root.eventos">
-		        <i class="fa fa-lg fa-fw fa-calendar-o"></i>
-		        <span class="menu-item-parent">Eventos</span>
+		      <li>
+		      <a ui-sref="root.mercas">
+		        <i class="fa fa-pencil-square"></i>
+		        <span class="menu-item-parent">Mercadotecnia</span>
 		      </a>
 		    </li>
-		    <li data-menu-collapse>
+		    
+	     <li data-menu-collapse ng-show="root.ticket(currentUser.profile.empleado_id)">
 		      <a>
 		        <i class="fa fa-lg fa-fw  fa-tag"></i>
 		        <span class="menu-item-parent">Tickets</span>
@@ -92,13 +93,25 @@ A LA BARRA LATERAL
 		    </li>
 		      </ul>
 		    </li>
+		    <li data-ui-sref-active="active " ng-show="root.mostrar(currentUser.profile.empleado_id)">
+		      <a ui-sref="root.noticias">
+		        <i class="fa fa-lg fa-fw fa fa-archive" ></i>
+		        <span class="menu-item-parent">Noticias</span>
+		      </a>
+		    </li>  
+		     <li  ng-show="currentUser.username == 'admin'">
+		      <a ui-sref="root.categorias">
+		        <i class="fa fa-list-alt" ></i>
+		        <span class="menu-item-parent" >Categorias</span>
+		      </a>
+		    </li>       
 		    <li>
-		      <a ui-sref="root.departamentos">
+		      <a ui-sref="root.departamentos" ng-show="currentUser.username == 'admin'">
 		        <i class="fa fa-lg fa-fw fa fa-sitemap"></i>
 		        <span class="menu-item-parent">Departamentos</span>
 		      </a>
 		    </li>
-		    <li data-menu-collapse>
+		    <li data-menu-collapse  ng-show="currentUser.username == 'admin'">
 		     <a href="">
 		        <i class="fa fa-lg fa-fw fa-users"></i>
 		        <span class="menu-item-parent">Staff</span>
@@ -124,25 +137,14 @@ A LA BARRA LATERAL
 		    </li>
 		      </ul>
 		    </li>
-		    <li>
-		      <a ui-sref="root.mercas">
-		        <i class="fa fa-pencil-square"></i>
-		        <span class="menu-item-parent">Mercadotecnia</span>
-		      </a>
-		    </li>
-		        <li>
-		      <a ui-sref="root.sucursales">
+		  
+		        <li ng-show="currentUser.username == 'admin'" >
+		      <a ui-sref="root.sucursales" >
 		        <i class="fa fa-industry"></i>
 		        <span class="menu-item-parent">Sucursales</span>
 		      </a>
 		    </li>
-		      <li>
-	     <a ui-sref="root.listas">
-	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
-	      <span class="menu-item-parent">Quienes somos</span>
-	    </a>
-	    
-	    </li>
+		
 	    <li>
 	     <a ui-sref="root.miCumple" ng-if="root.fecha(root.empleado.fechaNac) || root.fecha(root.jefeArea.fechaNac) || root.fecha(root.gerente.fechaNac) ">
 	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
@@ -152,7 +154,7 @@ A LA BARRA LATERAL
 	    </li>
 
 	    <li class=" pull-right" >
-	     <a  align="right" ng-click="root.linkers()">
+	     <a  align="right" ng-click="root.linkers(currentUser.profile.empleado_id)">
 	      <i  class="fa fa-lg fa-fw fa fa-user"></i>
 	      <span class="menu-item-parent">{{root.user}}</span>
 	    </a>

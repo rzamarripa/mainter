@@ -1,18 +1,22 @@
 angular
 .module("interCeramic")
 .controller("RootCtrl", RootCtrl);
- function RootCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function RootCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
 	$reactive(this).attach($scope);
     this.action = true;
+    $rootScope.home = true;
+    
     users = []; 
-
+    
     this.subscribe('gerente', () => {
       return [{id : this.getReactively('empleado_id')}];
     });
-          this.subscribe('jefeArea', () => {
+
+    this.subscribe('jefeArea', () => {
       return [{id : this.getReactively('empleado_id')}];
     });
-     this.subscribe('empleado', () => {
+
+    this.subscribe('empleado', () => {
       return [{id : this.getReactively('empleado_id')}];
     });
     this.subscribe('departamentos',()=>{
@@ -62,26 +66,45 @@ angular
 
 
 
-  console.log($state.current.name);
-    if($state.current.name == "root.home"){
-    this.home = true;
-    }else{
-    this.home = false;
+  this.mostrar = function(id)
+  { 
+    if(Meteor.user() != undefined){
+    if(Meteor.user().roles[0] == "gerente")
+    {
+      return false;
     }
-  
+    if(Meteor.user().roles[0] == "empleado")
+    {
+      return false;
+     }else{
+        return true;
+      }
+    }
+}
+  this.ticket = function(id)
+  {
+     if(Meteor.user() != undefined){
+    if(Meteor.user().roles[0] == "empleado")
+    {
+      return false;
+     }else{
+        return true;
+      }
+    }
+    }
 
 
   this.linkers = function(id)
-        {
-          
+  {
+    console.log(id);
     if(Meteor.user().roles[0] == "jefeArea"){
-      $state.go('root.perfilJefe', {'id': 'id'}); 
+      $state.go('root.perfilJefe', {'id': id}); 
     }
      if(Meteor.user().roles[0] == "gerente"){
-      $state.go('root.perfilGerente', {'id': 'id'}); 
+      $state.go('root.perfilGerente', {'id': id}); 
     }
      if(Meteor.user().roles[0] == "empleado"){
-      $state.go('root.perfil', {'id': 'id'}); 
+      $state.go('root.perfil', {'id': id}); 
     }
 
   };

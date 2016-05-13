@@ -1,8 +1,9 @@
 angular.module("interCeramic")
 .controller("CategoriasCtrl", CategoriasCtrl);  
- function CategoriasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function CategoriasCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	$reactive(this).attach($scope);
   this.action = true;
+  $rootScope.home = false;
 	this.subscribe('categoriasArts');
 
 	this.helpers({

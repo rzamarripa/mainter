@@ -1,7 +1,8 @@
-<header id="header"    ><!--ng-class="{'home' : root.home == true}"-->
+<div class="row">
+<header id="header" height="80px " ng-class="{'home' : home == true} "  ><!--ng-class="{'home' : root.home == true}"-->
 
   <div class="pull-left" >
-<img  height="55px" width="250px" src="img/interc.png">
+<img  height="75px" width="175px" src="img/interc.png">
 </div>
   <div class="pull-right">
 	  
@@ -31,8 +32,11 @@
     </div>
   </div>
 </header>
+</div>
 
-<aside id="left-panel" >
+
+<div class="col-md-12">
+<aside id="left-panel" style="margin-top: -40px; margin-bottom: 5px;"  >
   <div class="login-info">
 		<span ng-show="{{isLoggedIn()}}"> <!-- User image size is adjusted inside CSS, it should stay as it --> 
 			
@@ -50,8 +54,9 @@
   <div ng-show="currentUser.username != 'admin'" ng-include=" 'client/layouts/depto-nav.ng.html' "></div>-->
   <div ng-include=" 'client/layouts/left-nav.ng.html' "></div>
 </aside>
+</div>
 
-<div id="main" role="main">
+<div id="main" role="main" style="margin-top: 20px;">
 
   <div id="content" ui-view></div>
 </div>

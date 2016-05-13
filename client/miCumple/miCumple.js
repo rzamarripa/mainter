@@ -1,8 +1,9 @@
 angular.module("interCeramic")
 .controller("MiCumpleCtrl", MiCumpleCtrl);  
- function MiCumpleCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function MiCumpleCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	$reactive(this).attach($scope);
   this.action = true;
+  $rootScope.home = false;
   this.users = [];
 	this.subscribe('listas');
 	this.subscribe('empleados',()=>{

@@ -1,8 +1,9 @@
 angular.module("interCeramic")
 .controller("EmpleadosCtrl", EmpleadosCtrl);  
- function EmpleadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function EmpleadosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	let rc =$reactive(this).attach($scope);
     this.action = true;
+    $rootScope.home = false;
     this.departamento_id = Meteor.user().profile.departamento_id;
     this.subscribe('empleados',()=>{
 		return [{estatus:true}]

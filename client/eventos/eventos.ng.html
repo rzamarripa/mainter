@@ -75,9 +75,15 @@
 			</header>
 			<div>
 				<div class="widget-body">
-					<div ui-calendar="e.uiConfig.calendar" class="calendar" ng-model="e.eventSources"></div>
+					<div ui-calendar="e.uiConfig.calendar" class="calendar" ng-model="e.eventSources">
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+<div id="eventContent" title="Event Details" style="display:none;">
+    Inicio: <span id="startTime"></span><br>
+    Fin: <span id="endTime"></span><br><br>
+    <p id="eventInfo"></p>
 </div>

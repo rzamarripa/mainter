@@ -1,6 +1,6 @@
 <h2>Artículos</h2>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-sm-12" ng-show="art.tienePermiso()">
 		<a class="btn btn-{{art.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
 			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoarticulos" ng-click="art.nuevoArticulos()">
 		 {{art.nuevo == true ? 'Nuevo' : 'Cancelar'}}

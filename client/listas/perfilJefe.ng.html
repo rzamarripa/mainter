@@ -70,142 +70,23 @@
 												</p>
 											</li>
 
-											<div class="col-sm-8">
-											<textarea type="text" class="form-control" id="observacionesGenerales" placeholder="Observaciones Generales" 
-						 					ng-model="al.alumno.observacionesGenerales"></textarea>
-			  								</div>
-										</ul>
-										<!--<br>
-										<p class="font-sm">
-											<i>Un poco acerca de mi...</i>
-										</p>
-										<p class="font-xs">
-											{{al.alumno.observacionesGenerales}}
-										</p>
-										<br>
-										<ul class="nav nav-tabs ">
-											<li>
-												<a href="#masinfo" data-toggle="tab">Más Información</a>
+											<li ng-if="currentUser._id == perfil.jefeArea._id">
+												<p class="text-muted">
+												{{perfil.jefeArea.acerca }}&nbsp;&nbsp;<span class="txt-color-darken"></span>
+												</p>
 											</li>
-											<li>
-												<a href="#calificaciones" data-toggle="tab">Calificaciones</a>
+											<li ng-if="currentUser._id == perfil.jefeArea._id">
+											<button class="btn btn-primary" id="editar" style="visibility: hidden;" ng-click="perfil.editarJefe()">Editar</button>
 											</li>
-											<li>
-												<a href="#pagos" data-toggle="tab">Pagos</a>
-											</li>
-										</ul>-->
-										<!--<div class="tab-content padding-top-10">
-											<div class="tab-pane" id="masinfo">
-												<div class="col-sm-6">
-													<ul class="list-unstyled">															
-														<li>
-															<address>
-															  <strong>Información de la Madre</strong><br>
-															  <strong>Nombre:</strong> {{al.alumno.madre}}<br>
-															  <strong>Ocupación:</strong> {{al.alumno.ocupacionMadre}}
-															</address>
-														</li>
-														<li>
-															<address>
-															  <strong>Dirección</strong><br>
-															  {{al.alumno.calleNum}}, {{al.alumno.colonia}}<br>
-															  {{al.alumno.ciudad}}, {{al.alumno.estado}} {{al.alumno.codigoPostal}}<br>
-															</address>
-														</li>
-														<li>
-															<address>
-															  <strong>Lugar de Nacimiento</strong><br>
-															  {{al.alumno.lugarNac}}
-															</address>
-														</li>
-														<li>
-															<address>
-															  <strong>Escolaridad</strong><br>
-															  {{al.alumno.escolaridad}}
-															</address>
-														</li>		
-														<li>
-															<address>
-															  <strong>Nivel Social</strong><br>
-															  {{al.alumno.nivelSocial}}
-															</address>
-														</li>
-														<li>
-															<address>
-															  <strong>Correo para Calificaciones</strong><br>
-															  {{al.alumno.correoCalificaciones}}
-															</address>
-														</li>											
-													</ul>	
-												</div>
-												<div class="col-sm-6">
-													<ul class="list-unstyled">
-														<li>
-															<address>
-															  <strong>Información del Padre</strong><br>
-															  <strong>Nombre:</strong> {{al.alumno.padreTutor}}<br>
-															  <strong>Ocupación:</strong> {{al.alumno.ocupacionPadreTutor}}
-															</address>
-														</li>
-														<li>
-															<address>
-															  <strong>Teléfono Secundario</strong><br>
-																{{al.alumno.tel2}}															  
-															</address>
-														</li>													
-														<li>
-															<address>
-															  <strong>Ocupación</strong><br>
-															  {{al.getOcupacion(al.alumno.ocupacion_id)}}
-															</address>
-														</li>													
-														<li>
-															<address>
-															  <strong>Cómo te enteraste de nosotros</strong><br>
-															  {{al.alumno.medio}}
-															</address>
-														</li>
-														<li>
-															<address>
-															  <strong>Talla</strong><br>
-																{{al.alumno.talla}}															  
-															</address>
-														</li>														
-													</ul>	
-												</div>
-																								
-											</div>
-											<div class="tab-pane" id="calificaciones">
-												<h3>Calificaciones</h3>
-											</div>
-											<div class="tab-pane" id="pagos">
-												<h3>Pagos</h3>
-											</div>											
-										</div>-->	
 
-										<!--<br>
-										<br>
-									</div>										
-									<div class="col-sm-3">
-										<h1><small>Amigos</small></h1>
-										<ul class="list-inline friends-list">
-											<li><img src="img/avatars/1.png" alt="friend-1">
-											</li>
-											<li><img src="img/avatars/2.png" alt="friend-2">
-											</li>
-											<li><img src="img/avatars/3.png" alt="friend-3">
-											</li>
-											<li><img src="img/avatars/4.png" alt="friend-4">
-											</li>
-											<li><img src="img/avatars/5.png" alt="friend-5">
-											</li>
-											<li><img src="img/avatars/male.png" alt="friend-6">
-											</li>
-											<li>
-												<a href="javascript:void(0);">413 more</a>
-											</li>
+											<div class="col-sm-8" ng-if="currentUser._id == perfil.jefeArea._id">
+											<textarea type="text" class="form-control" style="visibility: visible;" id="acerca" placeholder="Escribir acerca de mi" ng-model="perfil.jefeArea.acerca"></textarea>
+						 					<button class="btn btn-primary" id="botonGuardar" style="visibility: visible;" ng-click="perfil.insertarJefe(perfil.jefeArea)">Guardar</button>
+			  								</div>
+
+										
 										</ul>
-									</div>-->
+										
 								</div>
 							</div>
 						</div>

@@ -1,9 +1,12 @@
 angular.module("interCeramic")
 .controller("GerentesCtrl", GerentesCtrl);  
- function GerentesCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr){
+ function GerentesCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
  	let rc =$reactive(this).attach($scope);
     this.action = true;
-    this.subscribe('gerentes');
+    $rootScope.home = false;
+        this.subscribe('gerentes', () => {
+    	return [{estatus: true}];
+    });
 
 this.subscribe('departamentos',()=>{
 		return [{estatus:true}]

@@ -36,84 +36,9 @@
 </div>
  
 
-
-				<!--<div class="row">
-					<div class="col-sm-12">
-						<input type="submit" ng-click="archi.guardar(archi.archivo)" value="Guardar" class="btn btn-primary" ng-show="archi.action">
-						<input type="submit" ng-click="archi.actualizar(archi.archivo)" value="Actualizar" class="btn btn-primary" ng-show="!archi.action">	
-					</div>
-				</div>	-->			  
-		 
-		
-
-
 <br/>
 
-
-
-<!-- List -->
-<!--<div class="row">
-	<div class="col-sm-12">
-		<table class="table table-bordered">
-      <thead>
-      	<tr>
-    			<th width="5%"><div class="text-center">No.</div></th>
-    			<th>Categoría</th>
-					<th width="20%"><div class="text-center">Nombre</div></th>
-					<th width="25%"><div class="text-center">Descripción</div></th>
-					<th width="25%"><div class="text-center">Archivo </div></th>
-					<th width="10%">
-						<div class="text-center">
-							Estatus
-						</div>
-					</th>
-					<th width="10%">
-						<div class="text-center">
-							Acciones
-						</div>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-		    <tr ng-repeat="archivo in archi.archivos">
-			    <td>{{$index+1}}</td>
-			    <td>{{archi.getCategoria(archivo.categoriasLibrero_id)}}</td>
-			    <td>{{archivo.nombre}}</td>		 
-			    <td>{{archivo.descripcion}}</td>
-			    <td class="text-center">
-				    <a target="_blank" href="{{archivo.select}}">Ver Archivo</a>
-			    </td>
-
-			    <td>
-				    <div class="text-center">
-				    	<span ng-if="archivo.estatus" class="label label-success">
-							  Activo
-							</span>
-							<span ng-if="!archivo.estatus" class="label label-danger">
-							  Inactivo
-							</span>
-				    </div>
-			    </td>
-			    <td>
-				    <div class="text-center">
-					    <div class="btn-group">
-							  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							    <span class="caret"></span>
-							    <span class="sr-only">Toggle Dropdown</span>
-							  </button>
-							  <ul class="dropdown-menu text-left">
-							    <li><a href="#" ng-click="archi.editar(archivo._id)"><i class="fa fa-pencil"></i> Editar</a></li>
-							  <li><a href="#" ng-click="archi.cambiarEstatus(archivo._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
-							  </ul>
-							</div>
-				    </div>				    
-			    </td>
-		    </tr>
-			</tbody>
-		</table>
-	</div>
-</div>-->
-<div class="well">
+<div class="well "  ng-if="archi.categoriasLibrero_id != ''">
 <div class="row">				
 	<div class="col-sm-4">
 		<h3 class="dark-grey" ng-show="archi.tienePermiso()" >Agregar archivos</h3>
