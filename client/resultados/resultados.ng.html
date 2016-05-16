@@ -67,6 +67,7 @@
 					<th>No.</th>
 					<th>Archivos</th>
 					<th>Descripción</th>
+					<th>Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -76,6 +77,20 @@
                     	<a target="_blank" href="{{resultado.select}}">Ver Archivo</a>
                     </td>
 					<td>{{resultado.descripcion}}</td>
+					<td>
+				    <div class="text-center">
+					    <div class="btn-group">
+							  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    <span class="caret"></span>
+							    <span class="sr-only">Toggle Dropdown</span>
+							  </button>
+							  <ul class="dropdown-menu text-left">
+							    <li><a href="#" ng-click="resu.editar(resultado._id)"><i class="fa fa-pencil"></i> Editar</a></li>
+							  <li><a href="#" ng-click="resu.cambiarEstatus(resultado._id)"><i class="fa fa-trash"></i> Desactivar</a></li>
+							  </ul>
+							</div>
+				    </div>			    
+			    </td>
 				</tr>
 		
 				

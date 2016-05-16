@@ -37,6 +37,7 @@ this.subscribe('departamentos',()=>{
 		rc.gerente.estatus = true;
 		rc.gerente.nombreCompleto = rc.gerente.nombre + " " + rc.gerente.apPaterno + " " + rc.gerente.apMaterno;
 		Gerentes.insert(rc.gerente, function(err, doc){
+			rc.gerente.empleado_id = doc;
 		    Meteor.call('createUsuario', rc.gerente, 'gerente');
 		    this.nuevo = true;
 		    toastr.success('Usuario guardado.');

@@ -12,7 +12,7 @@
 										<a href="javascript:void(0);" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-envelope-o"></i> Enviar Mensaje</a>
 									</div>
 									<div class="air air-top-left padding-10">
-										<h4 class="txt-color-white font-md"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{perfil.jefeArea.fechaIn | date:"dd-MM-yyyy"}}<small> <a class="btn btn-primary" href="alumnos/{{al.alumno._id}}" ng-show="elMismo(alumno._id)">Modificar</a></small></h4>
+										<h4 class="txt-color-white font-md"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{perfil.empleado.fechaIn | date:"dd-MM-yyyy"}}<small> <a class="btn btn-primary" href="alumnos/{{al.alumno._id}}" ng-show="elMismo(alumno._id)">Modificar</a></small></h4>
 									</div>
 									<ol class="carousel-indicators">
 										<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -38,7 +38,7 @@
 							<div class="col-sm-12">
 								<div class="row">
 									<div class="col-sm-3 profile-pic">
-										<img width="200px" src="{{perfil.jefeArea.imagen}}" >
+										<img width="200px" src="{{perfil.empleado.imagen}}" >
 										<div class="padding-10">
 											<h4 class="font-md"><strong>1,543</strong>
 											<br>
@@ -50,43 +50,41 @@
 										</div>
 									</div>
 									<div class="col-sm-6">
-										<h1>{{perfil.jefeArea.nombre}}&nbsp; <span class="semi-bold">&nbsp;{{perfil.jefeArea.apPaterno}}&nbsp;{{perfil.jefeArea.apMaterno}}</span>
+										<h1>{{perfil.empleado.nombre}}&nbsp;<span class="semi-bold">{{perfil.empleado.apPaterno}}&nbsp;{{perfil.empleado.apMaterno}}</span>
 										<br>
 										<small> empleado</small></h1>
 										<ul class="list-unstyled">
 											<li>
 												<p class="text-muted">
-													<i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken">{{perfil.jefeArea.telefono}}</span>
+													<i class="fa fa-phone"></i>&nbsp;&nbsp;<span class="txt-color-darken">{{perfil.empleado.telefono}}</span>
 												</p>
 											</li>
 											<li>
 												<p class="text-muted">
-													<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:{{al.alumno.correo}}">{{perfil.jefeArea.correo}}</a>
+													<i class="fa fa-envelope"></i>&nbsp;&nbsp;<a href="mailto:{{al.alumno.correo}}">{{perfil.empleado.correo}}</a>
 												</p>
 											</li>
 											<li>
 												<p class="text-muted">
-													<i class="fa fa-birthday-cake">{{perfil.jefeArea.fechaNac | date:"dd-MM-yyyy"}}</i>&nbsp;&nbsp;<span class="txt-color-darken"></span>
+													<i class="fa fa-birthday-cake">{{perfil.empleado.fechaNac | date:"dd-MM-yyyy"}}</i>&nbsp;&nbsp;<span class="txt-color-darken"></span>
 												</p>
 											</li>
 
 											<li >
 												<p class="text-muted">
-												{{perfil.jefeArea.acerca }}&nbsp;&nbsp;<span class="txt-color-darken"></span>
+												{{perfil.empleado.acerca }}&nbsp;&nbsp;<span class="txt-color-darken"></span>
 												</p>
 											</li>
-											<li ng-if="currentUser._id == perfil.jefeArea._id">
-											<button class="btn btn-primary" id="editar" style="visibility: hidden;" ng-click="perfil.editarJefe()">Editar</button>
+											<li>
+											<button class="btn btn-primary" id="editar" style="visibility: hidden;" ng-click="perfil.editar()">Editar</button>
 											</li>
 
-											<div class="col-sm-8" ng-if="currentUser._id == perfil.jefeArea._id">
-											<textarea type="text" class="form-control" style="visibility: visible;" id="acerca" placeholder="Escribir acerca de mi" ng-model="perfil.jefeArea.acerca"></textarea>
-						 					<button class="btn btn-primary" id="botonGuardar" style="visibility: visible;" ng-click="perfil.insertarJefe(perfil.jefeArea)">Guardar</button>
+											<div class="col-sm-8"  >
+											<textarea type="text" class="form-control" style="visibility: visible;" id="acerca" placeholder="Escribir acerca de mi" ng-model="perfil.empleado.acerca"></textarea>
+						 					<button class="btn btn-primary" id="botonGuardar" style="visibility: visible;" ng-click="perfil.insertar(perfil.empleado)">Guardar</button>
 			  								</div>
-
-										
 										</ul>
-										
+
 								</div>
 							</div>
 						</div>

@@ -70,16 +70,16 @@
 												</p>
 											</li>
 
-											<li >
+											<li>
 												<p class="text-muted">
 												{{perfil.jefeArea.acerca }}&nbsp;&nbsp;<span class="txt-color-darken"></span>
 												</p>
 											</li>
-											<li ng-if="currentUser._id == perfil.jefeArea._id">
+											<li >
 											<button class="btn btn-primary" id="editar" style="visibility: hidden;" ng-click="perfil.editarJefe()">Editar</button>
 											</li>
 
-											<div class="col-sm-8" ng-if="currentUser._id == perfil.jefeArea._id">
+											<div class="col-sm-8">
 											<textarea type="text" class="form-control" style="visibility: visible;" id="acerca" placeholder="Escribir acerca de mi" ng-model="perfil.jefeArea.acerca"></textarea>
 						 					<button class="btn btn-primary" id="botonGuardar" style="visibility: visible;" ng-click="perfil.insertarJefe(perfil.jefeArea)">Guardar</button>
 			  								</div>

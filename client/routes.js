@@ -145,6 +145,22 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       templateUrl: 'client/sucursales/sucursalVista.ng.html',  
        controller: 'SucursalesVistaCtrl as sucu',  
     })
+        .state('root.vistaPerfilAsesor', {
+      url: '/vistaPerfilAsesor/:id',
+      templateUrl: 'client/listas/vistaPerfilAsesor.ng.html',  
+       controller: 'PerfilCtrl as perfil',  
+    })
+        .state('root.gerenteVistaPerfil', {
+      url: '/gerenteVistaPerfil/:id',
+      templateUrl: 'client/listas/gerenteVistaPerfil.ng.html',  
+       controller: 'PerfilCtrl as perfil',  
+    })
+        .state('root.vistaPerfilJefe', {
+      url: '/vistaPerfilJefe/:id',
+      templateUrl: 'client/listas/vistaPerfilJefe.ng.html',  
+       controller: 'PerfilCtrl as perfil',  
+    })
+
       
     
 

@@ -98,13 +98,13 @@ angular
   {
     console.log(id);
     if(Meteor.user().roles[0] == "jefeArea"){
-      $state.go('root.perfilJefe', {'id': id}); 
+      $state.go('root.vistaPerfilJefe', {'id': id}); 
     }
      if(Meteor.user().roles[0] == "gerente"){
-      $state.go('root.perfilGerente', {'id': id}); 
+      $state.go('root.vistaPerfilGerente', {'id': id}); 
     }
      if(Meteor.user().roles[0] == "empleado"){
-      $state.go('root.perfil', {'id': id}); 
+      $state.go('root.vistaPerfilAsesor', {'id': id}); 
     }
 
   };
