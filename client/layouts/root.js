@@ -101,7 +101,7 @@ angular
       $state.go('root.vistaPerfilJefe', {'id': id}); 
     }
      if(Meteor.user().roles[0] == "gerente"){
-      $state.go('root.vistaPerfilGerente', {'id': id}); 
+      $state.go('root.gerenteVistaPerfil', {'id': id}); 
     }
      if(Meteor.user().roles[0] == "empleado"){
       $state.go('root.vistaPerfilAsesor', {'id': id}); 

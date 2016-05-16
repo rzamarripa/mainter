@@ -70,7 +70,7 @@ angular.module("interCeramic")
 		
 		var idTemp = jefeArea._id;
 		delete jefeArea._id;		
-		Empleados.update({_id:idTemp},{$set:jefeArea});
+		JefeAreas.update({_id:idTemp},{$set:jefeArea});
 		console.log(jefeArea);
 		document.getElementById("acerca").style.visibility = "hidden";
 		document.getElementById("botonGuardar").style.visibility = "hidden";
@@ -91,7 +91,7 @@ angular.module("interCeramic")
 		
 		var idTemp = gerente._id;
 		delete gerente._id;		
-		Empleados.update({_id:idTemp},{$set:gerente});
+		Gerentes.update({_id:idTemp},{$set:gerente});
 		console.log(gerente);
 		document.getElementById("acerca").style.visibility = "hidden";
 		document.getElementById("botonGuardar").style.visibility = "hidden";
