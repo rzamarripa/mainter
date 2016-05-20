@@ -51,11 +51,20 @@
 			    		<label>Correo</label>
 				    	<input type="text" class="form-control" placeholder="Correo" ng-model="ger.gerente.correo" required>
 			    	</div>
-			    	<div class="col-sm-4">
+			    	<div class="col-sm-2">
 						<label>Departamento</label>
 						<select class="form-control select2" placeholder="Seleccione" ng-model="ger.gerente.departamento_id">
 						  <option ng-repeat="departamento in ger.departamentos" value="{{departamento._id}}">
 						  	{{departamento.nombre}}
+						  </option>
+						</select>
+							</div>
+								<div class="col-sm-2">
+						<label>Sucursal</label>
+						<select id="sucu" class="form-control select2" placeholder="Seleccione" ng-model="ger.gerente.sucursale_id">
+						<option ng-click="emp.desSelect()">No soy sucursal</option>
+						  <option ng-click="selectSucu"  ng-repeat="sucursale in emp.sucursales" value="{{sucursale._id}}">
+						  	{{sucursale.nombre}}
 						  </option>
 						</select>
 							</div>
@@ -105,6 +114,7 @@
 		    	<td><img width="50px" ng-src="{{gerente.imagen}} "></td>
 			    <td>{{gerente.nombre}} {{gerente.apPaterno}} {{gerente.apMaterno}}</td>
 			    <td>{{ger.getDepartamento(gerente.departamento_id)}}</td>
+			    <td>{{ger.getSucursal(gerente.sucursale_id)}}</td>
 			    <td>{{gerente.telefono}} </td>
 			    <td>{{gerente.correo}} </td>
 			    <td>

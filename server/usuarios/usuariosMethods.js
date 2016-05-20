@@ -19,6 +19,8 @@ Meteor.methods({
 		Roles.addUsersToRoles(usuario_id, rol, rolExtra);
 		
 	},
+
+
 	userIsInRole: function(usuario, rol, rolExtra, vista){
 		if (!Roles.userIsInRole(usuario, rol, rolExtra)) {
 	    throw new Meteor.Error(403, "Usted no tiene permiso para entrar a " + vista);

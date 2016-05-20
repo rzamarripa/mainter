@@ -12,12 +12,19 @@ this.subscribe('departamentos',()=>{
 		return [{estatus:true}]
 	});
 
+  this.subscribe('sucursales',()=>{
+		return [{estatus:true}]
+	});
+
 	this.helpers({
 	  gerentes : () => {
 		  return Gerentes.find();
 	  },
 	  departamentos : () => {
 		  return Departamentos.find();
+	  },
+	   sucursales : () => {
+		  return Sucursales.find();
 	  },
   });
   	  
@@ -90,6 +97,13 @@ this.subscribe('departamentos',()=>{
 		var departamento = Departamentos.findOne(departamento_id);
 		if(departamento)
 		return departamento.nombre;
+	};
+
+	this.getSucursal= function(sucursale_id)
+	{
+		var sucursale = Sucursales.findOne(sucursale_id);
+		if(sucursale)
+		return sucursale.nombre;
 	};
 
 	/*rc.getOcupacion = function(id){

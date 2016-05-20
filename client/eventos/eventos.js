@@ -9,6 +9,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 	this.evento = {};
   this.actionAgregar = true;
   this.colorSeleccionado = null;
+
   
   var eventosTotales = [];
   
@@ -47,15 +48,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 	});
   
 
-  this.fecha = function(fechaNac)
-  {
-    if(new Date(fechaNac).getDate() == new Date().getDate() && new Date(fechaNac).getMonth() == new Date().getMonth()){
-      return true; 
-    }else{
-      return false;
-      }     
-  }
-	
+
 
   this.agregarEvento = function(evento){
     this.evento.user = Meteor.userId();
@@ -67,6 +60,25 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 	  Eventos.insert(evento);
     console.log(evento);
 	  this.evento 	= {};
+  }
+
+ 
+
+
+   this.cumple = function(evento){
+    
+    console.log(rc.departamento);
+    evento.estatus = true;
+    evento.start  = moment(evento.start).format("YYYY-MM-DD HH:mm");
+    evento.end    = moment(evento.end).format("YYYY-MM-DD HH:mm");
+    
+    Eventos.insert(evento);
+    console.log(evento);
+    this.evento   = {};
+
+    if (evento.start == this.fecha) {
+      return true
+    }
   }
    this.alertOnEventClick = function(date, jsEvent, view)
   {
@@ -88,6 +100,11 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
   };
   
   
+  this.eventsWatcher = function(event) {
+  this.calendar.fullCalendar('renderEvent', event,true);
+  };
+
+
   this.cancelarEvento = function(){
 	  this.actionAgregar = true; 
 	  this.evento 	= {};
@@ -104,7 +121,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 		Eventos.update({_id:idTemp},{$set:evento});
 		this.actionAgregar = true;
      if (Meteor.userId() == this.evento) 
-		this.evento = {};
+		rc.evento = {};
   }
 
 	/* remove event */
@@ -123,6 +140,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
   };
   
   this.esJefeArea = function(){
+    if(Meteor.user() != undefined)
 	  if(Meteor.user().roles[0] == "jefeArea" || Meteor.user().roles[0] == "admin"){
 		  return true;
 	  }else{
@@ -158,6 +176,8 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
     console.log("event", event)
     console.log("element", element)
     console.log("view", view)
+    event.stick = true;
+    
     if (!event.description == "") {
         element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description +
             "</span>");
@@ -165,6 +185,8 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
     if(view.name === 'month') {
         $(element).height(40);
     }
+
+
      //$("#eventContent").dialog({ modal: true, title: event.title });
   };
   

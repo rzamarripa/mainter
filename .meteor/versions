@@ -62,6 +62,7 @@ fastclick@1.0.7
 fortawesome:fontawesome@4.4.0_1
 fourseven:scss@3.4.1
 froala:editor@2.2.3
+fullcalendar:fullcalendar@2.6.1_1
 geojson-utils@1.0.4
 hot-code-push@1.0.0
 html-tools@1.0.5

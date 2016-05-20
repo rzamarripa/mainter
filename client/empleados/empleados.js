@@ -29,7 +29,10 @@ angular.module("interCeramic")
 	  },
 	  empleado : () => {
 	  	return Empleados.findOne();
-	  }
+	  },
+	
+	   
+
   });
   	  
   this.nuevo = true;	  
@@ -41,7 +44,7 @@ angular.module("interCeramic")
   };
   
   
-	this.guardar = function(empleado)
+	this.guardar = function(empleado,fechaNac)
 	{
 		
 		rc.empleado.estatus = true;
@@ -57,10 +60,47 @@ angular.module("interCeramic")
 		this.empleado = {};
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
+		title = rc.empleado.nombre;
+		var fechaNacimiento = new Date(this.empleado.fechaNac);
+		var dia = this.empleado.fechaNac.getDate();
+		var mes = this.empleado.fechaNac.getMonth();
+		var anio = new Date().getFullYear();
+		console.log(dia,mes,anio);
+		console.log(fechaNacimiento, this.empleado.fechaNac);
+		fechaEvento = new Date(mes + "-" + dia + "-" + anio);
+
+
+		if( rc.empleado.apPaterno != undefined)
+			title = title+' '+ rc.empleado.apPaterno
+		if( rc.empleado.apMaterno != undefined)
+			title = title+ ' ' + rc.empleado.apMaterno
+
+		var evento = {
+            
+			title: title,
+			description: "Felicidades en tu dia",
+	    	start : moment(fechaEvento).format("YYYY-MM-DD HH:mm"),
+		 	allDay: true
+		};
+		evento.estatus = true;
+
+		Eventos.insert(evento);
+		console.log(evento);
 		$state.go('root.empleados');
 		
 	    });
     };
+
+
+    this.fecha = function(fechaNac)
+		{
+		  if(new Date(fechaNac).getDate() == new Date().getDate() && new Date(fechaNac).getMonth() == new Date().getMonth()){
+		    return true; 
+		  }else{
+		    return false;
+		    }     
+		}
+
 	
 	this.editar = function(id)
 	{
@@ -92,6 +132,13 @@ angular.module("interCeramic")
 			empleado.estatus = true;
 		
 		Empleados.update({_id: id},{$set :  {estatus : empleado.estatus}});
+    };
+
+    this.borrar = function(id,empleado)
+	{
+		
+		Empleados.remove(empleado);
+	
     };
 
 
