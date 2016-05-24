@@ -79,5 +79,25 @@ angular.module("interCeramic")
 		
 		Sucursales.update({_id: id},{$set :  {estatus : sucursale.estatus}});
     };
+
+    this.editarFondo = function(sucursale)
+	{
+
+		var idTemp = sucursale._id;
+		delete sucursale._id;		
+		Sucursales.update({_id:idTemp},{$set:sucursale});
+		console.log(sucursale);
+		document.getElementById("guardar").style.visibility = "hidden";
+		document.getElementById("input").style.visibility = "hidden";
+		document.getElementById("botonMostrar").style.visibility = "visible";
+
+	}
+	this.mostrarBtnFondo = function(sucursale)
+	{
+		document.getElementById("guardar").style.visibility = "visible";
+		document.getElementById("input").style.visibility = "visible";
+		document.getElementById("botonMostrar").style.visibility = "hidden";
+	}
+
 		
 };
