@@ -7,18 +7,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div id="myCarousel" class="carousel profile-carousel">
-								<div class="air air-bottom-right padding-10">
-									<div class="col-sm-8">
-									<input type="text" id="input" class="form-control" style="visibility: visible;" placeholder="Pegar imagen aqui" ng-model="perfil.gerente.fondo" >
 								
-									</div>
-										<a  style="visibility: visible;" ng-click="perfil.editarFondoGerente(perfil.gerente)" id="guardar" class="btn txt-color-white bg-color-teal btn-sm">Guardar</a>
-										<a  style="visibility: hidden;" ng-click="perfil.mostrarBtnFondo(perfil.gerente)" id="botonMostrar" class="btn txt-color-white bg-color-teal btn-sm">Editar Fondo</a>
-
-
-									 
-									
-								 </div>
 
 									<div class="air air-top-left padding-10">
 										<h4 class="txt-color-white font-md"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{perfil.gerente.fechaIn | date:"dd-MM-yyyy"}}<small> <a class="btn btn-primary" href="alumnos/{{al.alumno._id}}" ng-show="elMismo(alumno._id)">Modificar</a></small></h4>
@@ -40,8 +29,26 @@
 								<div class="row">
 									<div class="col-sm-3 profile-pic">
 										<img width="200px" src="{{perfil.gerente.imagen}}" >
-										
 									</div>
+
+
+
+									<div class="air air-bottom-right padding-10">
+									<div class="col-sm-8">
+									<input type="text" id="input" class="form-control" style="visibility: visible;" placeholder="Pegar imagen aqui" ng-model="perfil.gerente.fondo" >
+								
+									</div>
+										<a  style="visibility: visible;" ng-click="perfil.editarFondoGerente(perfil.gerente)" id="guardar" class="btn txt-color-white bg-color-teal btn-sm">Guardar</a>
+										<a  style="visibility: hidden;" ng-click="perfil.mostrarBtnFondo(perfil.gerente)" id="botonMostrar" class="btn txt-color-white bg-color-teal btn-sm">Editar Fondo</a>
+
+
+									 
+									
+								 </div>
+
+
+
+
 									<div class="col-sm-6">
 										<h1>{{perfil.gerente.nombre}}&nbsp;<span class="semi-bold"> &nbsp;{{perfil.gerente.apPaterno}}&nbsp;{{perfil.gerente.apMaterno}}</span>
 										<br>

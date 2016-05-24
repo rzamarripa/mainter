@@ -7,7 +7,7 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div id="myCarousel" class="carousel profile-carousel">
-								<div class="air air-bottom-right padding-10">
+								<!--<div class="air air-bottom-right padding-10">
 									<div class="col-sm-8">
 									<input type="text" id="input" class="form-control" style="visibility: visible;" placeholder="Pegar imagen aqui" ng-model="perfil.jefeArea.fondo" >
 								
@@ -18,7 +18,7 @@
 
 									 
 									
-								 </div>
+								 </div>-->
 								 
 								  
 					    
@@ -41,12 +41,32 @@
 									</div>
 								</div>
 							</div>
+
+
+							
+
 							<div class="col-sm-12">
 								<div class="row">
 									<div class="col-sm-3 profile-pic">
 										<img width="200px" src="{{perfil.jefeArea.imagen}}" >
 										
 									</div>
+
+
+
+									<div class="air air-bottom-right padding-10">
+									<div class="col-sm-8">
+									<input type="text" id="input" class="form-control" style="visibility: visible;" placeholder="Pegar imagen aqui" ng-model="perfil.jefeArea.fondo" >
+								
+									</div>
+										<a  style="visibility: visible;" ng-click="perfil.editarFondo(perfil.jefeArea)" id="guardar" class="btn txt-color-white bg-color-teal btn-sm">Guardar</a>
+										<a  style="visibility: hidden;" ng-click="perfil.mostrarBtnFondo(perfil.jefeArea)" id="botonMostrar" class="btn txt-color-white bg-color-teal btn-sm">Editar Fondo</a>
+			 									
+								 </div>
+
+
+
+
 									<div class="col-sm-6">
 										<h1>{{perfil.jefeArea.nombre}}&nbsp; <span class="semi-bold">&nbsp;{{perfil.jefeArea.apPaterno}}&nbsp;{{perfil.jefeArea.apMaterno}}</span>
 										<br>
