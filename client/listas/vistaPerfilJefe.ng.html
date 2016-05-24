@@ -7,31 +7,37 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div id="myCarousel" class="carousel profile-carousel">
-									<div class="air air-bottom-right padding-10">
-										<a href="javascript:void(0);" class="btn txt-color-white bg-color-teal btn-sm"><i class="fa fa-check"></i> Follow</a>&nbsp;
-										<a href="javascript:void(0);" class="btn txt-color-white bg-color-pinkDark btn-sm"><i class="fa fa-envelope-o"></i> Enviar Mensaje</a>
+								<div class="air air-bottom-right padding-10">
+									<div class="col-sm-8">
+									<input type="text" id="input" class="form-control" style="visibility: visible;" placeholder="Pegar imagen aqui" ng-model="perfil.jefeArea.fondo" >
+								
 									</div>
+										<a  style="visibility: visible;" ng-click="perfil.editarFondo(perfil.jefeArea)" id="guardar" class="btn txt-color-white bg-color-teal btn-sm">Guardar</a>
+										<a  style="visibility: hidden;" ng-click="perfil.mostrarBtnFondo(perfil.jefeArea)" id="botonMostrar" class="btn txt-color-white bg-color-teal btn-sm">Editar Fondo</a>
+
+
+									 
+									
+								 </div>
+								 
+								  
+					    
+
+									
 									<div class="air air-top-left padding-10">
 										<h4 class="txt-color-white font-md"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{{perfil.jefeArea.fechaIn | date:"dd-MM-yyyy"}}<small> <a class="btn btn-primary" href="alumnos/{{al.alumno._id}}" ng-show="elMismo(alumno._id)">Modificar</a></small></h4>
+										
 									</div>
 									<ol class="carousel-indicators">
-										<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-										<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-										<li data-target="#myCarousel" data-slide-to="2" class=""></li>
+										<!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+								
 									</ol>
 									<div class="carousel-inner">
 										<!-- Slide 1 -->
 										<div class="item active">
-											<img src="img/demo/s1.jpg" alt="" style="width:100%">
+											<img src="{{perfil.jefeArea.fondo || 'img/demo/s1.jpg'}}" alt="" style="width:100%">
 										</div>
-										<!-- Slide 2 -->
-										<div class="item">
-											<img src="img/demo/s2.jpg" alt="" style="width:100%">
-										</div>
-										<!-- Slide 3 -->
-										<div class="item">
-											<img src="img/demo/m3.jpg" alt="" style="width:100%">
-										</div>
+													
 									</div>
 								</div>
 							</div>
@@ -39,15 +45,7 @@
 								<div class="row">
 									<div class="col-sm-3 profile-pic">
 										<img width="200px" src="{{perfil.jefeArea.imagen}}" >
-										<div class="padding-10">
-											<h4 class="font-md"><strong>1,543</strong>
-											<br>
-											<small>Seguidores</small></h4>
-											<br>
-											<h4 class="font-md"><strong>419</strong>
-											<br>
-											<small>Amigos</small></h4>
-										</div>
+										
 									</div>
 									<div class="col-sm-6">
 										<h1>{{perfil.jefeArea.nombre}}&nbsp; <span class="semi-bold">&nbsp;{{perfil.jefeArea.apPaterno}}&nbsp;{{perfil.jefeArea.apMaterno}}</span>
