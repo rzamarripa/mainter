@@ -59,11 +59,13 @@
 						  </option>
 						</select>
 							</div>
-								<div class="col-sm-2">
+
+
+						<div class="col-sm-2">
 						<label>Sucursal</label>
 						<select id="sucu" class="form-control select2" placeholder="Seleccione" ng-model="ger.gerente.sucursale_id">
-						<option ng-click="emp.desSelect()">No soy sucursal</option>
-						  <option ng-click="selectSucu"  ng-repeat="sucursale in emp.sucursales" value="{{sucursale._id}}">
+						<option ng-click="ger.desSelect()">No soy sucursal</option>
+						  <option ng-click="selectSucu"  ng-repeat="sucursale in ger.sucursales" value="{{sucursale._id}}">
 						  	{{sucursale.nombre}}
 						  </option>
 						</select>
@@ -95,6 +97,7 @@
 					<th width="10%"><div class="text-center">Foto</div></th>
 					<th width="10%"><div class="text-center">Nombre</div></th>
 					<th width="15%"><div class="text-center">Departamento</div></th>
+					<th width="10%"><div class="text-center">Sucursal</div></th>
 					<th width="10%"><div class="text-center">Teléfono</div></th>
 					<th width="10%"><div class="text-center">correo</div></th>
 					<th width="10%">

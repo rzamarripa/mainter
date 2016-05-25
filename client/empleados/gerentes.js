@@ -106,6 +106,9 @@ this.subscribe('departamentos',()=>{
 		return sucursale.nombre;
 	};
 
+
+
+
 	/*rc.getOcupacion = function(id){
 		var ocupacion = Ocupaciones.findOne(rc.alumno.ocupacion_id);
 		return ocupacion.descripcion;

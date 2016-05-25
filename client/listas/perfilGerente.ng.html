@@ -27,9 +27,24 @@
 							<div class="col-sm-12">
 								<div class="row">
 									<div class="col-sm-3 profile-pic">
-										<img width="200px" src="{{perfil.gerente.imagen}}" >
+										<img style="width: 100px; height: 100px;
+										border-radius: 150px; -webkit-border-radius: 150px; -moz-border-radius: 150px;"  src="{{perfil.gerente.imagen}}" >
 										
 									</div>
+
+
+									<div class="air air-bottom-right padding-10">
+									<div class="col-sm-8">
+									<input type="text" id="input" class="form-control" style="visibility: visible;" placeholder="Pegar imagen aqui" ng-model="perfil.gerente.fondo" ng-show="currentUser.username == 'admin'" >
+								
+									</div>
+										<a  style="visibility: visible;" ng-click="perfil.editarFondoEmpleado(perfil.gerente)" id="guardar" class="btn txt-color-white bg-color-teal btn-sm" ng-show="currentUser.username == 'admin'">Guardar</a>
+										<a  style="visibility: hidden;" ng-click="perfil.mostrarBtnFondo(perfil.gerente)" id="botonMostrar" class="btn txt-color-white bg-color-teal btn-sm" ng-show="currentUser.username == 'admin'">Editar Fondo</a>
+
+
+									 
+									
+								 </div>
 									<div class="col-sm-6">
 										<h1>{{perfil.gerente.nombre}}&nbsp;<span class="semi-bold"> &nbsp;{{perfil.gerente.apPaterno}}&nbsp;{{perfil.gerente.apMaterno}}</span>
 										<br>
