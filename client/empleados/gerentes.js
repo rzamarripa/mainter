@@ -56,6 +56,8 @@ this.subscribe('departamentos',()=>{
 	    });
     };
 
+
+
     
   
 	
@@ -72,12 +74,15 @@ this.subscribe('departamentos',()=>{
 	{
 		var idTemp = gerente._id;
 		delete gerente._id;		
-		 Meteor.call('cambiaContra', rc.gerente, 'gerente');
+		 Meteor.call('cambiaContra', gerente.usuario, gerente.contrasena);
 		Gerentes.update({_id:idTemp},{$set:gerente});
 		$('.collapse').collapse('hide');
 		this.nuevo = true;
 	};
 	
+
+	
+
 
 	this.cambiarEstatus = function(id)
 	{
