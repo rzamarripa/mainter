@@ -11,7 +11,9 @@ Meteor.methods({
 				nombreCompleto : usuario.nombre  + " " + usuario.apPaterno + " " + usuario.apMaterno,
 				fotografia : usuario.fotografia,
 				departamento_id : usuario.departamento_id,
-				empleado_id : usuario.empleado_id
+				empleado_id : usuario.empleado_id,
+				estatus : true,
+			
 			}
 		});
 

@@ -1,22 +1,43 @@
-angular.module('interCeramic').controller('LoginCtrl', ['$injector', function ($injector, $rootScope) {
-  var $meteor = $injector.get('$meteor');
-  var $state 	= $injector.get('$state');
-  var toastr 	= $injector.get('toastr');
- 
-  this.credentials = {
-    username: '',
-    password: ''
-  };
+angular
+.module("interCeramic")
+.controller("LoginCtrl", LoginCtrl);
+function LoginCtrl($scope, $meteor, $reactive,  $state, $stateParams, toastr) {
+  $reactive(this).attach($scope);
+
+  this.username = "";
+  this.password = "";
+
+  this.subscribe("users", () => {
+    return [{
+      username: this.getReactively("username")
+    }]
+  });
+
+  this.helpers({
+    usuario : () => {
+      return Meteor.users.findOne();
+    }
+  })
 
   this.login = function () {
-    $meteor.loginWithPassword(this.credentials.username, this.credentials.password).then(
-      function () {
-	      toastr.success("Bienvenido al Sistema");
-        $state.go('root.home');        
-      },
-      function (error) {
-        toastr.error(error.reason);
-      }
-    )
+    console.log(this.usuario);
+    
+    if (this.usuario.profile.estatus == false){
+      toastr.error("Usuario no identificado");
+      //throw new Meteor.Error(403, "User not found");
+      console.log("falso");
+   }else{
+      $meteor.loginWithPassword(this.username, this.password).then(
+        function () {
+          toastr.success("Bienvenido al Sistema");
+          $state.go('root.home');        
+        },
+        function (error) {
+          toastr.error(error.reason);
+        }
+      ) 
+    }
+    
   }
-}]);
+};
+

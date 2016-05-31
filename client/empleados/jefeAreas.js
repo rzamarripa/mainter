@@ -12,6 +12,10 @@ angular.module("interCeramic")
 		return [{estatus:true}]
 	});
 
+	this.subscribe('users', () => {
+		return [{"profile.estatus":true}];
+	});
+
 	this.helpers({
 	  jefeAreas : () => {
 		  return JefeAreas.find();
@@ -35,9 +39,11 @@ angular.module("interCeramic")
 	
 		console.log(rc.jefeArea);			
 		rc.jefeArea.estatus = true;
+		rc.jefeArea.actividad = 1;
 		rc.jefeArea.nombreCompleto = rc.jefeArea.nombre + " " + rc.jefeArea.apPaterno + " " + rc.jefeArea.apMaterno;
 		JefeAreas.insert(rc.jefeArea, function(err, doc){
-			   this.nuevo = true;
+
+			this.nuevo = true;
 			rc.jefeArea.empleado_id = doc;
 		    Meteor.call('createUsuario', rc.jefeArea, 'jefeArea');
 
@@ -77,13 +83,25 @@ angular.module("interCeramic")
 
 	this.cambiarEstatus = function(id)
 	{
-		var jefeArea = JefeAreas.findOne({_id:id});
-		if(jefeArea.estatus == true)
-			jefeArea.estatus = false;
+		var jefeArea = Meteor.users.findOne({"profile.empleado_id": id});
+		console.log(jefeArea);
+		var tempId = jefeArea._id;
+		delete jefeArea._id;
+	
+
+		if(jefeArea.profile.estatus == true )
+			
+			jefeArea.profile.estatus = false  
 		else
-			jefeArea.estatus = true;
+			jefeArea.profile.estatus = true;
 		
-		JefeAreas.update({_id: id},{$set :  {estatus : jefeArea.estatus}});
+		JefeAreas.update({_id:id}, {$set :  {estatus : jefeArea.profile.estatus}});  
+		Meteor.call('actualizarUsuario', id );
+		
+
+		console.log(jefeArea);
+
+
     };
 
    

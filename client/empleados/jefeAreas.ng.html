@@ -61,13 +61,13 @@
 							</div>
 			    	  <div class="col-sm-4">
 						    <label>Imagen</label>
-					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="jefe.jefeArea.imagen" >
+					    	<input type="text" class="form-control" placeholder="Imagen"  >
 					    </div>
 					</div>				
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<input type="submit" ng-click="jefe.guardar(jefe.jefeArea)" value="Guardar" class="btn btn-primary" ng-show="jefe.action">
+						<input type="submit" ng-click="jefe.guardar(jefe.jefeArea)" ng-model="jefe.jefeArea.actividad" value="Guardar" class="btn btn-primary" ng-show="jefe.action">
 						<input type="submit" ng-click="jefe.actualizar(jefe.jefeArea)" value="Actualizar" class="btn btn-primary" ng-show="!jefe.action">				
 					</div>
 				</div>	  
