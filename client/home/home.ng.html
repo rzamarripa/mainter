@@ -112,8 +112,9 @@
               <a class="btn btn-primary" ng-click="hom.guardarSeccionEvento(seccion)" value="Guardar" ng-show="hom.accionEvento">Guardar</a>
             <br/>
     </div>
-            <h4 ng-show="hom.tienePermiso()" ng-repeat="seccion in hom.secciones">{{seccion.eventoSeccion}} <br/><a class="btn btn-primary btn-sm" ng-click="hom.editarSeccionEvento(seccion._id)">Editar</a>
-             <a class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionEvento(seccion._id)">Borrar</a>
+            <h4  ng-repeat="seccion in hom.secciones">{{seccion.eventoSeccion}} <br/>
+            <a  ng-show="hom.tienePermiso()" class="btn btn-primary btn-sm" ng-click="hom.editarSeccionEvento(seccion._id)">Editar</a>
+             <a  ng-show="hom.tienePermiso()" class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionEvento(seccion._id)">Borrar</a>
             </h4>
             </h3>
             <div class="card card-block">
@@ -147,8 +148,9 @@
               <a class="btn btn-primary" ng-click="hom.guardarSeccionLibrero(seccionLibrero)" value="Guardar" ng-show="hom.accionLibrero">Guardar</a>
             <br/>
     </div>
-            <h4 ng-show="hom.tienePermiso()" ng-repeat="seccionLibrero in hom.seccionesLibrero">{{seccionLibrero.libreroSeccion}} <br/><a class="btn btn-primary btn-sm" ng-click="hom.editarSeccionLibrero(seccionLibrero._id)">Editar</a>
-             <a class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionLibrero(seccionLibrero._id)">Borrar</a>
+            <h4  ng-repeat="seccionLibrero in hom.seccionesLibrero">{{seccionLibrero.libreroSeccion}} <br/>
+            <a ng-show="hom.tienePermiso()" class="btn btn-primary btn-sm" ng-click="hom.editarSeccionLibrero(seccionLibrero._id)">Editar</a>
+             <a ng-show="hom.tienePermiso()" class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionLibrero(seccionLibrero._id)">Borrar</a>
             </h4>
             </h3>
             <div class="card card-block">
@@ -182,8 +184,9 @@
               <a class="btn btn-primary" ng-click="hom.guardarSeccionResultado(seccionResultado)" value="Guardar" ng-show="hom.accionResultado">Guardar</a>
             <br/>
     </div>
-            <h4 ng-show="hom.tienePermiso()"  ng-repeat="seccionResultado in hom.seccionesResultados">{{seccionResultado.ResultadosSeccion}} <br/><a class="btn btn-primary btn-sm" ng-click="hom.editarSeccionResultado(seccionResultado._id)">Editar</a>
-             <a class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionResultado(seccionResultado._id)">Borrar</a>
+            <h4   ng-repeat="seccionResultado in hom.seccionesResultados">{{seccionResultado.ResultadosSeccion}} <br/>
+            <a  ng-show="hom.tienePermiso()" class="btn btn-primary btn-sm" ng-click="hom.editarSeccionResultado(seccionResultado._id)">Editar</a>
+             <a ng-show="hom.tienePermiso()" class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionResultado(seccionResultado._id)">Borrar</a>
             </h4>
             </h3>
             <div class="card card-block">

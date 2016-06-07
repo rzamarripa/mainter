@@ -327,14 +327,14 @@ angular.module("interCeramic")
 	{
     this.seccionLibrero = SeccionesLibrero.findOne({_id:id});
     this.accionLibrero = false;
-    $('.collapse').collapse("show");
+    $('.collapseLibrero').collapse("show");
     this.mostrarLibrero = false;
 	};
 	this.editarSeccionResultado = function(id)
 	{
     this.seccionResultado = SeccionesResultado.findOne({_id:id});
     this.accionResultado = false;
-    $('.collapse').collapse("show");
+    $('.collapseResultado').collapse("show");
     this.mostrarResultado = false;
 	};
 	this.actualizarSeccionEvento = function(seccion)
@@ -435,6 +435,10 @@ angular.module("interCeramic")
 this.tienePermiso = function()
 	{
 		if(Meteor.user().roles[0] == "empleado" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "jefeArea" )
 		{
 			return false;
 		}
