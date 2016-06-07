@@ -7,6 +7,7 @@ angular.module("interCeramic")
 
   	this.action = true;
   	this.felicitacion = {};
+  	 this.seccion = {};	
   	this.departamento_id = Meteor.user().profile.departamento_id;
 	this.subscribe('home');
 	this.subscribe('noticiasHome');
@@ -14,6 +15,17 @@ angular.module("interCeramic")
 	this.subscribe('empleados');
 
 	this.subscribe('articulos');
+
+		this.subscribe('secciones',()=>{
+		return [{estatus:true}]
+	});
+		this.subscribe('seccionesLibrero',()=>{
+		return [{estatus:true}]
+	});
+		this.subscribe('seccionesResultado',()=>{
+		return [{estatus:true}]
+	});
+	
 
 	
 	this.subscribe('felicitaciones');
@@ -51,6 +63,15 @@ angular.module("interCeramic")
 	  },
 	  articulos : () => {
 		  return Articulos.find();
+	  },
+	   secciones : () => {
+		  return Secciones.find();
+	  },
+	  seccionesLibrero : () => {
+		  return SeccionesLibrero.find();
+	  },
+	  seccionesResultados : () => {
+		  return SeccionesResultado.find();
 	  },
 	  cumpleaneros : () => {
 	  	var _cumpleaneros = [];
@@ -131,7 +152,10 @@ angular.module("interCeramic")
     this.action = true;
     this.nuevo = !this.nuevo;
     this.home = {};		
+
   };
+
+ 
   
   this.enviar = function(cumpleanero)
 	{
@@ -197,6 +221,180 @@ angular.module("interCeramic")
 		Home.update({_id: id},{$set :  {estatus : home.estatus}});
     };
 
+///////////////////////////////SECCION///////////////////////////////////////////////////////////
+
+     this.guardarSeccion = function(seccion)
+	{
+
+		this.seccion.estatus = true;
+		
+		Secciones.insert(this.seccion);
+		document.getElementById("guardar").style.visibility = "hidden";
+		document.getElementById("btnGuardar").style.visibility = "hidden";
+		document.getElementById("btneditar").style.visibility = "show";
+		
+		console.log(this.seccion);
+		//this.feli = false;
+		
+
+	};
+	
+	this.editarSeccion = function(id)
+	{
+    this.seccion = Secciones.findOne({_id:id});
+    document.getElementById("guardar").style.visibility = "show";
+    document.getElementById("btnGuardar").style.visibility = "show";
+		document.getElementById("btneditar").style.visibility = "hidden";
+    this.action = false;
+      $('.collapse').collapse('show');
+    this.nuevo = false;
+	};
+	
+	this.actualizarSeccion = function(seccion)
+	{
+		var idTemp = seccion._id;
+		delete seccion._id;		
+		seccion.update({_id:idTemp},{$set:seccion});
+		$('.collapse').collapse('hide');
+		this.nuevo = true;
+	};
+//////////////////////////////////EVENTO/////////////////////////////////////////////////////
+
+
+ this.accionEvento = true;
+ this.mostrarEvento = true;
+  this.accionLibrero = true;
+ this.mostrarLibrero = true;
+  this.accionResultado = true;
+ this.mostrarResultado = true;
+
+ this.nuevoSeccion = function()
+  {
+    this.accionEvento = true;
+    this.mostrarEvento = !this.mostrarEvento;
+    this.seccion = {};		
+  };
+
+  this.nuevoSeccionLibrero = function()
+  {
+    this.accionLibrero = true;
+    this.mostrarLibrero = !this.mostrarLibrero;
+    this.seccionLibrero = {};		
+  };
+  this.nuevoSeccionResultado = function()
+  {
+    this.accionResultado = true;
+    this.mostrarResultado = !this.mostrarResultado;
+    this.seccionResultado = {};		
+  };
+
+
+	this.guardarSeccionEvento = function(seccion)
+	{	
+		this.seccion.estatus = true;
+		Secciones.insert(this.seccion);
+		console.log(this.seccion);
+		this.seccion = {}; 
+		$('.collapse').collapse("hide");
+		this.mostrarEvento = true;
+	 };
+	 this.guardarSeccionLibrero = function(seccionLibrero)
+	{	
+		this.seccionLibrero.estatus = true;
+		SeccionesLibrero.insert(this.seccionLibrero);
+		console.log(this.seccionLibrero);
+		this.seccionLibrero = {}; 
+		$('.collapse').collapse("hide");
+		this.mostrarLibrero = true;
+	 };
+	 this.guardarSeccionResultado = function(seccionResultado)
+	{	
+		this.seccionResultado.estatus = true;
+		SeccionesResultado.insert(this.seccionResultado);
+		console.log(this.seccionResultado);
+		this.seccionResultado = {}; 
+		$('.collapse').collapse("hide");
+		this.mostrarResultado = true;
+	 };
+	this.editarSeccionEvento = function(id)
+	{
+    this.seccion = Secciones.findOne({_id:id});
+    this.accionEvento = false;
+    $('.collapse').collapse("show");
+    this.mostrarEvento = false;
+	};
+	this.editarSeccionLibrero = function(id)
+	{
+    this.seccionLibrero = SeccionesLibrero.findOne({_id:id});
+    this.accionLibrero = false;
+    $('.collapse').collapse("show");
+    this.mostrarLibrero = false;
+	};
+	this.editarSeccionResultado = function(id)
+	{
+    this.seccionResultado = SeccionesResultado.findOne({_id:id});
+    this.accionResultado = false;
+    $('.collapse').collapse("show");
+    this.mostrarResultado = false;
+	};
+	this.actualizarSeccionEvento = function(seccion)
+	{
+		var idTemp = seccion._id;
+		delete seccion._id;		
+		Secciones.update({_id:idTemp},{$set:seccion});
+		$('.collapse').collapse('hide');
+		console.log(seccion);
+		this.mostrarEvento = true;
+	};
+	this.actualizarSeccionLibrero = function(seccionLibrero)
+	{
+		var idTemp = seccionLibrero._id;
+		delete seccionLibrero._id;		
+		SeccionesLibrero.update({_id:idTemp},{$set:seccionLibrero});
+		$('.collapse').collapse('hide');
+		console.log(seccionLibrero);
+		this.mostrarLibrero = true;
+	};
+	this.actualizarSeccionResultado = function(seccionResultado)
+	{
+		var idTemp = seccionResultado._id;
+		delete seccionResultado._id;		
+		SeccionesResultado.update({_id:idTemp},{$set:seccionResultado});
+		$('.collapse').collapse('hide');
+		console.log(seccionResultado);
+		this.mostrarResultado = true;
+	};
+	this.cambiarEstatusSeccionEvento = function(id)
+	{
+		var seccion = Secciones.findOne({_id:id});
+		if(seccion.estatus == true)
+			seccion.estatus = false;
+		else
+			seccion.estatus = true;
+		
+		Secciones.update({_id: id},{$set :  {estatus : seccion.estatus}});
+    };
+    this.cambiarEstatusSeccionLibrero = function(id)
+	{
+		var seccionLibrero = SeccionesLibrero.findOne({_id:id});
+		if(seccionLibrero.estatus == true)
+			seccionLibrero.estatus = false;
+		else
+			seccionLibrero.estatus = true;
+		
+		SeccionesLibrero.update({_id: id},{$set :  {estatus : seccionLibrero.estatus}});
+    };
+    this.cambiarEstatusSeccionResultado = function(id)
+	{
+		var seccionResultado = SeccionesResultado.findOne({_id:id});
+		if(seccionResultado.estatus == true)
+			seccionResultado.estatus = false;
+		else
+			seccionResultado.estatus = true;
+		
+		SeccionesResultado.update({_id: id},{$set :  {estatus : seccionResultado.estatus}});
+    };
+
 
    this.getDepartamento= function(departamento_id)
 	{
@@ -233,6 +431,30 @@ angular.module("interCeramic")
 		
 //		return days;
 	}
+
+this.tienePermiso = function()
+	{
+		if(Meteor.user().roles[0] == "empleado" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "asesorVenta" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "gerente" )
+		{
+			return false;
+		}
+		else{
+			return true;
+		}
+		
+	}
+
+
+
+/////////////////////////////////////ENCABEZADO/////////////////////////////////////////////////////////////////
 
 this.clock = function()
 {   

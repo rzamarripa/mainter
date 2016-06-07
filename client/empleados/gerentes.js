@@ -93,6 +93,7 @@ this.subscribe('departamentos',()=>{
 			gerente.estatus = true;
 		
 		Gerentes.update({_id: id},{$set :  {estatus : gerente.estatus}});
+		Meteor.call('actualizarUsuario', id );
     };
 
   

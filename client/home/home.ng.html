@@ -1,6 +1,6 @@
 
 
-<h3 >Culiacan Sinaloa México <br/>
+<h3 >Culiacán Sinaloa México <br/>
 {{hom.dia()}} {{hom.mes()}} de {{hom.year()}}
 <br/><span  class="pull-right">Muro Web interceramic de Grupo Kuroda</span> </h3>
 
@@ -89,7 +89,7 @@
     </div>
   </div>
   <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-6 ">
     <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
       <header>
         <h2>Eventos</h2>
@@ -98,17 +98,33 @@
         <div class="widget-body">
           <div class="col-sm-12" >
             <h3 class="card-header">
-            En esta sección, podrás encontrar...
+
+            <a class="btn btn-{{hom.mostrarEvento == true ? 'primary' : 'danger'}}" ng-show="hom.tienePermiso()" role="button" data-toggle="collapse" 
+      href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoseccion" ng-click="hom.nuevoSeccion()">
+     {{hom.mostrarEvento == true ? '  Agregar Texto' : 'Cancelar'}}
+    </a>
+    <div class="collapse" id="collapseExample" ng-show="hom.tienePermiso()">
+           
+             <textarea  class="form-control"  placeholder="Descripción"  ng-model="hom.seccion.eventoSeccion">Descripción</textarea>
+        
+               <a class="btn btn-primary" ng-click="hom.actualizarSeccionEvento(hom.seccion)" ng-show="!hom.accionEvento">Actualizar</a><br/>
+
+              <a class="btn btn-primary" ng-click="hom.guardarSeccionEvento(seccion)" value="Guardar" ng-show="hom.accionEvento">Guardar</a>
+            <br/>
+    </div>
+            <h4 ng-show="hom.tienePermiso()" ng-repeat="seccion in hom.secciones">{{seccion.eventoSeccion}} <br/><a class="btn btn-primary btn-sm" ng-click="hom.editarSeccionEvento(seccion._id)">Editar</a>
+             <a class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionEvento(seccion._id)">Borrar</a>
+            </h4>
             </h3>
             <div class="card card-block">
-              <h8 class="card-title" ng-bind-html=""></h8>
+              <h8 class="card-title" > </h8>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-   <div class="col-sm-6">
+   <div class="col-sm-6 col-sm-offset-6">
     <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
       <header>
         <h2>Librero</h2>
@@ -117,18 +133,34 @@
         <div class="widget-body">
           <div class="col-sm-12" >
             <h3 class="card-header">
-            En esta sección, podrás encontrar...
+
+            <a ng-show="hom.tienePermiso()" class="btn btn-{{hom.mostrarLibrero == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+      href="#collapseExampleLibrero" aria-expanded="false" aria-controls="collapseExampleLibrero" id="nuevoseccionLibrero" ng-click="hom.nuevoSeccionLibrero()">
+     {{hom.mostrarLibrero == true ? '  Agregar Texto' : 'Cancelar'}}
+    </a>
+    <div class="collapse" id="collapseExampleLibrero" ng-show="hom.tienePermiso()">
+           
+             <textarea class="form-control"  placeholder="Descripción"  ng-model="hom.seccionLibrero.libreroSeccion">Descripción</textarea>
+        
+               <a class="btn btn-primary" ng-click="hom.actualizarSeccionLibrero(hom.seccionLibrero)" ng-show="!hom.accionLibrero">Actualizar</a><br/>
+
+              <a class="btn btn-primary" ng-click="hom.guardarSeccionLibrero(seccionLibrero)" value="Guardar" ng-show="hom.accionLibrero">Guardar</a>
+            <br/>
+    </div>
+            <h4 ng-show="hom.tienePermiso()" ng-repeat="seccionLibrero in hom.seccionesLibrero">{{seccionLibrero.libreroSeccion}} <br/><a class="btn btn-primary btn-sm" ng-click="hom.editarSeccionLibrero(seccionLibrero._id)">Editar</a>
+             <a class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionLibrero(seccionLibrero._id)">Borrar</a>
+            </h4>
             </h3>
             <div class="card card-block">
-              <h8 class="card-title" ng-bind-html=""></h8>
+              <h8 class="card-title" > </h8>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-   <div class=" pull-right col-sm-6">
-    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget">
+  <div class="col-sm-6 col-sm-offset-6">
+    <div data-widget-color="blue" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
       <header>
         <h2>Resultados</h2>
       </header>
@@ -136,17 +168,33 @@
         <div class="widget-body">
           <div class="col-sm-12" >
             <h3 class="card-header">
-            En esta sección, podrás encontrar...
 
+            <a ng-show="hom.tienePermiso()" class="btn btn-{{hom.mostrarResultado == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+      href="#collapseExampleResultado" aria-expanded="false" aria-controls="collapseExampleResultado" id="nuevoseccionresultado" ng-click="hom.nuevoSeccionResultado()">
+     {{hom.mostrarResultado== true ? '  Agregar Texto' : 'Cancelar'}}
+    </a>
+    <div class="collapse" id="collapseExampleResultado" ng-show="hom.tienePermiso()">
+           
+             <textarea class="form-control"  placeholder="Descripción"  ng-model="hom.seccionResultado.ResultadosSeccion">Descripción</textarea>
+        
+               <a class="btn btn-primary" ng-click="hom.actualizarSeccionResultado(hom.seccionResultado)" ng-show="!hom.accionResultado">Actualizar</a><br/>
+
+              <a class="btn btn-primary" ng-click="hom.guardarSeccionResultado(seccionResultado)" value="Guardar" ng-show="hom.accionResultado">Guardar</a>
+            <br/>
+    </div>
+            <h4 ng-show="hom.tienePermiso()"  ng-repeat="seccionResultado in hom.seccionesResultados">{{seccionResultado.ResultadosSeccion}} <br/><a class="btn btn-primary btn-sm" ng-click="hom.editarSeccionResultado(seccionResultado._id)">Editar</a>
+             <a class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionResultado(seccionResultado._id)">Borrar</a>
+            </h4>
             </h3>
             <div class="card card-block">
-              <h8 class="card-title" ng-bind-html=""></h8>
+              <h8 class="card-title" > </h8>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
   </div>
 
 </div>
@@ -156,8 +204,7 @@
 
 
 
-<div class="container" >
-  
+<div class="container">
   
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">

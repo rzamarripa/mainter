@@ -132,6 +132,7 @@ angular.module("interCeramic")
 			empleado.estatus = true;
 		
 		Empleados.update({_id: id},{$set :  {estatus : empleado.estatus}});
+		Meteor.call('actualizarUsuario', id );
     };
 
     this.borrar = function(id,empleado)
