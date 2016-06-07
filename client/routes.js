@@ -75,7 +75,7 @@ angular.module('interCeramic').config(['$injector', function ($injector) {
       controller: 'RootCtrl as root',
     })
     .state('root.home', {
-      url: '/:id',
+      url: '/',
       templateUrl: 'client/home/home.ng.html',  
        controller: 'HomeCtrl as hom', 
       resolve: {

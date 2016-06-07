@@ -221,43 +221,6 @@ angular.module("interCeramic")
 		Home.update({_id: id},{$set :  {estatus : home.estatus}});
     };
 
-///////////////////////////////SECCION///////////////////////////////////////////////////////////
-
-     this.guardarSeccion = function(seccion)
-	{
-
-		this.seccion.estatus = true;
-		
-		Secciones.insert(this.seccion);
-		document.getElementById("guardar").style.visibility = "hidden";
-		document.getElementById("btnGuardar").style.visibility = "hidden";
-		document.getElementById("btneditar").style.visibility = "show";
-		
-		console.log(this.seccion);
-		//this.feli = false;
-		
-
-	};
-	
-	this.editarSeccion = function(id)
-	{
-    this.seccion = Secciones.findOne({_id:id});
-    document.getElementById("guardar").style.visibility = "show";
-    document.getElementById("btnGuardar").style.visibility = "show";
-		document.getElementById("btneditar").style.visibility = "hidden";
-    this.action = false;
-      $('.collapse').collapse('show');
-    this.nuevo = false;
-	};
-	
-	this.actualizarSeccion = function(seccion)
-	{
-		var idTemp = seccion._id;
-		delete seccion._id;		
-		seccion.update({_id:idTemp},{$set:seccion});
-		$('.collapse').collapse('hide');
-		this.nuevo = true;
-	};
 //////////////////////////////////EVENTO/////////////////////////////////////////////////////
 
 
@@ -268,7 +231,7 @@ angular.module("interCeramic")
   this.accionResultado = true;
  this.mostrarResultado = true;
 
- this.nuevoSeccion = function()
+ this.nuevoSeccionEvento = function()
   {
     this.accionEvento = true;
     this.mostrarEvento = !this.mostrarEvento;
@@ -327,14 +290,14 @@ angular.module("interCeramic")
 	{
     this.seccionLibrero = SeccionesLibrero.findOne({_id:id});
     this.accionLibrero = false;
-    $('.collapseLibrero').collapse("show");
+    $('.collapse').collapse("show");
     this.mostrarLibrero = false;
 	};
 	this.editarSeccionResultado = function(id)
 	{
     this.seccionResultado = SeccionesResultado.findOne({_id:id});
     this.accionResultado = false;
-    $('.collapseResultado').collapse("show");
+    $('.collapse').collapse("show");
     this.mostrarResultado = false;
 	};
 	this.actualizarSeccionEvento = function(seccion)
@@ -394,7 +357,7 @@ angular.module("interCeramic")
 		
 		SeccionesResultado.update({_id: id},{$set :  {estatus : seccionResultado.estatus}});
     };
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    this.getDepartamento= function(departamento_id)
 	{

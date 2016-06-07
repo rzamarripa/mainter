@@ -135,14 +135,6 @@ angular.module("interCeramic")
 		Meteor.call('actualizarUsuario', id );
     };
 
-    this.borrar = function(id,empleado)
-	{
-		
-		Empleados.remove(empleado);
-	
-    };
-
-
 	this.getDepartamento= function(departamento_id)
 	{
 		var departamento = Departamentos.findOne(departamento_id);
