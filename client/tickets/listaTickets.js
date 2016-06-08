@@ -84,7 +84,8 @@ angular.module("interCeramic")
 		var idTemp = _ticket._id;
 		delete _ticket._id;	
 		delete _ticket.$$hashKey;
-		_ticket.estatus = 3;	       
+		_ticket.estatus = 3;
+		_ticket.fechaCreacion = new Date();	       
 		Tickets.update({_id:idTemp},{$set:_ticket});
 	
 	};
@@ -99,6 +100,9 @@ angular.module("interCeramic")
 		_ticket.estatus = 2;
 		document.getElementById("input").style.visibility = "hidden";
         document.getElementById("boton").style.visibility = "hidden";
+    
+        
+
 		Tickets.update({_id:idTemp},{$set:_ticket});
 	
 	};
@@ -141,6 +145,22 @@ angular.module("interCeramic")
 		 
 	}
 
+
+
+
+
+var fechaCompromiso = new Date(this.ticket.fechaCompromiso);
+console.log(fechaCompromiso)
+var fechaCreacion = new Date(this.ticket.fechaCreacion);
+console.log(fechaCreacion);
+var diff = new Date(fechaCreacion.getTime() - fechaCompromiso.getTime());
+
+console.log(diff);
+
+
+/*var date1 = new Date(2010, 6, 17);
+var date2 = new Date(2013, 12, 18);
+var diff = new Date(date2.getTime() - date1.getTime());*/
 
 
 
