@@ -108,30 +108,12 @@
 										<li ng-repeat="ticket in list.listaTicketsRealizados">
 
 												
-														<span class="handle">  </span>
+														<span class="handle"></span>
 													<p>	
-												<span class="date"><font size="2">Fecha de Creación:{{ticket.fecha | date:"dd-MM-yyyy"}}</font></span><br/>
+												<span class="date"><font size="2">Fecha de Creación:{{ticket.fecha | date:"dd-MM-yyyy"}}</font><span ><font size="2">&nbsp;&nbsp;{{ticket.titulo}}&nbsp;&nbsp;&nbsp; Envia: {{list.getEmisor(ticket.emisor_id)}}&nbsp;&nbsp;    Recibe: {{list.getDepartamento(ticket.departamentoReceptor_id)}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}&nbsp;&nbsp;&nbsp;&nbsp; Fecha de Realización: {{ticket.fechaCreacion | date:"dd-MM-yyyy"}}</font></span></span>
 											    
-												<span><font size="2">Envia: {{list.getEmisor(ticket.emisor_id)}}      Recibe: {{list.getDepartamento(ticket.departamentoReceptor_id)}}</font></span>
-												<br/>
-												<span><font size="2"> {{ticket.titulo}}</font></span>
-												<br/>
-											    <span style="font-size: 100%;" ng-bind-html="ticket.nota"></span>
-											    <br/>
-											    <br/>
-											    <div  ng-if="ticket.rating != undefined" ng-model="ticket.rating" class="ui huge star rating" data-rating="3" data-max-rating="5"></div>
-
+												<span ng-bind-html="ticket.nota" style="font-size: 100%;" ><font size="2">Envia: {{list.getEmisor(ticket.emisor_id)}}  </font><div cla ng-if="ticket.rating != undefined" ng-model="ticket.rating" class="ui huge star rating pull.right" data-rating="3" data-max-rating="5"></div> </span>
 												</p>
-
-												
-												
-    										<span class="date">
-												 <span  class="pull-right "><font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font></span>
-                                                  <br/>  <br/>
-												 <span  class="pull-right "><font size="2">Fecha de Realización: {{ticket.fechaCreacion | date:"dd-MM-yyyy"}}</font></span>
-												</span>
-												
-										
 
 											</li>
 										</ul>

@@ -97,7 +97,7 @@
           <div class="col-sm-12" >
             <h3 class="card-header">
 
-            <a class="btn btn-{{hom.mostrarEvento == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+            <a ng-show="hom.tienePermiso()" class="btn btn-{{hom.mostrarEvento == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
       href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoseccion" ng-click="hom.nuevoSeccionEvento()">
    {{hom.mostrarEvento == true ? 'Agregar texto' : 'Cancelar'}}
     </a>
