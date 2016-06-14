@@ -81,7 +81,7 @@
 												 	<!--BOTON REALIZADO-->
 
 												 		<font size="2">Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}</font> <br/><br/>
-												 		<a href="#" ng-click="list.actualizarProceso(ticket)" class="btn btn-primary pull right" style="font-size:120%;  width: 80px; height: 30px; margin-bottom: 10px;  ">Realizado</a>
+												 		<a href="#" ng-click="list.actualizarProceso(ticket);list.diferencia(ticket)" class="btn btn-primary pull right" style="font-size:120%;  width: 80px; height: 30px; margin-bottom: 10px;  ">Realizado</a>
 
 
 
@@ -110,10 +110,11 @@
 												
 														<span class="handle"></span>
 													<p>	
-												<span class="date"><font size="2">Fecha de Creación:{{ticket.fecha | date:"dd-MM-yyyy"}}</font><span ><font size="2">&nbsp;&nbsp; Envia: {{list.getEmisor(ticket.emisor_id)}}&nbsp;&nbsp;    Recibe: {{list.getDepartamento(ticket.departamentoReceptor_id)}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}&nbsp;&nbsp;&nbsp;&nbsp; Fecha de Realización: {{ticket.fechaCreacion | date:"dd-MM-yyyy"}}</font></span></span>
-												<span style="font-size: 80%;">{{ticket.titulo}}</span>
+												<span  class="date" ng-if="ticket.tiempoRealizar != undefined"><font size="2">Fecha de Creación:{{ticket.fecha | date:"dd-MM-yyyy"}}</font><span  ><font size="2">&nbsp;&nbsp; Envia: {{list.getEmisor(ticket.emisor_id)}}&nbsp;&nbsp;    Recibe: {{list.getDepartamento(ticket.departamentoReceptor_id)}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fecha de compromiso: {{ticket.fechaCompromiso | date:"dd-MM-yyyy"}}&nbsp;&nbsp;&nbsp;&nbsp; Fecha de Realización: {{ticket.fechaCreacion | date:"dd-MM-yyyy"}}&nbsp;&nbsp;&nbsp; Tiempo de respuesta:&nbsp;&nbsp;{{ticket.tiempoRealizar}}</font></span></span>
+												<span ng-if="ticket.tiempoRealizar != undefined" style="font-size: 100%;"><strong>{{ticket.titulo}}</strong></span>
+												
 											    
-												<span ng-bind-html="ticket.nota" style="font-size: 100%;" ><font size="2">Envia: {{list.getEmisor(ticket.emisor_id)}}  </font><div cla ng-if="ticket.rating != undefined" ng-model="ticket.rating" class="ui huge star rating pull-right" data-rating="3" data-max-rating="5"></div> </span>
+												<span ng-bind-html="ticket.nota" style="font-size: 100%;" ><div cla ng-if="ticket.rating != undefined" ng-model="ticket.rating" class="ui huge star rating pull-right" data-rating="3" data-max-rating="5"></div> </span>
 												</p>
 
 											</li>

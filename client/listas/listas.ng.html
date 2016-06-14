@@ -1,62 +1,204 @@
-<header style="background-color: red"></header>
+ <header style="background-color: red"></header>
 <div class="row" style="background-color: #f3f3f3;">
 	<div class="col-sm-7">
 		<div class="panel panel-default">
 			<div class="panel-body status">
-			<div class="who clearfix">
-					<h4>¿Quiénes Somos?</h4>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						Somos una de las Franquicias interceramic más grandes de la republica Mexicana, que a través de 2 Empresas atendemos el 90% de los mercados de los Estados de Sinaloa y Sonora.
+			<div class="col-sm-12">
 
-						Tenemos más de 30 años formando parte de la exitosa Red de Franquicias interceramic.
-					</div>					
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-default">
-	        <div class="panel-body status">
-				<div class="who clearfix">
-					<h4>Misión</h4>
+			<a ng-show="lis.tienePermiso()" class=" pull-right btn btn-link btn-{{lis.mostrarQuienes == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+				      href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoquien" ng-click="lis.nuevoQuienes()">
+				   {{lis.mostrarQuienes == true ? 'Agregar texto' : 'Cancelar'}}
+				    </a> 
+				  
+				     <div class="collapse" id="collapseExample" >
+				     <div class="row">
+				     <div class="col-sm-4">
+				     <input class="form-control"  type="text" placeholder="Titulo" ng-model="lis.quien.titulo">
+				      </div>
+				     <div class="col-sm-4">
+					  <input type="text" class="form-control" placeholder="Imagen" ng-model="lis.quien.imagen" >
+					  </div>
+					    </div>
+					    <br/>
+					    <div class="row">
+					     
+				     <textarea  class="form-control"  placeholder="Agregar texto" ng-model="lis.quien.descripcion"></textarea>
+				     </div>
+				      <br/>
+
+				     <a ng-if="lis.tienePermiso()" class="btn btn-primary" ng-click="lis.actualizarQuienes(lis.quien)" ng-show="!lis.accionQuienes">Actualizar</a>
+
+              		<a ng-if="lis.tienePermiso()" class="btn btn-primary" ng-click="lis.guardarQuienes(quien)" value="Guardar" ng-show="lis.accionQuienes">Guardar</a>
+				     </div>
+
+
+
+
+			<div class="who clearfix">		
+		
 				</div>
 				<div class="row">
-					<div class="col-sm-12">
-						Extender las expectativas de nuestros clientes en el mercado de cerámica, muebles de baños, piedras naturales y materiales de instalación ofreciendo los diseños más innovadores con los productos de la más alta calidad a nivel mundial, por medio de un equipo de trabajo altamente capacitado ofreciendo un excelente nivel de servicio a través de nuestra eficiente red de distribución para elevar el nivel de vida de nuestros clientes.
-					</div>					
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-body status">
-				<div class="who clearfix">
-					<h4>Visión</h4>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						Ser simplemente la mejor empresa de nuestro ramo a nivel global. Ser líder en calidad, innovación y servicio viviendo día a día nuestros valores básicos de respeto, humildad y honestidad por medio de un compromiso de trabajo en equipo, excelencia en comunicación y un alto grado de responsabilidad siempre a favor de nuestros clientes.
-					</div>					
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-body status">
-				<div class="who clearfix">
-					<h4>Valores Diferenciadores</h4>
+					<div class="col-sm-12" ng-repeat="quien in lis.quienes">
+					<h4>{{quien.titulo}}</h4>
+					<p>{{quien.descripcion}}</p>
+					<img width="600px" height="250px" ng-src="{{quien.imagen}} ">
 					<br/>
+					 
+						<!--Somos una de las Franquicias interceramic más grandes de la republica Mexicana, que a través de 2 Empresas atendemos el 90% de los mercados de los Estados de Sinaloa y Sonora.
+						Tenemos más de 30 años formando parte de la exitosa Red de Franquicias interceramic.-->
+					
+						<a  ng-show="lis.tienePermiso()" class="btn btn-primary btn-sm" ng-click="lis.editarQuienes(quien._id)">Editar</a>
+            			<a  ng-show="lis.tienePermiso()" class="btn btn-danger btn-sm" ng-click="lis.cambiarEstatusQuienes(quien._id)">Borrar</a><br/>
+					</div>	<br/>
+				  </div><br/>				
+			   </div>
+			</div>
+		</div>
+          <div class="panel panel-default">
+			<div class="panel-body status">
+			<div class="col-sm-12">
+
+			<a ng-show="lis.tienePermiso()" class=" pull-right btn btn-link btn-{{lis.mostrarMision == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+				      href="#collapseExampleMision" aria-expanded="false" aria-controls="collapseExampleMision" id="nuevomision" ng-click="lis.nuevoMision()">
+				   {{lis.mostrarMision == true ? 'Agregar texto' : 'Cancelar'}}
+				    </a> 
+				  
+				     <div class="collapse" id="collapseExampleMision" >
+				     <div class="row">
+				     <div class="col-sm-4">
+				     <input class="form-control"  type="text" placeholder="Titulo" ng-model="lis.mision.titulo">
+				      </div>
+				     <div class="col-sm-4">
+					  <input type="text" class="form-control" placeholder="Imagen" ng-model="lis.mision.imagen" >
+					  </div>
+					    </div>
+					    <br/>
+					    <div class="row">
+					     
+				     <textarea  class="form-control"  placeholder="Agregar texto" ng-model="lis.mision.descripcion"></textarea>
+				     </div>
+				      <br/>
+
+				     <a ng-if="lis.tienePermiso()" class="btn btn-primary" ng-click="lis.actualizarMision(lis.mision)" ng-show="!lis.accionMision">Actualizar</a>
+
+              		<a ng-if="lis.tienePermiso()" class="btn btn-primary" ng-click="lis.guardarMision(mision)" value="Guardar" ng-show="lis.accionMision">Guardar</a>
+				     </div>
+			<div class="who clearfix">		
+		
 				</div>
 				<div class="row">
-					<div class="col-sm-12">
-						<p>INNOVACION</p>
-						<p>Está presente en cada etapa del proceso, desde la selección de las materias primas para producción, hasta el envío del producto terminado a la obra de nuestros clientes.</p>
-						 
-						<p>CALIDAD</p>
-						<p>Es un valor que nos distingue y nos proporciona ventaja sobre nuestros competidores. Nos ha permitido ser punta de lanza en el mercado con nuestros productos y servicios.</p>
-						 
-						<p>SERVICIO</p>
-						<p>Nuestros clientes deben recibir satisfacción total en sus necesidades tanto en los productos como en el servicio que les ofrecemos. Deben sentir que son nuestra razón de ser durante todo el proceso.</p>
-					</div>					
+					<div class="col-sm-12" ng-repeat="mision in lis.misiones">
+					<h4>{{mision.titulo}}</h4>
+					<p>{{mision.descripcion}}</p>
+					<img width="600px" height="250px" ng-src="{{mision.imagen}} ">
+					<br/>
+					 
+						<!--Somos una de las Franquicias interceramic más grandes de la republica Mexicana, que a través de 2 Empresas atendemos el 90% de los mercados de los Estados de Sinaloa y Sonora.
+						Tenemos más de 30 años formando parte de la exitosa Red de Franquicias interceramic.-->
+					
+						<a  ng-show="lis.tienePermiso()" class="btn btn-primary btn-sm" ng-click="lis.editarMision(mision._id)">Editar</a>
+            			<a  ng-show="lis.tienePermiso()" class="btn btn-danger btn-sm" ng-click="lis.cambiarEstatusMision(mision._id)">Borrar</a><br/>
+					</div>	<br/>
+				  </div><br/>				
+			   </div>
+			</div>
+		</div>
+		   <div class="panel panel-default">
+			<div class="panel-body status">
+			<div class="col-sm-12">
+
+			<a ng-show="lis.tienePermiso()" class=" pull-right btn btn-link btn-{{lis.mostrarVision == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+				      href="#collapseExampleVision" aria-expanded="false" aria-controls="collapseExampleVision" id="nuevovision" ng-click="lis.nuevoVision()">
+				   {{lis.mostrarVision == true ? 'Agregar texto' : 'Cancelar'}}
+				    </a> 
+				  
+				     <div class="collapse" id="collapseExampleVision" >
+				     <div class="row">
+				     <div class="col-sm-4">
+				     <input class="form-control"  type="text" placeholder="Titulo" ng-model="lis.vision.titulo">
+				      </div>
+				     <div class="col-sm-4">
+					  <input type="text" class="form-control" placeholder="Imagen" ng-model="lis.vision.imagen" >
+					  </div>
+					    </div>
+					    <br/>
+					    <div class="row">
+					     
+				     <textarea  class="form-control"  placeholder="Agregar texto" ng-model="lis.vision.descripcion"></textarea>
+				     </div>
+				      <br/>
+
+				     <a ng-if="lis.tienePermiso()" class="btn btn-primary" ng-click="lis.actualizarVision(lis.vision)" ng-show="!lis.accionVision">Actualizar</a>
+
+              		<a ng-if="lis.tienePermiso()" class="btn btn-primary" ng-click="lis.guardarVision(vision)" value="Guardar" ng-show="lis.accionVision">Guardar</a>
+				     </div>
+			<div class="who clearfix">		
+		
 				</div>
+				<div class="row">
+					<div class="col-sm-12" ng-repeat="vision in lis.visiones">
+					<h4>{{vision.titulo}}</h4>
+					<p>{{vision.descripcion}}</p>
+					<img width="600px" height="250px" ng-src="{{vision.imagen}} ">
+					<br/>
+					 
+						<!--Somos una de las Franquicias interceramic más grandes de la republica Mexicana, que a través de 2 Empresas atendemos el 90% de los mercados de los Estados de Sinaloa y Sonora.
+						Tenemos más de 30 años formando parte de la exitosa Red de Franquicias interceramic.-->
+					
+						<a  ng-show="lis.tienePermiso()" class="btn btn-primary btn-sm" ng-click="lis.editarVision(vision._id)">Editar</a>
+            			<a  ng-show="lis.tienePermiso()" class="btn btn-danger btn-sm" ng-click="lis.cambiarEstatusVision(vision._id)">Borrar</a><br/>
+					</div>	<br/>
+				  </div><br/>				
+			   </div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-body status">
+			<div class="col-sm-12">
+
+			<a ng-show="lis.tienePermiso()" class=" pull-right btn btn-link btn-{{lis.mostrarValores == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+				      href="#collapseExampleValores" aria-expanded="false" aria-controls="collapseExampleValores" id="nuevovalores" ng-click="lis.nuevoValores()">
+				   {{lis.mostrarValores == true ? 'Agregar texto' : 'Cancelar'}}
+				    </a> 
+				  
+				     <div class="collapse" id="collapseExampleValores" >
+				     <div class="row">
+				     <div class="col-sm-4">
+				     <input class="form-control"  type="text" placeholder="Titulo" ng-model="lis.valor.titulo">
+				      </div>
+				     <div class="col-sm-4">
+					  <input type="text" class="form-control" placeholder="Imagen" ng-model="lis.valor.imagen" >
+					  </div>
+					    </div>
+					    <br/>
+					    <div class="row">
+					     
+				     <textarea  class="form-control"  placeholder="Agregar texto" ng-model="lis.valor.descripcion"></textarea>
+				     </div>
+				      <br/>
+
+				     <a ng-if="lis.tienePermiso()" class="btn btn-primary" ng-click="lis.actualizarValores(lis.valor)" ng-show="!lis.accionValores">Actualizar</a>
+
+              		<a ng-if="lis.tienePermiso()" class="btn btn-primary" ng-click="lis.guardarValores(valor)" value="Guardar" ng-show="lis.accionValores">Guardar</a>
+				     </div>
+			<div class="who clearfix">		
+		
+				</div>
+				<div class="row">
+					<div class="col-sm-12" ng-repeat="valor in lis.valores">
+					<h4>{{valor.titulo}}</h4>
+					<p>{{valor.descripcion}}</p>
+					<img width="600px" height="250px" ng-src="{{valor.imagen}} ">
+					<br/>
+					 
+						<!--Somos una de las Franquicias interceramic más grandes de la republica Mexicana, que a través de 2 Empresas atendemos el 90% de los mercados de los Estados de Sinaloa y Sonora.
+						Tenemos más de 30 años formando parte de la exitosa Red de Franquicias interceramic.-->
+					
+						<a  ng-show="lis.tienePermiso()" class="btn btn-primary btn-sm" ng-click="lis.editarValores(valor._id)">Editar</a>
+            			<a  ng-show="lis.tienePermiso()" class="btn btn-danger btn-sm" ng-click="lis.cambiarEstatusValores(valor._id)">Borrar</a><br/>
+					</div>	<br/>
+				  </div><br/>				
+			   </div>
 			</div>
 		</div>
 	</div>

@@ -26,6 +26,22 @@ angular.module("interCeramic")
 		this.subscribe('sucursales',()=>{
 		return [{estatus:true}]
 	});
+		this.subscribe('quienes',()=>{
+		return [{estatus:true}]
+	});
+
+		this.subscribe('mision',()=>{
+		return [{estatus:true}]
+	});
+		this.subscribe('vision',()=>{
+		return [{estatus:true}]
+	});
+
+
+		this.subscribe('valores',()=>{
+		return [{estatus:true}]
+	});
+	
 	
 
 	this.helpers({
@@ -50,7 +66,18 @@ angular.module("interCeramic")
 	   sucursales : () => {
 		  return Sucursales.find();
 	  },
-
+	  quienes : () => {
+		  return Quienes.find();
+	  },
+	   misiones : () => {
+		  return Mision.find();
+	  },
+	   visiones : () => {
+		  return Vision.find();
+	  },
+	   valores : () => {
+		  return Valores.find();
+	  },
 
 
   });
@@ -148,10 +175,232 @@ angular.module("interCeramic")
 //		return days;
 	}
 
+/////////////////////////////QUIENES SOMOS//////////////////////////////////////////////////////////////////////////////////////
+this.accionQuienes = true;
+ this.mostrarQuienes = true;
 
+ this.nuevoQuienes = function()
+  {
+    this.accionQuienes = true;
+    this.mostrarQuienes = !this.mostrarQuienes;
+    this.quien = {};		
+  };
 
+	this.guardarQuienes = function(quien)
+	{	
+		this.quien.estatus = true;
+		Quienes.insert(this.quien);
+		console.log(this.quien);
+		this.quien = {}; 
+		$('.collapse').collapse("hide");
+		this.mostrarEvento = true;
+	 };
 
+	 this.editarQuienes = function(id)
+	{
+    this.quien = Quienes.findOne({_id:id});
+    this.accionQuienes = false;
+    $('.collapse').collapse("show");
+    this.mostrarQuienes = false;
+	};
 
-  
+	
+	this.actualizarQuienes = function(quien)
+	{
+		var idTemp = quien._id;
+		delete quien._id;		
+		Quienes.update({_id:idTemp},{$set:quien});
+		$('.collapse').collapse('hide');
+		console.log(quien);
+		this.mostrarQuienes = true;
+	};
+	
+	this.cambiarEstatusQuienes = function(id)
+	{
+		var quien = Quienes.findOne({_id:id});
+		if(quien.estatus == true)
+			quien.estatus = false;
+		else
+			quien.estatus = true;
 		
+		Quienes.update({_id: id},{$set :  {estatus : quien.estatus}});
+    };  
+
+
+////////////////////////////////////MISION///////////////////////////////////////////////////////////////////////
+
+ this.accionMision = true;
+ this.mostrarMision = true;
+
+ this.nuevoMision = function()
+  {
+    this.accionMision = true;
+    this.mostrarMision = !this.mostrarMision;
+    this.mision = {};		
+  };
+
+	this.guardarMision = function(mision)
+	{	
+		this.mision.estatus = true;
+		Mision.insert(this.mision);
+		console.log(this.mision);
+		this.mision = {}; 
+		$('#collapseExampleMision').collapse("hide");
+		this.mostrarMision = true;
+	 };
+
+	 this.editarMision = function(id)
+	{
+    this.mision = Mision.findOne({_id:id});
+    this.accionMision = false;
+    $('#collapseExampleMision').collapse("show");
+    this.mostrarMision = false;
+	};
+
+	
+	this.actualizarMision = function(mision)
+	{
+		var idTemp = mision._id;
+		delete mision._id;		
+		Mision.update({_id:idTemp},{$set:mision});
+		$('#collapseExampleMision').collapse('hide');
+		console.log(mision);
+		this.mostrarMision = true;
+	};
+	
+	this.cambiarEstatusMision = function(id)
+	{
+		var mision = Mision.findOne({_id:id});
+		if(mision.estatus == true)
+			mision.estatus = false;
+		else
+			mision.estatus = true;
+		
+		Mision.update({_id: id},{$set :  {estatus : mision.estatus}});
+    };  
+    //////////////////////////////////////////////////////////////////////
+
+  this.accionVision = true;
+ this.mostrarVision = true;
+
+ this.nuevoMision = function()
+  {
+    this.accionVision = true;
+    this.mostrarVision = !this.mostrarVision;
+    this.vision = {};		
+  };
+
+	this.guardarVision = function(vision)
+	{	
+		this.vision.estatus = true;
+		Vision.insert(this.vision);
+		console.log(this.vision);
+		this.vision = {}; 
+		$('#collapseExampleVision').collapse("hide");
+		this.mostrarVision = true;
+	 };
+
+	 this.editarVision = function(id)
+	{
+    this.vision = Vision.findOne({_id:id});
+    this.accionVision = false;
+    $('#collapseExampleVision').collapse("show");
+    this.mostrarVision = false;
+	};
+
+	
+	this.actualizarVision = function(vision)
+	{
+		var idTemp = vision._id;
+		delete vision._id;		
+		Vision.update({_id:idTemp},{$set:vision});
+		$('#collapseExampleVision').collapse('hide');
+		console.log(vision);
+		this.mostrarVision = true;
+	};
+	
+	this.cambiarEstatusVision = function(id)
+	{
+		var vision = Vision.findOne({_id:id});
+		if(vision.estatus == true)
+			vision.estatus = false;
+		else
+			vision.estatus = true;
+		
+		Vision.update({_id: id},{$set :  {estatus : vision.estatus}});
+    };  
+
+    /////////////////////////////////////////////////////////////////////////////////
+    this.accionValores = true;
+ this.mostrarValores = true;
+
+ this.nuevoValores = function()
+  {
+    this.accionValores = true;
+    this.mostrarValores = !this.mostrarValores;
+    this.valor = {};		
+  };
+
+	this.guardarValores = function(valor)
+	{	
+		this.valor.estatus = true;
+		Valores.insert(this.valor);
+		console.log(this.valor);
+		this.valor = {}; 
+		$('#collapseExampleValores').collapse("hide");
+		this.mostrarValores = true;
+	 };
+
+	 this.editarValores = function(id)
+	{
+    this.valor = Valores.findOne({_id:id});
+    this.accionValores = false;
+    $('#collapseExampleValores').collapse("show");
+    this.mostrarValores = false;
+	};
+
+	
+	this.actualizarValores = function(valor)
+	{
+		var idTemp = valor._id;
+		delete valor._id;		
+		Valores.update({_id:idTemp},{$set:valor});
+		$('#collapseExampleValores').collapse('hide');
+		console.log(valor);
+		this.mostrarValores = true;
+	};
+	
+	this.cambiarEstatusValores = function(id)
+	{
+		var valor = Valores.findOne({_id:id});
+		if(valor.estatus == true)
+			valor.estatus = false;
+		else
+			valor.estatus = true;
+		
+		Valores.update({_id: id},{$set :  {estatus : valor.estatus}});
+    };  
+		
+
+		this.tienePermiso = function()
+	{
+	    if(Meteor.user() != undefined){
+		if(Meteor.user().roles[0] == "jefeArea" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "asesorVenta" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "gerente" )
+		{
+			return false;
+		}
+		else{
+			return true;
+		}
+	  }
+		
+	}
 };

@@ -17,8 +17,8 @@ angular.module("interCeramic")
 
    this.subscribe('ticketsRecibidos', () => {
    	return [{
-   		departamentoReceptor_id : Meteor.user().profile.departamento_id
-   	}]
+   		departamentoReceptor_id : Meteor.user().profile.departamento_id}]
+
    });
 
     this.subscribe('departamentos', () => {

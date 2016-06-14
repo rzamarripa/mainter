@@ -258,7 +258,7 @@ angular.module("interCeramic")
 		Secciones.insert(this.seccion);
 		console.log(this.seccion);
 		this.seccion = {}; 
-		$('.collapse').collapse("hide");
+		$('#collapseExampleEvento').collapse("hide");
 		this.mostrarEvento = true;
 	 };
 	 this.guardarSeccionLibrero = function(seccionLibrero)
@@ -267,7 +267,7 @@ angular.module("interCeramic")
 		SeccionesLibrero.insert(this.seccionLibrero);
 		console.log(this.seccionLibrero);
 		this.seccionLibrero = {}; 
-		$('.collapse').collapse("hide");
+		$('#collapseExampleLibrero').collapse("hide");
 		this.mostrarLibrero = true;
 	 };
 	 this.guardarSeccionResultado = function(seccionResultado)
@@ -276,28 +276,28 @@ angular.module("interCeramic")
 		SeccionesResultado.insert(this.seccionResultado);
 		console.log(this.seccionResultado);
 		this.seccionResultado = {}; 
-		$('.collapse').collapse("hide");
+		$('#collapseExampleResultado').collapse("hide");
 		this.mostrarResultado = true;
 	 };
 	this.editarSeccionEvento = function(id)
 	{
     this.seccion = Secciones.findOne({_id:id});
     this.accionEvento = false;
-    $('.collapse').collapse("show");
+    $('#collapseExampleEvento').collapse("show");
     this.mostrarEvento = false;
 	};
 	this.editarSeccionLibrero = function(id)
 	{
     this.seccionLibrero = SeccionesLibrero.findOne({_id:id});
     this.accionLibrero = false;
-    $('.collapse').collapse("show");
+    $('#collapseExampleLibrero').collapse("show");
     this.mostrarLibrero = false;
 	};
 	this.editarSeccionResultado = function(id)
 	{
     this.seccionResultado = SeccionesResultado.findOne({_id:id});
     this.accionResultado = false;
-    $('.collapse').collapse("show");
+    $('#collapseExampleResultado').collapse("show");
     this.mostrarResultado = false;
 	};
 	this.actualizarSeccionEvento = function(seccion)
@@ -305,7 +305,7 @@ angular.module("interCeramic")
 		var idTemp = seccion._id;
 		delete seccion._id;		
 		Secciones.update({_id:idTemp},{$set:seccion});
-		$('.collapse').collapse('hide');
+		$('#collapseExampleEvento').collapse('hide');
 		console.log(seccion);
 		this.mostrarEvento = true;
 	};
@@ -314,7 +314,7 @@ angular.module("interCeramic")
 		var idTemp = seccionLibrero._id;
 		delete seccionLibrero._id;		
 		SeccionesLibrero.update({_id:idTemp},{$set:seccionLibrero});
-		$('.collapse').collapse('hide');
+		$('#collapseExampleLibrero').collapse('hide');
 		console.log(seccionLibrero);
 		this.mostrarLibrero = true;
 	};
@@ -323,7 +323,7 @@ angular.module("interCeramic")
 		var idTemp = seccionResultado._id;
 		delete seccionResultado._id;		
 		SeccionesResultado.update({_id:idTemp},{$set:seccionResultado});
-		$('.collapse').collapse('hide');
+		$('#collapseExampleResultado').collapse('hide');
 		console.log(seccionResultado);
 		this.mostrarResultado = true;
 	};

@@ -1,7 +1,8 @@
 angular.module("interCeramic")
 .controller("ListaTicketsCtrl", ListaTicketsCtrl);  
  function ListaTicketsCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $rootScope){
- 	$reactive(this).attach($scope);
+ 	let rc = $reactive(this).attach($scope);
+ 	moment.locale('es');
     this.action = true;
     $rootScope.home = false;
     this.ponerFechaCompromiso = false;
@@ -49,21 +50,6 @@ angular.module("interCeramic")
 		  return users
 	  }
   	});
-
-
-
-
-
-	/*this.editar = function(id)
-	{
-		
-	    this.listaTicket = Tickets.findOne({_id:id});
-	    this.action = false;
-	    $('.collapse').collapse('show');
-	    this.nuevo = false;
-	};
-*/
-
 	
 	this.actualizar = function(_ticket)
 	{     
@@ -79,13 +65,19 @@ angular.module("interCeramic")
 
 	this.actualizarProceso = function(_ticket)
 	{
-	 
+		_ticket.fechaCreacion = new Date();
+	 	var a  = moment(_ticket.fecha);
+	 	console.log(a);
+		var b = moment(_ticket.fechaCreacion);
+		console.log(b);
+
+		_ticket.tiempoRealizar =  a.from(b, true);
+
 		console.log(_ticket);
 		var idTemp = _ticket._id;
 		delete _ticket._id;	
 		delete _ticket.$$hashKey;
 		_ticket.estatus = 3;
-		_ticket.fechaCreacion = new Date();	       
 		Tickets.update({_id:idTemp},{$set:_ticket});
 	
 	};
@@ -146,10 +138,28 @@ angular.module("interCeramic")
 	}
 
 
+this.diferencia = function(_ticket)
+{
 
 
 
-var fechaCompromiso = new Date(this.ticket.fechaCompromiso);
+// outputs: "48:39:30"
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*var fechaCompromiso = new Date(this.ticket.fechaCompromiso);
 console.log(fechaCompromiso)
 var fechaCreacion = new Date(this.ticket.fechaCreacion);
 console.log(fechaCreacion);

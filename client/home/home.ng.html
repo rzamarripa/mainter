@@ -98,10 +98,10 @@
             <h3 class="card-header">
 
             <a ng-show="hom.tienePermiso()" class="btn btn-{{hom.mostrarEvento == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
-      href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoseccion" ng-click="hom.nuevoSeccionEvento()">
+      href="#collapseExampleEvento" aria-expanded="false" aria-controls="collapseExampleEvento" id="nuevoseccion" ng-click="hom.nuevoSeccionEvento()">
    {{hom.mostrarEvento == true ? 'Agregar texto' : 'Cancelar'}}
     </a>
-    <div class="collapse" id="collapseExample" >
+    <div class="collapse" id="collapseExampleEvento" >
            
              <textarea ng-show="hom.tienePermiso()" class="form-control"  placeholder="Descripción"  ng-model="hom.seccion.eventoSeccion">Descripción</textarea>
         
