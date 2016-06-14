@@ -41,7 +41,7 @@
 					<div class="col-sm-12" ng-repeat="quien in lis.quienes">
 					<h4>{{quien.titulo}}</h4>
 					<p>{{quien.descripcion}}</p>
-					<img width="600px" height="250px" ng-src="{{quien.imagen}} ">
+					<img width="600px" height="250px"  ng-if="quien.imagen" ng-src="{{quien.imagen}} ">
 					<br/>
 					 
 						<!--Somos una de las Franquicias interceramic más grandes de la republica Mexicana, que a través de 2 Empresas atendemos el 90% de los mercados de los Estados de Sinaloa y Sonora.
@@ -90,7 +90,7 @@
 					<div class="col-sm-12" ng-repeat="mision in lis.misiones">
 					<h4>{{mision.titulo}}</h4>
 					<p>{{mision.descripcion}}</p>
-					<img width="600px" height="250px" ng-src="{{mision.imagen}} ">
+					<img width="600px" height="250px" ng-if="mision.imagen" ng-src="{{mision.imagen}} ">
 					<br/>
 					 
 						<!--Somos una de las Franquicias interceramic más grandes de la republica Mexicana, que a través de 2 Empresas atendemos el 90% de los mercados de los Estados de Sinaloa y Sonora.
@@ -139,7 +139,7 @@
 					<div class="col-sm-12" ng-repeat="vision in lis.visiones">
 					<h4>{{vision.titulo}}</h4>
 					<p>{{vision.descripcion}}</p>
-					<img width="600px" height="250px" ng-src="{{vision.imagen}} ">
+					<img width="600px" height="250px" ng-if="vision.imagen" ng-src="{{vision.imagen}} ">
 					<br/>
 					 
 						<!--Somos una de las Franquicias interceramic más grandes de la republica Mexicana, que a través de 2 Empresas atendemos el 90% de los mercados de los Estados de Sinaloa y Sonora.
@@ -188,7 +188,7 @@
 					<div class="col-sm-12" ng-repeat="valor in lis.valores">
 					<h4>{{valor.titulo}}</h4>
 					<p>{{valor.descripcion}}</p>
-					<img width="600px" height="250px" ng-src="{{valor.imagen}} ">
+					<img width="600px" height="250px" ng-if="valor.imagen" ng-src="{{valor.imagen}} ">
 					<br/>
 					 
 						<!--Somos una de las Franquicias interceramic más grandes de la republica Mexicana, que a través de 2 Empresas atendemos el 90% de los mercados de los Estados de Sinaloa y Sonora.
