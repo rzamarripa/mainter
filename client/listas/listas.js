@@ -283,7 +283,7 @@ this.accionQuienes = true;
   this.accionVision = true;
  this.mostrarVision = true;
 
- this.nuevoMision = function()
+ this.nuevoVision = function()
   {
     this.accionVision = true;
     this.mostrarVision = !this.mostrarVision;
