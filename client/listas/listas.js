@@ -389,7 +389,7 @@ this.accionQuienes = true;
 		{
 			return false;
 		}
-		if(Meteor.user().roles[0] == "asesorVenta" )
+		if(Meteor.user().roles[0] == "empleado" )
 		{
 			return false;
 		}
