@@ -25,6 +25,12 @@ angular.module("interCeramic")
 		this.subscribe('seccionesResultado',()=>{
 		return [{estatus:true}]
 	});
+			this.subscribe('seccionesBienvenido',()=>{
+		return [{estatus:true}]
+	});
+				this.subscribe('seccionesExplorar',()=>{
+		return [{estatus:true}]
+	});
 	
 
 	
@@ -72,6 +78,12 @@ angular.module("interCeramic")
 	  },
 	  seccionesResultados : () => {
 		  return SeccionesResultado.find();
+	  },
+	  seccionesBienvenidos : () => {
+		  return SeccionesBienvenido.find();
+	  },
+	  seccionesExplorars : () => {
+		  return SeccionesExplorar.find();
 	  },
 	  cumpleaneros : () => {
 	  	var _cumpleaneros = [];
@@ -230,6 +242,10 @@ angular.module("interCeramic")
  this.mostrarLibrero = true;
   this.accionResultado = true;
  this.mostrarResultado = true;
+   this.accionBienvenido = true;
+ this.mostrarBienvenido = true;
+  this.accionExplorar = true;
+ this.mostrarExplorar = true;
 
  this.nuevoSeccionEvento = function()
   {
@@ -249,6 +265,18 @@ angular.module("interCeramic")
     this.accionResultado = true;
     this.mostrarResultado = !this.mostrarResultado;
     this.seccionResultado = {};		
+  };
+  this.nuevoSeccionBienvenido = function()
+  {
+    this.accionBienvenido = true;
+    this.mostrarBienvenido = !this.mostrarBienvenido;
+    this.seccionBienvenido = {};		
+  };
+  this.nuevoSeccionExplorar = function()
+  {
+    this.accionExplorar = true;
+    this.mostrarExplorar = !this.mostrarExplorar;
+    this.seccionExplorar = {};		
   };
 
 
@@ -279,6 +307,24 @@ angular.module("interCeramic")
 		$('#collapseExampleResultado').collapse("hide");
 		this.mostrarResultado = true;
 	 };
+	  this.guardarSeccionBienvenido = function(seccionBienvenido)
+	{	
+		this.seccionBienvenido.estatus = true;
+		SeccionesBienvenido.insert(this.seccionBienvenido);
+		console.log(this.seccionBienvenido);
+		this.seccionBienvenido = {}; 
+		$('#collapseExampleBienvenido').collapse("hide");
+		this.mostrarBienvenido = true;
+	 };
+	  this.guardarSeccionExplorar = function(seccionExplorar)
+	{	
+		this.seccionExplorar.estatus = true;
+	    SeccionesExplorar.insert(this.seccionExplorar);
+		console.log(this.seccionExplorar);
+		this.seccionExplorar = {}; 
+		$('#collapseExampleExplorar').collapse("hide");
+		this.mostrarExplorar = true;
+	 };
 	this.editarSeccionEvento = function(id)
 	{
     this.seccion = Secciones.findOne({_id:id});
@@ -299,6 +345,20 @@ angular.module("interCeramic")
     this.accionResultado = false;
     $('#collapseExampleResultado').collapse("show");
     this.mostrarResultado = false;
+	};
+	this.editarSeccionExplorar = function(id)
+	{
+    this.seccionExplorar = SeccionesExplorar.findOne({_id:id});
+    this.accionExplorar = false;
+    $('#collapseExampleExplorar').collapse("show");
+    this.mostrarExplorar = false;
+	};
+	this.editarSeccionBienvenido = function(id)
+	{
+    this.seccionBienvenido = SeccionesBienvenido.findOne({_id:id});
+    this.accionBienvenido = false;
+    $('#collapseExampleBienvenido').collapse("show");
+    this.mostrarBienvenido = false;
 	};
 	this.actualizarSeccionEvento = function(seccion)
 	{
@@ -326,6 +386,24 @@ angular.module("interCeramic")
 		$('#collapseExampleResultado').collapse('hide');
 		console.log(seccionResultado);
 		this.mostrarResultado = true;
+	};
+	this.actualizarSeccionBienvenido = function(seccionBienvenido )
+	{
+		var idTemp = seccionBienvenido ._id;
+		delete seccionBienvenido ._id;		
+		SeccionesBienvenido .update({_id:idTemp},{$set:seccionBienvenido });
+		$('#collapseExampleBienvenido ').collapse('hide');
+		console.log(seccionBienvenido );
+		this.mostrarBienvenido  = true;
+	};
+	this.actualizarSeccionExplorar = function(seccionExplorar)
+	{
+		var idTemp = seccionExplorar._id;
+		delete seccionExplorar._id;		
+		SeccionesExplorar.update({_id:idTemp},{$set:seccionExplorar});
+		$('#collapseExampleExplorar').collapse('hide');
+		console.log(seccionExplorar);
+		this.mostrarExplorar = true;
 	};
 	this.cambiarEstatusSeccionEvento = function(id)
 	{
@@ -356,6 +434,26 @@ angular.module("interCeramic")
 			seccionResultado.estatus = true;
 		
 		SeccionesResultado.update({_id: id},{$set :  {estatus : seccionResultado.estatus}});
+    };
+    this.cambiarEstatusSeccionBienvenido = function(id)
+	{
+		var seccionBienvenido = SeccionesBienvenido.findOne({_id:id});
+		if(seccionBienvenido.estatus == true)
+			seccionBienvenido.estatus = false;
+		else
+			seccionBienvenido.estatus = true;
+		
+		SeccionesBienvenido.update({_id: id},{$set :  {estatus : seccionBienvenido.estatus}});
+    };
+    this.cambiarEstatusSeccionExplorar = function(id)
+	{
+		var seccionExplorar = SeccionesExplorar.findOne({_id:id});
+		if(seccionExplorar.estatus == true)
+			seccionExplorar.estatus = false;
+		else
+			seccionExplorar.estatus = true;
+		
+		SeccionesExplorar.update({_id: id},{$set :  {estatus : seccionExplorar.estatus}});
     };
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -397,6 +495,7 @@ angular.module("interCeramic")
 
 this.tienePermiso = function()
 	{
+		if(Meteor.user() != undefined){
 		if(Meteor.user().roles[0] == "empleado" )
 		{
 			return false;
@@ -416,6 +515,8 @@ this.tienePermiso = function()
 		else{
 			return true;
 		}
+
+	   }
 		
 	}
 

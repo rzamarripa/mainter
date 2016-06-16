@@ -17,7 +17,7 @@ angular.module("interCeramic")
 
    this.subscribe('ticketsRecibidos', () => {
    	return [{
-   		departamentoReceptor_id : Meteor.user().profile.departamento_id}]
+   		departamentoReceptor_id : Meteor.user().profile.departamento_id, estatus:true}]
 
    });
 
@@ -28,11 +28,11 @@ angular.module("interCeramic")
     
 	this.subscribe('tickets', () => {
 		//select * from tickets where departamento_id = user.departamento_id and estatus = true
-		return [{emisor_id : Meteor.userId()}]
+		return [{emisor_id : Meteor.userId(),estatus:1}]
 	});
 
 	this.subscribe('users', () => {
-		return [{_id : {$in:this.getCollectionReactively('users')}}]
+		return [{_id : {$in:this.getCollectionReactively('users')},estatus:true}]
 	});
 
 	
@@ -131,10 +131,10 @@ angular.module("interCeramic")
 	this.cambiarEstatus = function(id)
 	{
 		var ticket = Tickets.findOne({_id:id});
-		if(ticket.estatus == true)
-			ticket.estatus = false;
+		if(ticket.estatus == 1)
+			ticket.estatus = 4;
 		else
-			ticket.estatus = true;
+			ticket.estatus = 1;
 		
 		Tickets.update({_id: id},{$set :  {estatus : ticket.estatus}});
     };

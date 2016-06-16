@@ -159,6 +159,33 @@ angular.module("interCeramic")
 		document.getElementById("botonMostrar").style.visibility = "hidden";
 	}
 
+	this.tienePermiso = function()
+	{
+		if(Meteor.user() != undefined){
+		if(Meteor.user().roles[0] == "empleado" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "jefeArea" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "asesorVenta" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "gerente" )
+		{
+			return false;
+		}
+		else{
+			return true;
+		}
+
+	   }
+		
+	}
+
 	/*rc.getOcupacion = function(id){
 		var ocupacion = Ocupaciones.findOne(rc.alumno.ocupacion_id);
 		return ocupacion.descripcion;

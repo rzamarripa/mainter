@@ -1,5 +1,5 @@
-Meteor.publish("tickets", function(options){
-	return Tickets.find(options);
+Meteor.publish("tickets", function(params){
+	return Tickets.find(params);
 });
 
 Meteor.publish("ticketsT", function(){

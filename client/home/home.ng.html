@@ -1,6 +1,6 @@
 <h3 >Culiacán Sinaloa México <br/>
 {{hom.dia()}} {{hom.mes()}} de {{hom.year()}}
-<br/><span  class="pull-right">Muro Web interceramic de Grupo Kuroda</span> </h3>
+<br/><span  class="pull-right">Muro Web Interceramic de Grupo Kuroda</span> </h3>
 
 
 
@@ -9,13 +9,31 @@
     <div class="col-sm-12">
       <div data-widget-color="blue" style="color: #848484" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-deletebutton="false" data-jarvis-widget="data-jarvis-widget" >
         <header>
-          <h2>Bienvenido</h2>
+          <h2>Mensaje Principal</h2>
         </header>
         <div>
           <div class="widget-body">
            <div class="col-sm-12" >
-            <h3 class="card-header">¡Hola! Bienvenido a este Centro de información para todos los miembros de interceramic de Grupo Kuroda.
-            En el encotrarás información importante que te ayudará a desempeñar mejor tu trabajo, nuestros resultados  y conocerás más la empresa donde trabajas.</h3>
+             <a ng-show="hom.tienePermiso()" class="btn btn-{{hom.mostrarBienvenido == true ? 'primary' : 'danger'}}" role="   button" data-toggle="collapse" href="#collapseExampleBienvenido" aria-expanded="false" 
+             aria-controls="collapseExampleBienvenido" id="nuevoseccion"
+               ng-click="hom.nuevoSeccionBienvenido()">
+           {{hom.mostrarBienvenido == true ? 'Agregar texto' : 'Cancelar'}}
+            </a>
+             <div class="collapse" id="collapseExampleBienvenido" >
+           
+             <textarea ng-show="hom.tienePermiso()" class="form-control"  placeholder="Descripción"  ng-model="hom.seccionBienvenido.descripcion">Descripción</textarea>
+        
+               <a ng-if="hom.tienePermiso()" class="btn btn-primary" ng-click="hom.actualizarSeccionBienvenido(hom.seccionBienvenido)" ng-show="!hom.accionBienvenido">Actualizar</a><br/>
+
+              <a ng-if="hom.tienePermiso()" class="btn btn-primary" ng-click="hom.guardarSeccionBienvenido(seccionBienvenido)" value="Guardar" ng-show="hom.accionBienvenido">Guardar</a>
+            <br/>
+    </div>
+         <h4 ng-repeat="seccionBienvenido in hom.seccionesBienvenidos">{{seccionBienvenido.descripcion}} <br/>
+                <a  ng-show="hom.tienePermiso()" class="btn btn-primary btn-sm" ng-click="hom.editarSeccionBienvenido(seccionBienvenido._id)">Editar</a>
+                 <a  ng-show="hom.tienePermiso()" class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionBienvenido(seccionBienvenido._id)">Borrar</a>
+            </h4>
+            <!--<h3 class="card-header">¡Hola! Bienvenido a este Centro de información para todos los miembros de interceramic de Grupo Kuroda.
+            En el encotrarás información importante que te ayudará a desempeñar mejor tu trabajo, nuestros resultados  y conocerás más la empresa donde trabajas.</h3>-->
             <div class="card card-block">
               <h8 class="card-title" ng-bind-html=""></h8>
             </div>
@@ -74,10 +92,29 @@
       <div>
         <div class="widget-body">
          <div class="col-sm-12" >
-          <h3 class="card-header">Te invitamos a conocer las secciones de nuestro Muro Web y su contenido, tales como Eventos, Librero y la Sección de resultados.
+
+         <a ng-show="hom.tienePermiso()" class="btn btn-{{hom.mostrarExplorar == true ? 'primary' : 'danger'}}" role="   button" data-toggle="collapse" href="#collapseExampleExplorar" aria-expanded="false" 
+             aria-controls="collapseExampleExplorar" id="nuevoexplorar"
+               ng-click="hom.nuevoSeccionExplorar()">
+           {{hom.mostrarExplorar == true ? 'Agregar texto' : 'Cancelar'}}
+            </a>
+             <div class="collapse" id="collapseExampleExplorar" >
            
-          Conoce más de tu Empresa en Quienes Somos.
-          </h3>
+             <textarea ng-show="hom.tienePermiso()" class="form-control"  placeholder="Descripción"  ng-model="hom.seccionExplorar.descripcion">Descripción</textarea>
+        
+               <a ng-if="hom.tienePermiso()" class="btn btn-primary" ng-click="hom.actualizarSeccionExplorar(hom.seccionExplorar)" ng-show="!hom.accionExplorar">Actualizar</a><br/>
+
+              <a ng-if="hom.tienePermiso()" class="btn btn-primary" ng-click="hom.guardarSeccionExplorar(seccionExplorar)" value="Guardar" ng-show="hom.accionExplorar">Guardar</a>
+            <br/>
+    </div>
+         <h4 ng-repeat="seccionExplorar in hom.seccionesExplorars">{{seccionExplorar.descripcion}} <br/>
+                <a  ng-show="hom.tienePermiso()" class="btn btn-primary btn-sm" ng-click="hom.editarSeccionExplorar(seccionExplorar._id)">Editar</a>
+                 <a  ng-show="hom.tienePermiso()" class="btn btn-danger btn-sm" ng-click="hom.cambiarEstatusSeccionExplorar(seccionExplorar._id)">Borrar</a>
+            </h4>
+          <!--Te invitamos a conocer las secciones de nuestro Muro Web y su contenido, tales como Eventos, Librero y la Sección de resultados.
+           
+          Conoce más de tu Empresa en Quienes Somos.-->
+     
           <div class="card card-block">
             <h8 class="card-title" ng-bind-html=""></h8>
           </div>
