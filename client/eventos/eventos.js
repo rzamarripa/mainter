@@ -80,6 +80,8 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
       return true
     }
   }
+
+  
    this.alertOnEventClick = function(date, jsEvent, view)
   {
     rc.evento = angular.copy(date);
