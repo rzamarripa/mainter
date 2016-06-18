@@ -42,10 +42,10 @@
 
 									<div class="air air-bottom-right padding-10">
 									<div class="col-sm-8">
-									<input type="text" id="input" class="form-control" style="visibility: visible;" placeholder="Pegar imagen aqui" ng-model="perfil.empleado.fondo" >
+									<input type="text" id="input" class="form-control" style="visibility: visible;" placeholder="Pegar imagen aqui" ng-show="perfil.tienePermiso()" ng-model="perfil.empleado.fondo" >
 								
 									</div>
-										<a  style="visibility: visible;" ng-click="perfil.editarFondoEmpleado(perfil.empleado)" id="guardar" class="btn txt-color-white bg-color-teal btn-sm">Guardar</a>
+										<a  style="visibility: visible;" ng-click="perfil.editarFondoEmpleado(perfil.empleado)" id="guardar" class="btn txt-color-white bg-color-teal btn-sm" ng-show="perfil.tienePermiso()">Guardar</a>
 										<a  style="visibility: hidden;" ng-click="perfil.mostrarBtnFondo(perfil.empleado)" id="botonMostrar" class="btn txt-color-white bg-color-teal btn-sm">Editar Fondo</a>
 
 

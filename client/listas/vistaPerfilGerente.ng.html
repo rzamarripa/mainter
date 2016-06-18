@@ -82,7 +82,7 @@
 
 											<div class="col-sm-8">
 											<textarea type="text" class="form-control" style="visibility: visible;" id="acerca" placeholder="Escribir acerca de mi" ng-model="perfil.gerente.acerca"></textarea>
-						 					<button class="btn btn-primary" id="botonGuardar" style="visibility: visible;" ng-click="perfil.insertarGerente(perfil.gerente)">Guardar</button>
+						 					<button class="btn btn-primary"  ng-show="perfil.tienePermiso()" id="botonGuardar" style="visibility: visible;" ng-click="perfil.insertarGerente(perfil.gerente)">Guardar</button>
 			  								</div>
 										</ul>
 				
