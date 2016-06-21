@@ -6,7 +6,7 @@
 		 {{merc.nuevo == true ? 'Nuevo' : 'Cancelar'}}
 		</a>
 		
-		<div class="collapse" id="collapseExample">
+		<div class="collapse" id="collapseExample"> 
 			<form class="form-horizontal" role="form" data-parsley-validate>
 		  	<div class="well">	    
 			    <div class="row">
@@ -24,8 +24,11 @@
 						    <label>Imagen</label>
 					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="merc.merca.imagen" required>
 					    </div>
-					    
-			    	</div>
+					    <div class="col-sm-4">  	
+							<label>Seleccionar archivo</label>
+							<input type="text" class="form-control" placeholder="Nombre" ng-model="merc.merca.archivo">
+			    	   </div>
+			    	    </div>
 			    	<br/>
                       <div class="row">
 			    	 <div class="col-sm-8">
@@ -61,6 +64,7 @@
 									<h3 class="margin-top-0"><p>{{merca.titulo}}</p><br><small class="font-xs"><i>Publicado Por <a href="javascript:void(0);">	{{merca.nombre}}</a></i></small></h3>
 									
 										<h4 ng-bind-html="merca.nota"></h4>
+										<p><a target="_blank" href="{{merca.archivo}}">Ver Archivo</a></p>
 									<a ng-if="currentUser.username == 'ECERVANTES' || currentUser.username == 'admin' " class="btn btn-primary" ng-click="merc.editar(merca._id)" > Editar </a>
 									<a ng-if="currentUser.username == 'ECERVANTES' || currentUser.username == 'admin' " ng-click="merc.cambiarEstatus(merca._id)"  class="btn btn-danger"> Desactivar </a>
 								</div>
