@@ -35,7 +35,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 			return Eventos.find();
 		},
     departamento : ()  =>  {
-    return Departamentos.find();
+    return Departamentos.findOne();
     },
     departamento_id : ()=>{
       if(Meteor.user() != undefined){

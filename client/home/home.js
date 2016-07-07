@@ -12,7 +12,6 @@ angular.module("interCeramic")
 	this.subscribe('home');
 	this.subscribe('noticiasHome');
 
-	this.subscribe('empleados');
 
 	this.subscribe('articulos');
 
@@ -36,7 +35,7 @@ angular.module("interCeramic")
 	
 	this.subscribe('felicitaciones');
 	
-	this.subscribe('asesorVentas',()=>{
+	this.subscribe('empleados',()=>{
 		return [{estatus:true}]
 	});
 	this.subscribe('gerentes',()=>{
