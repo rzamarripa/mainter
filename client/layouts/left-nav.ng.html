@@ -43,7 +43,7 @@ A LA BARRA LATERAL
 	    </a>
 	    </li>
 	       <li>
-		      <a ui-sref="root.eventos">
+		      <a ui-sref="root.eventos" ng-click="root.cargar()"> 
 		        <i class="fa fa-lg fa-fw fa-calendar-o"></i>
 		        <span class="menu-item-parent">Eventos</span>
 		      </a>
@@ -146,7 +146,7 @@ A LA BARRA LATERAL
 		    </li>
 		
 	    <li>
-	     <a ui-sref="root.miCumple" ng-if="root.fecha(root.empleado.fechaNac) || root.fecha(root.jefeArea.fechaNac) || root.fecha(root.gerente.fechaNac) ">
+	     <a ui-sref="root.miCumple" ng-if="root.fecha(root.empleado.fechaNac) || root.fecha(root.jefeArea.fechaNac) || root.fecha(root.gerente.fechaNac) || root.fecha(root.empleado.fechaNac) ">
 	      <i class="fa fa-lg fa-fw fa-bar-chart-o"></i>
 	      <span class="menu-item-parent">Mi cumpleaños</span>
 	    </a>

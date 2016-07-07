@@ -120,6 +120,13 @@ this.fecha = function(fechaNac)
     }     
 }
 
+this.cargar = function()
+{ 
+  $state.go('root.eventos')
+  window.location.reload(1);
+}, 1000;
+
+
 
 
 
