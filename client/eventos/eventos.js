@@ -35,7 +35,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 			return Eventos.find();
 		},
     departamento : ()  =>  {
-    return Departamentos.findOne();
+    return Departamentos.find();
     },
     departamento_id : ()=>{
       if(Meteor.user() != undefined){
@@ -58,6 +58,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 		evento.end 		= moment(evento.end).format("YYYY-MM-DD HH:mm");
     evento.backgroundColor = rc.departamento.className;
 	  Eventos.insert(evento);
+    location.reload();
     console.log(evento);
 	  this.evento 	= {};
   }
@@ -139,6 +140,8 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 		Eventos.update({_id: id},{$set :  {estatus : evento.estatus}});
 		rc.evento = {};
 		rc.actionAgregar = true;
+
+    location.reload();
   };
   
   this.esJefeArea = function(){
@@ -175,9 +178,9 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
     
   /* Render Tooltip */
   this.eventRender = function( event, element, view ) { 
-    console.log("event", event)
-    console.log("element", element)
-    console.log("view", view)
+    //console.log("event", event)
+    //console.log("element", element)
+    //console.log("view", view)
     event.stick = true;
     
     if (!event.description == "") {
