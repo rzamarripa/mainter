@@ -117,8 +117,11 @@
 												<span ng-bind-html="ticket.nota" style="font-size: 100%;" ><div cla ng-if="ticket.rating != undefined" ng-model="ticket.rating" class="ui huge star rating pull-right" data-rating="3" data-max-rating="5"></div> </span>
 												</p>
 
+												<button ng-show="list.tienePermiso()"  ng-click="list.cambiarEstatus(ticket._id)">borrar</button>
+
 											</li>
 										</ul>
+
 									</div>
 								</div>
 							</div>

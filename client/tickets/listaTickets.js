@@ -149,6 +149,30 @@ this.diferencia = function(_ticket)
 
 }
 
+this.tienePermiso = function()
+	{
+		if(Meteor.user().roles[0] == "empleado" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "asesorVenta" )
+		{
+			return false;
+		}
+		if(Meteor.user().roles[0] == "gerente" )
+		{
+			return false;
+		}
+		 if(Meteor.user().roles[0] == "jefeArea" )
+		{
+			return true;
+		}
+		else{
+			return true;
+		}
+		
+	}
+
 
 
 

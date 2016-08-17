@@ -2,7 +2,7 @@ angular
   .module('interCeramic')
   .controller('EventosCtrl', EventosCtrl);
  
-function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $compile, $rootScope) {
+function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $compile, $rootScope, $timeout) {
 	rc = $reactive(this).attach($scope);
   $rootScope.home = false;
 
@@ -72,23 +72,19 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
     evento.estatus = true;
     evento.start  = moment(evento.start).format("YYYY-MM-DD HH:mm");
     evento.end    = moment(evento.end).format("YYYY-MM-DD HH:mm");
-    
     Eventos.insert(evento);
     console.log(evento);
     this.evento   = {};
-
     if (evento.start == this.fecha) {
       return true
     }
   }
 
   
-   this.alertOnEventClick = function(date, jsEvent, view)
+   this.alertOnEventClick = function(date, jsEvent, view, id)
   {
     rc.evento = angular.copy(date);
      if (this.evento == Meteor.userId()) 
-  
-
   
     rc.colorSeleccionado = date.className;
     rc.evento.start   = moment(date.start).format("YYYY-MM-DD HH:mm");
@@ -98,6 +94,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
     $("#eventContent").dialog({ modal: true, title: rc.evento.title });
     $("#startTime").html(rc.evento.start);
     $("#endTime").html(rc.evento.end);
+    this.evento = Eventos.findOne({_id:id});
 
   
   };
@@ -113,24 +110,42 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 	  this.evento 	= {};
   }
 
+
+
   this.modificarEvento = function(evento){
      
-	  var idTemp = evento._id;
+	  /*var idTemp = evento._id;
 	  console.log(idTemp);
 		delete evento._id;	
 		delete evento._end;	
 		delete evento._start;	
 		delete evento._allDay;	
 		Eventos.update({_id:idTemp},{$set:evento});
+    console.log(this.kaka);
 		this.actionAgregar = true;
-     if (Meteor.userId() == this.evento) 
-		rc.evento = {};
+    if (Meteor.userId() == this.evento) 
+    location.reload();
+		rc.evento = {};*/
+
+
+    this.evento.user = Meteor.userId();
+    console.log(rc.departamento);
+    evento.estatus = true;
+    evento.start  = moment(evento.start).format("YYYY-MM-DD HH:mm");
+    evento.end    = moment(evento.end).format("YYYY-MM-DD HH:mm");
+    evento.backgroundColor = rc.departamento.className;
+    Eventos.insert(evento);
+    location.reload();
+    console.log(evento);
+    this.evento   = {};
+    location.reload();
+
   }
 
 	/* remove event */
   this.eliminarEvento = function(id)
 	{
-   
+   Meteor.setTimeout(5000)
 		var evento = Eventos.findOne({_id:id});
 		if(evento.estatus == true)
 			evento.estatus = false;
@@ -142,9 +157,30 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 		rc.actionAgregar = true;
 
     location.reload();
+
+  }
+
+
+  this.eliminar = function(id)
+  {
+   
+    var evento = Eventos.findOne({_id:id});
+    if(evento.estatus == true)
+      evento.estatus = false;
+    else
+      evento.estatus = true;
+    
+    Eventos.update({_id: id},{$set :  {estatus : evento.estatus}});
+    rc.evento = {};
+    rc.actionAgregar = true;
   };
+
+  this.agarrarid = function(id){
+    this.evento = Eventos.findOne({_id:id});
+  }
   
   this.esJefeArea = function(){
+
     if(Meteor.user() != undefined)
 	  if(Meteor.user().roles[0] == "jefeArea" || Meteor.user().roles[0] == "admin"){
 		  return true;
@@ -166,6 +202,7 @@ function EventosCtrl($scope, $meteor, $reactive, $state, $stateParams, toastr, $
 		rc.evento.className = event.className;
 		rc.evento.start 	= moment(event.start).format("YYYY-MM-DD HH:mm");
     rc.evento.end 		= moment(event.end).format("YYYY-MM-DD HH:mm");
+    this.evento = Eventos.findOne({_id:id});
 		//rc.evento.start 	= moment(rc.evento.start).add(delta).add('hours', -1).format("YYYY-MM-DD HH:mm");
 		//rc.evento.end 		= moment(rc.evento.end).add(delta).add('hours', -1).format("YYYY-MM-DD HH:mm");
 		rc.actionAgregar = false;
