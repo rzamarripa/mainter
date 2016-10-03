@@ -216,8 +216,8 @@
 
 
                  
-				<div class="who clearfix" style="margin-bottom: 5px;"  ng-repeat="sucursale in lis.sucursales | orderBy:'nombre' | filter:buscar">
-					<img src="{{sucursale.imagen}}" alt="img" width="160px" height="60px" class="online">
+				<div class="who clearfix" style="margin-bottom: 30px;"  ng-repeat="sucursale in lis.sucursales | orderBy:'nombre' | filter:buscar">
+					<img src="{{sucursale.imagen}}" alt="img" width="160px" height="90px" class="online">
 					<span class="name font-sm">  <b><a href="/sucursalVista/{{sucursale._id}}">{{sucursale.nombre}} </a><span class="pull-right font-xs text-muted"><i>{{sucursale.ciudad}}</i></span> </b>
 					</span>
 				</div>
@@ -244,7 +244,7 @@
 				<h4>Jefes de área</h4><br/>
 
 				 <div class="who clearfix" style="margin-bottom: 5px;"  ng-repeat="jefeArea in lis.jefeAreas | orderBy:'nombre' | filter:search ">
-					<img src="{{jefeArea.imagen}}" alt="img" width="100px" height="70px" class="offline">
+					<img src="{{jefeArea.imagen}}" alt="img" width="100px" height="90px" class="offline">
 					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(jefeArea.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> <a href="/perfilJefe/{{jefeArea._id}}" >{{jefeArea.nombre}}&nbsp;{{jefeArea.apPaterno}}&nbsp;{{jefeArea.apMaterno}} </a><span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(jefeArea.departamento_id)}}</i></span> </b>
 						<br>
 					</span>
@@ -253,7 +253,7 @@
 				<h4>Gerentes</h4><br/>
 
 				<div class="who clearfix" style="margin-bottom: 5px;"  ng-repeat="gerente in lis.gerentes | orderBy:'nombre' | filter:search ">
-					<img src="{{gerente.imagen}}" alt="img" width="100px" height="70px" class="online">
+					<img src="{{gerente.imagen}}" alt="img" width="100px" height="90px" class="online">
 					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(gerente.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> <a href="/perfilGerente/{{gerente._id}}">{{gerente.nombre}}&nbsp;{{gerente.apPaterno}}&nbsp;{{gerente.apMaterno}} </a><span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(gerente.departamento_id)}}</i></span> </b>
 					</span>
 					<br>
@@ -263,7 +263,7 @@
 
 
 				<div class="who clearfix" style="margin-bottom: 5px;"  ng-repeat="empleado in lis.empleados | orderBy:'nombre' | filter:search ">
-					<img src="{{empleado.imagen}}" alt="img" width="100px" height="70px" class="away">
+					<img src="{{empleado.imagen}}" alt="img" width="100px" height="90px" class="away">
 					<span class="name font-sm">  <b> <i ng-show="lis.esCumpleanero(empleado.fechaNac)" class="fa fa-birthday-cake" aria-hidden="true"></i> <a href="/perfil/{{empleado._id}}">{{empleado.nombre}}&nbsp;{{empleado.apPaterno}}&nbsp;{{empleado.apMaterno}}</a> <span class="pull-right font-xs text-muted"><i>{{lis.getDepartamento(empleado.departamento_id)}}</i></span> </b>
 						<br>
 					</span>
