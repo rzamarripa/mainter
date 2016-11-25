@@ -1,9 +1,9 @@
 <h2>Jefes de Area</h2>
 <div class="row">
 	<div class="col-sm-12">
-		<a class="btn btn-{{jefe.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+		<a class="btn btn-{{jefe.new == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
 			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevojefeArea" ng-click="jefe.nuevoJefeArea()">
-	 {{jefe.nuevo == true ? 'Nuevo' : 'Cancelar'}}
+	 {{jefe.new == true ? 'Nuevo' : 'Cancelar'}}
 		</a>
 		<div class="collapse" id="collapseExample">
 			<form class="form-horizontal" role="form" data-parsley-validate>
@@ -61,7 +61,7 @@
 							</div>
 			    	  <div class="col-sm-4">
 						    <label>Imagen</label>
-					    	<input type="text" class="form-control" placeholder="Imagen"  >
+					    	<input type="text" class="form-control" placeholder="Imagen" ng-model="jefe.jefeArea.imagen" >
 					    </div>
 					</div>				
 				</div>

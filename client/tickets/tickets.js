@@ -28,7 +28,7 @@ angular.module("interCeramic")
     
 	this.subscribe('tickets', () => {
 		//select * from tickets where departamento_id = user.departamento_id and estatus = true
-		return [{emisor_id : Meteor.userId(),estatus:1}]
+		return [{emisor_id : Meteor.userId(),estatus:1,estatus:3}]
 	});
 
 	this.subscribe('users', () => {
@@ -158,7 +158,7 @@ angular.module("interCeramic")
 	this.getEmisor= function(emisor_id)
 	{
 		var emisor = Meteor.users.findOne(emisor_id);
-		console.log(emisor);
+		//console.log(emisor);
 		if(emisor)
 		return emisor.profile.nombre;
 	};

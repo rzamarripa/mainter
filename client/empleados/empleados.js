@@ -35,11 +35,11 @@ angular.module("interCeramic")
 
   });
   	  
-  this.nuevo = true;	  
-  this.nuevoEmpleado = function()
+  this.new = true;	  
+  this.newEmpleado = function()
   {
     this.action = true;
-    this.nuevo = !this.nuevo;
+    this.new = !this.new;
     rc.empleado = {};		
   };
   
@@ -55,11 +55,11 @@ angular.module("interCeramic")
 			rc.empleado.empleado_id = doc;
 			rc.empleado.departamento_id = doc;
 		    Meteor.call('createUsuario', rc.empleado, 'empleado');
-		    this.nuevo = true;
+		    this.new = true;
 		    toastr.success('Empleado guardado.');
 		this.empleado = {};
 		$('.collapse').collapse('hide');
-		this.nuevo = true;
+		this.new = true;
 		title = rc.empleado.nombre;
 		var fechaNacimiento = new Date(this.empleado.fechaNac);
 		var dia = this.empleado.fechaNac.getDate();
@@ -107,7 +107,7 @@ angular.module("interCeramic")
     this.empleado = Empleados.findOne({_id:id});
     this.action = false;
     $('.collapse').collapse('show');
-    this.nuevo = false;
+    this.new = false;
 	};
 	
 	
@@ -120,7 +120,7 @@ angular.module("interCeramic")
 
 		Empleados.update({_id:idTemp},{$set:empleado});
 		$('.collapse').collapse('hide');
-		this.nuevo = true;
+		this.new = true;
 	};
 
 	this.cambiarEstatus = function(id)

@@ -25,11 +25,11 @@ angular.module("interCeramic")
 	  },
   });
   	  
-  this.nuevo = true;	  
+  this.new = true;	  
   this.nuevoJefeArea = function()
   {
     this.action = true;
-    this.nuevo = !this.nuevo;
+    this.new = !this.new;
     rc.jefeArea = {};		
   };
   
@@ -42,17 +42,18 @@ angular.module("interCeramic")
 		rc.jefeArea.actividad = 1;
 		rc.jefeArea.nombreCompleto = rc.jefeArea.nombre + " " + rc.jefeArea.apPaterno + " " + rc.jefeArea.apMaterno;
 		JefeAreas.insert(rc.jefeArea, function(err, doc){
-
-			this.nuevo = true;
 			rc.jefeArea.empleado_id = doc;
 		    Meteor.call('createUsuario', rc.jefeArea, 'jefeArea');
-
 		    toastr.success('Usuario guardado.');
+		   
 		this.jefeArea = {};
+
 		$('.collapse').collapse('hide');
-		this.nuevo = true;
-		$state.go('root.jefeAreas');
-		  this.nuevo = true;
+
+
+		 this.new = true;
+		console.log(this.nuevo)
+		 
 		
 	    });
     };
@@ -64,7 +65,7 @@ angular.module("interCeramic")
     this.jefeArea = JefeAreas.findOne({_id:id});
     this.action = false;
     $('.collapse').collapse('show');
-    this.nuevo = false;
+    this.new = false;
 	};
 	
 	
@@ -77,7 +78,7 @@ angular.module("interCeramic")
 
 		JefeAreas.update({_id:idTemp},{$set:jefeArea});
 		$('.collapse').collapse('hide');
-		this.nuevo = true;
+		this.new = true;
 	};
 	
 

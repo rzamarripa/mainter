@@ -28,11 +28,11 @@ this.subscribe('departamentos',()=>{
 	  },
   });
   	  
-  this.nuevo = true;	  
-  this.nuevoGerente = function()
+  this.new = true;	  
+  this.newGerente = function()
   {
     this.action = true;
-    this.nuevo = !this.nuevo;
+    this.new = !this.new;
     rc.gerente = {};		
   };
   
@@ -46,11 +46,11 @@ this.subscribe('departamentos',()=>{
 		Gerentes.insert(rc.gerente, function(err, doc){
 			rc.gerente.empleado_id = doc;
 		    Meteor.call('createUsuario', rc.gerente, 'gerente');
-		    this.nuevo = true;
+		    this.new = true;
 		    toastr.success('Usuario guardado.');
 	 	this.gerente = {};
 		$('.collapse').collapse('hide');
-		this.nuevo = true;
+		this.new = true;
 		$state.go('root.gerentes');
 		
 	    });
@@ -66,7 +66,7 @@ this.subscribe('departamentos',()=>{
     this.gerente = Gerentes.findOne({_id:id});
     this.action = false;
     $('.collapse').collapse('show');
-    this.nuevo = false;
+    this.new = false;
 	};
 	
 	
@@ -77,7 +77,7 @@ this.subscribe('departamentos',()=>{
 		 Meteor.call('cambiaContra', gerente.usuario, gerente.contrasena);
 		Gerentes.update({_id:idTemp},{$set:gerente});
 		$('.collapse').collapse('hide');
-		this.nuevo = true;
+		this.new = true;
 	};
 	
 

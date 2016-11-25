@@ -1,9 +1,9 @@
 <h2>Empleados</h2>
 <div class="row">
 	<div class="col-sm-12">
-		<a class="btn btn-{{emp.nuevo == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
+		<a class="btn btn-{{emp.new == true ? 'primary' : 'danger'}}" role="button" data-toggle="collapse" 
 			href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" id="nuevoempleado" ng-click="emp.nuevoEmpleado()">
-	 {{emp.nuevo == true ? 'Nuevo' : 'Cancelar'}}
+	 {{emp.new == true ? 'Nuevo' : 'Cancelar'}}
 		</a>
 		<div class="collapse" id="collapseExample">
 			<form class="form-horizontal" role="form" data-parsley-validate>
