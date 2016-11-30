@@ -84,20 +84,30 @@ angular.module("interCeramic")
 
 	this.cambiarEstatus = function(id)
 	{
-		var jefeArea = Meteor.users.findOne({"profile.empleado_id": id});
-		console.log(jefeArea);
-		var tempId = jefeArea._id;
-		delete jefeArea._id;
+
+
+
+
+		var jefeArea = JefeAreas.findOne({_id:id});
+		if(jefeArea.estatus == true)
+			jefeArea.estatus = false;
+		else
+			jefeArea.estatus = true;
+		JefeAreas.update({_id: id},{$set :  {estatus : jefeArea.estatus}});
+		// var jefeArea = Meteor.users.findOne({"profile.empleado_id": id});
+		// console.log(jefeArea);
+		// var tempId = jefeArea._id;
+		// delete jefeArea._id;
 	
 
-		if(jefeArea.profile.estatus == true )
+		// if(jefeArea.profile.estatus == true )
 			
-			jefeArea.profile.estatus = false  
-		else
-			jefeArea.profile.estatus = true;
+		// 	jefeArea.profile.estatus = false  
+		// else
+		// 	jefeArea.profile.estatus = true;
 		
-		JefeAreas.update({_id:id}, {$set :  {estatus : jefeArea.profile.estatus}});  
-		Meteor.call('actualizarUsuario', id );
+		// JefeAreas.update({_id:id}, {$set :  {estatus : jefeArea.profile.estatus}});  
+		// Meteor.call('actualizarUsuario', id );
 		
 
 		console.log(jefeArea);

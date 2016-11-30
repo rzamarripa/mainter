@@ -28,7 +28,8 @@ angular.module("interCeramic")
     
 	this.subscribe('tickets', () => {
 		//select * from tickets where departamento_id = user.departamento_id and estatus = true
-		return [{emisor_id : Meteor.userId(),estatus:1,estatus:3}]
+		return [{$or: [{emisor_id : Meteor.userId()},{estatus: 1},{estatus:2}]}]
+		 //[{emisor_id : Meteor.userId(),estatus:1 && estatus:3}]
 	});
 
 	this.subscribe('users', () => {
